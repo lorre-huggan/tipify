@@ -20,6 +20,7 @@ export const typeDefs = gql`
     user: ID!
     username: String!
     createdAt: String!
+    updatedAt: String
   }
 
   type Wage {
@@ -71,7 +72,7 @@ export const typeDefs = gql`
     DeleteUser(input: ID!): User!
     UpdateUsername(input: UpdateUsernameInput!): User!
     CreateJob(input: JobInput!): Job!
-    UpdateJob(input: JobInput!): Job!
+    UpdateJob(input: JobInput!, id: ID!): Job!
     DeleteJob(input: ID!): Job!
   }
 

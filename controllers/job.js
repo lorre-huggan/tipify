@@ -1,6 +1,7 @@
 import { JobModel } from '../model/job.js';
 import { UserInputError } from 'apollo-server';
 import { checkAuth } from '../utils.js/checkAuth.js';
+import { UserModel } from '../model/user.js';
 
 export const Jobs = async () => {
   try {
@@ -34,9 +35,9 @@ export const CreateJob = async (parent, args, context) => {
   const user = checkAuth(context);
 
   const { company_name, job_title, wages } = args.input;
-  console.log(wages);
 
   const company = await JobModel.findOne({ company_name });
+
   if (company) {
     throw new UserInputError('company name already exist', {
       error: {
@@ -62,4 +63,28 @@ export const CreateJob = async (parent, args, context) => {
     }
 };
 
-export const updateJob = async (parent, args) => {};
+export const UpdateJob = async (parent, args, context) => {
+  const user = checkAuth(context);
+  const { id } = args;
+  const { company_name, job_title, tips, hours_worked, date } = args.input;
+
+  const job = await JobModel.findById({ _id: id });
+
+  try {
+    const updateJob = JobModel.findByIdAndUpdate(id, {
+      company_name: company_name ? company_name : job.company_name,
+      job_title: job_title ? job_title : job.job_title,
+      wages: [
+        {
+          tips: tips ? tips : job.tips,
+          hours_worked: hours_worked ? hours_worked : job.hours_worked,
+          date: date ? date : job.date,
+        },
+      ],
+      updatedAt: String(Date.now()),
+    });
+    return updateJob;
+  } catch (error) {
+    console.log.error(error.message);
+  }
+};

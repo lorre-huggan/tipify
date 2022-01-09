@@ -13,6 +13,7 @@ const jobSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'users' },
   username: String,
   createdAt: Number,
+  updatedAt: Number,
 });
 
 export const JobModel = mongoose.model('Job', jobSchema);
