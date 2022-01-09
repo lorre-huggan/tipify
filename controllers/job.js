@@ -1,9 +1,10 @@
 import { JobModel } from '../model/job.js';
 import { UserInputError } from 'apollo-server';
+import { checkAuth } from '../utils.js/checkAuth.js';
 
 export const Jobs = async () => {
   try {
-    const jobs = await JobModel.find();
+    const jobs = await JobModel.find().sort({ createdAt: -1 });
     if (jobs) {
       return jobs;
     } else {
@@ -29,7 +30,9 @@ export const Job = async (parent, args) => {
   }
 };
 
-export const CreateJob = async (parent, args) => {
+export const CreateJob = async (parent, args, context) => {
+  const user = checkAuth(context);
+
   const { company_name, job_title, wages } = args.input;
   console.log(wages);
 
@@ -48,6 +51,8 @@ export const CreateJob = async (parent, args) => {
         company_name,
         job_title,
         wages,
+        user: user.id,
+        username: user.username,
         createdAt: Date.now().toString(),
       });
       const job = await newJob.save();

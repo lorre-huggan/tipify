@@ -14,6 +14,7 @@ const DB_AUTH = process.env.DB_AUTH;
 const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
+  context: ({ req }) => ({ req }),
 });
 (async () => {
   try {

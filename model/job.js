@@ -10,6 +10,8 @@ const jobSchema = new mongoose.Schema({
   company_name: String,
   job_title: String,
   wages: [wageSchema],
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'users' },
+  username: String,
   createdAt: Number,
 });
 

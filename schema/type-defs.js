@@ -17,6 +17,8 @@ export const typeDefs = gql`
     company_name: String!
     job_title: String!
     wages: [Wage]
+    user: ID!
+    username: String!
     createdAt: String!
   }
 

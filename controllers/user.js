@@ -3,7 +3,8 @@ import { UserInputError } from 'apollo-server';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import { loginValidate } from '../utils.js/formValidate.js';
+import { loginValidate, signupValidate } from '../utils.js/formValidate.js';
+import { checkAuth } from '../utils.js/checkAuth.js';
 dotenv.config();
 
 export const Users = async () => {
@@ -48,11 +49,11 @@ export const CreateUser = async (parent, args) => {
       jobs: [],
       createdAt: Date.now(),
     });
-    const user = await newUser.save();
-    const token = createToken(user);
+    const res = await newUser.save();
+    const token = createToken(res);
     return {
-      ...user._doc,
-      id: user._id,
+      ...res._doc,
+      id: res._id,
       token,
     };
   } catch (error) {
@@ -66,7 +67,6 @@ export const LoginUser = async (parent, { input }) => {
   loginValidate(username, password);
 
   const user = await UserModel.findOne({ username });
-  console.log(user);
 
   if (!user) {
     throw new UserInputError('Wrong credentials');
@@ -87,7 +87,11 @@ export const LoginUser = async (parent, { input }) => {
   };
 };
 
-export const DeleteUser = async (parent, { input }) => {
+export const DeleteUser = async (parent, { input }, context) => {
+  const user = checkAuth(context);
+  if (user.id !== input) {
+    throw new UserInputError('not authorized');
+  }
   try {
     const remove = UserModel.findByIdAndDelete(input);
     return remove;
@@ -121,7 +125,7 @@ export const UpdateUsername = async (parent, { input }) => {
 
 //Helper function
 const createToken = (user) => {
-  jwt.sign(
+  return jwt.sign(
     {
       id: user._id,
       email: user.email,
