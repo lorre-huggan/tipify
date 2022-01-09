@@ -7,8 +7,8 @@ export const typeDefs = gql`
     email: String!
     password: String!
     currency: Currency!
-    jobs: [Job!]
-    createdAt: Int!
+    jobs: [ID!]
+    createdAt: String!
     token: String!
   }
 
@@ -17,18 +17,13 @@ export const typeDefs = gql`
     company_name: String!
     job_title: String!
     wages: [Wage]
+    createdAt: String!
   }
 
   type Wage {
     tips: Float!
     hours_worked: Int!
-    date: Int!
-  }
-
-  type Query {
-    Users: [User!]!
-    User(id: ID!): User!
-    Job: [Job!]
+    date: String!
   }
 
   input CreateUserInput {
@@ -39,15 +34,43 @@ export const typeDefs = gql`
     confirmPassword: String!
   }
 
-  input UpdateUserInput {
+  input UpdateUsernameInput {
     _id: ID!
     new_username: String!
   }
 
+  input LoginInput {
+    username: String!
+    password: String!
+  }
+
+  input JobInput {
+    company_name: String!
+    job_title: String!
+    wages: [WageInput]
+  }
+
+  input WageInput {
+    tips: Float!
+    hours_worked: Int!
+    date: String!
+  }
+
+  type Query {
+    Users: [User!]!
+    User(id: ID!): User!
+    Jobs: [Job!]
+    Job(id: ID!): Job!
+  }
+
   type Mutation {
+    LoginUser(input: LoginInput!): User!
     CreateUser(input: CreateUserInput!): User!
-    DeleteUser(input: ID!): [User!]!
-    UpdateUsername(input: UpdateUserInput!): User!
+    DeleteUser(input: ID!): User!
+    UpdateUsername(input: UpdateUsernameInput!): User!
+    CreateJob(input: JobInput!): Job!
+    UpdateJob(input: JobInput!): Job!
+    DeleteJob(input: ID!): Job!
   }
 
   enum Currency {

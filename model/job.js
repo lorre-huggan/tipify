@@ -10,6 +10,7 @@ const jobSchema = new mongoose.Schema({
   company_name: String,
   job_title: String,
   wages: [wageSchema],
+  createdAt: Number,
 });
 
 export const JobModel = mongoose.model('Job', jobSchema);

@@ -4,6 +4,7 @@ import {
   CreateUser,
   DeleteUser,
   UpdateUsername,
+  LoginUser,
 } from '../../controllers/user.js';
 
 export const userResolvers = {
@@ -16,5 +17,6 @@ export const userResolvers = {
     CreateUser,
     DeleteUser,
     UpdateUsername,
+    LoginUser,
   },
 };

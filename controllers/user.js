@@ -1,14 +1,9 @@
-import { userData } from '../fakedata.js';
 import { UserModel } from '../model/user.js';
 import { UserInputError } from 'apollo-server';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import {
-  emailValidate,
-  passwordValidate,
-  usernameValidate,
-} from '../utils.js/formValidate.js';
+import { loginValidate } from '../utils.js/formValidate.js';
 dotenv.config();
 
 export const Users = async () => {
@@ -32,9 +27,7 @@ export const User = async (parent, { id }, context, info) => {
 export const CreateUser = async (parent, args) => {
   const { username, email, currency, password, confirmPassword } = args.input;
 
-  usernameValidate(username);
-  emailValidate(email);
-  passwordValidate(password, confirmPassword);
+  signupValidate(password, confirmPassword, username, email);
 
   const user = await UserModel.findOne({ username });
   if (user) {
@@ -55,19 +48,11 @@ export const CreateUser = async (parent, args) => {
       jobs: [],
       createdAt: Date.now(),
     });
-    const res = await newUser.save();
-    const token = jwt.sign(
-      {
-        id: res._id,
-        email: res.email,
-        username: res.username,
-      },
-      process.env.JWT,
-      { expiresIn: '1h' }
-    );
+    const user = await newUser.save();
+    const token = createToken(user);
     return {
-      ...res._doc,
-      id: res._id,
+      ...user._doc,
+      id: user._id,
       token,
     };
   } catch (error) {
@@ -75,16 +60,74 @@ export const CreateUser = async (parent, args) => {
   }
 };
 
-export const UpdateUsername = async (parent, { input }) => {
-  const { _id, newUsername } = input;
+export const LoginUser = async (parent, { input }) => {
+  const { username, password } = input;
+
+  loginValidate(username, password);
+
+  const user = await UserModel.findOne({ username });
+  console.log(user);
+
+  if (!user) {
+    throw new UserInputError('Wrong credentials');
+  }
+
+  const match = await bcrypt.compare(password, user.password);
+
+  if (!match) {
+    throw new UserInputError('Wrong password or email');
+  }
+
+  const token = createToken(user);
+
+  return {
+    ...user._doc,
+    id: user._id,
+    token,
+  };
+};
+
+export const DeleteUser = async (parent, { input }) => {
   try {
-    UserModel.findByIdAndUpdate(_id, { username: newUsername });
+    const remove = UserModel.findByIdAndDelete(input);
+    return remove;
   } catch (error) {
     console.log(error.message);
   }
 };
 
-export const DeleteUser = (parent, { input }) => {
-  const update = userData.filter((user) => user._id !== input);
-  return update;
+export const UpdateUsername = async (parent, { input }) => {
+  const { _id, new_username } = input;
+
+  const user = await UserModel.findOne({ username: new_username });
+
+  if (user) {
+    throw new UserInputError('username is taken', {
+      error: {
+        username: 'This username is taken...',
+      },
+    });
+  }
+
+  try {
+    const newUser = UserModel.findByIdAndUpdate(_id, {
+      username: new_username,
+    });
+    return newUser;
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+//Helper function
+const createToken = (user) => {
+  jwt.sign(
+    {
+      id: user._id,
+      email: user.email,
+      username: user.username,
+    },
+    process.env.JWT,
+    { expiresIn: '1h' }
+  );
 };
