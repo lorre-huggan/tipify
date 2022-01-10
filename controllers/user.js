@@ -19,7 +19,7 @@ export const Users = async () => {
   }
 };
 
-export const User = async (parent, { id }, context, info) => {
+export const User = async (_, { id }) => {
   try {
     const user = await UserModel.findById({ _id: id });
     return user;
@@ -28,7 +28,7 @@ export const User = async (parent, { id }, context, info) => {
   }
 };
 
-export const CreateUser = async (parent, args) => {
+export const CreateUser = async (_, args) => {
   const { username, email, currency, password, confirmPassword } = args.input;
 
   signupValidate(password, confirmPassword, username, email);
@@ -64,7 +64,7 @@ export const CreateUser = async (parent, args) => {
   }
 };
 
-export const LoginUser = async (parent, { username, password }) => {
+export const LoginUser = async (_, { username, password }) => {
   loginValidate(username, password);
 
   const user = await UserModel.findOne({ username });
@@ -84,7 +84,7 @@ export const LoginUser = async (parent, { username, password }) => {
   };
 };
 
-export const DeleteUser = async (parent, { input }, context) => {
+export const DeleteUser = async (_, { input }, context) => {
   const user = checkAuth(context);
   if (user.id !== input) {
     throw new UserInputError('not authorized');
@@ -97,7 +97,7 @@ export const DeleteUser = async (parent, { input }, context) => {
   }
 };
 
-export const UpdateUsername = async (parent, { input }, context) => {
+export const UpdateUsername = async (_, { input }, context) => {
   const user = checkAuth(context);
   const { _id, new_username } = input;
 
@@ -123,11 +123,7 @@ export const UpdateUsername = async (parent, { input }, context) => {
   }
 };
 
-export const UpdatePassword = async (
-  parent,
-  { password, newPassword },
-  context
-) => {
+export const UpdatePassword = async (_, { password, newPassword }, context) => {
   const user = checkAuth(context);
 
   if (!user) {
@@ -152,8 +148,6 @@ export const UpdatePassword = async (
     throw new UserInputError(error.message);
   }
 };
-
-// TODO change password controller
 
 //Helper function
 const createToken = (user) => {

@@ -29,7 +29,7 @@ export const jobTypeDefs = `
   }
 
   extend type Query {
-    Jobs: [Job!]
+    Jobs: [Job]!
     Job(id: ID!): Job!
   }
 
