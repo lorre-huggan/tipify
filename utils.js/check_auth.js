@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import { AuthenticationError } from 'apollo-server';
 dotenv.config();
 
-const JWT = process.env.JWT;
+export const JWT = process.env.JWT;
 
 export const checkAuth = (context) => {
   const authHeader = context.req.headers.authorization;

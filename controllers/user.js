@@ -1,11 +1,14 @@
 import { UserModel } from '../model/user.js';
 import { UserInputError } from 'apollo-server';
 import bcrypt from 'bcryptjs';
+import { JWT } from '../utils.js/check_auth.js';
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
-import { loginValidate, signupValidate } from '../utils.js/form_validate.js';
+import {
+  loginValidate,
+  passwordValidate,
+  signupValidate,
+} from '../utils.js/validate.js';
 import { checkAuth } from '../utils.js/check_auth.js';
-dotenv.config();
 
 export const Users = async () => {
   try {
@@ -61,9 +64,7 @@ export const CreateUser = async (parent, args) => {
   }
 };
 
-export const LoginUser = async (parent, { input }) => {
-  const { username, password } = input;
-
+export const LoginUser = async (parent, { username, password }) => {
   loginValidate(username, password);
 
   const user = await UserModel.findOne({ username });
@@ -72,11 +73,7 @@ export const LoginUser = async (parent, { input }) => {
     throw new UserInputError('Wrong credentials');
   }
 
-  const match = await bcrypt.compare(password, user.password);
-
-  if (!match) {
-    throw new UserInputError('Wrong password or email');
-  }
+  passwordValidate(password, user);
 
   const token = createToken(user);
 
@@ -100,12 +97,15 @@ export const DeleteUser = async (parent, { input }, context) => {
   }
 };
 
-export const UpdateUsername = async (parent, { input }) => {
+export const UpdateUsername = async (parent, { input }, context) => {
+  const user = checkAuth(context);
   const { _id, new_username } = input;
 
-  const user = await UserModel.findOne({ username: new_username });
+  const findUserWithNewUsername = await UserModel.findOne({
+    username: new_username,
+  });
 
-  if (user) {
+  if (findUserWithNewUsername) {
     throw new UserInputError('username is taken', {
       error: {
         username: 'This username is taken...',
@@ -114,12 +114,42 @@ export const UpdateUsername = async (parent, { input }) => {
   }
 
   try {
-    const newUser = UserModel.findByIdAndUpdate(_id, {
+    const newUserName = UserModel.findByIdAndUpdate(_id, {
       username: new_username,
     });
-    return newUser;
+    return newUserName;
   } catch (error) {
     console.log(error.message);
+  }
+};
+
+export const UpdatePassword = async (
+  parent,
+  { password, newPassword },
+  context
+) => {
+  const user = checkAuth(context);
+
+  if (!user) {
+    throw new UserInputError('bad auth error');
+  }
+
+  const userInDb = await UserModel.findOne({ username: user.username });
+
+  passwordValidate(password, userInDb);
+
+  if (newPassword.length < 6) {
+    return new UserInputError('password must be 6 or more characters long');
+  }
+
+  try {
+    const hashedPassword = await bcrypt.hash(newPassword, 12);
+    const item = await UserModel.findByIdAndUpdate(user.id, {
+      password: hashedPassword,
+    });
+    return item;
+  } catch (error) {
+    throw new UserInputError(error.message);
   }
 };
 
@@ -133,7 +163,7 @@ const createToken = (user) => {
       email: user.email,
       username: user.username,
     },
-    process.env.JWT,
+    JWT,
     { expiresIn: '1h' }
   );
 };

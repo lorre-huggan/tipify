@@ -1,21 +1,16 @@
-import { ApolloServer } from 'apollo-server';
-import { typeDefs } from './schema/type-defs.js';
-import { connectDB } from './db/db.js';
-import dotenv from 'dotenv';
+import { ApolloServer, gql } from 'apollo-server';
+import { connectDB, DB_AUTH } from './db/db.js';
+import { typeDefs } from './schema/type-defs/index_type_defs.js';
 import { JobModel } from './model/job.js';
 import { UserModel } from './model/user.js';
-import { jobData, userData } from './fakedata.js';
 import { resolvers } from './schema/resolvers/index.js';
-
-dotenv.config();
-
-const DB_AUTH = process.env.DB_AUTH;
 
 const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
   context: ({ req }) => ({ req }),
 });
+
 (async () => {
   try {
     await connectDB(DB_AUTH);

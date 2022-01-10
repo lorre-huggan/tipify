@@ -1,7 +1,6 @@
 import { JobModel } from '../model/job.js';
 import { UserInputError } from 'apollo-server';
 import { checkAuth } from '../utils.js/check_auth.js';
-import { UserModel } from '../model/user.js';
 
 export const Jobs = async (parent, args, context) => {
   const user = checkAuth(context);

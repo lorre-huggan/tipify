@@ -1,4 +1,5 @@
 import { UserInputError } from 'apollo-server';
+import bcrypt from 'bcryptjs';
 import { UserModel } from '../model/user.js';
 
 const emailRegEx =
@@ -84,5 +85,13 @@ export const newUsernameValidate = (username) => {
         password: 'username invalid',
       },
     });
+  }
+};
+
+export const passwordValidate = async (password, user) => {
+  const match = await bcrypt.compare(password, user.password);
+
+  if (!match) {
+    throw new UserInputError('Wrong password or email');
   }
 };
