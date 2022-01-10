@@ -3,8 +3,8 @@ import { UserInputError } from 'apollo-server';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import { loginValidate, signupValidate } from '../utils.js/formValidate.js';
-import { checkAuth } from '../utils.js/checkAuth.js';
+import { loginValidate, signupValidate } from '../utils.js/form_validate.js';
+import { checkAuth } from '../utils.js/check_auth.js';
 dotenv.config();
 
 export const Users = async () => {
@@ -122,6 +122,8 @@ export const UpdateUsername = async (parent, { input }) => {
     console.log(error.message);
   }
 };
+
+// TODO change password controller
 
 //Helper function
 const createToken = (user) => {

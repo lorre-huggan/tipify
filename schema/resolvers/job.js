@@ -1,4 +1,10 @@
-import { Jobs, Job, CreateJob, UpdateJob } from '../../controllers/job.js';
+import {
+  Jobs,
+  Job,
+  CreateJob,
+  UpdateJob,
+  DeleteJob,
+} from '../../controllers/job.js';
 
 export const jobResolvers = {
   Query: {
@@ -8,5 +14,6 @@ export const jobResolvers = {
   Mutation: {
     CreateJob,
     UpdateJob,
+    DeleteJob,
   },
 };

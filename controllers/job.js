@@ -1,9 +1,10 @@
 import { JobModel } from '../model/job.js';
 import { UserInputError } from 'apollo-server';
-import { checkAuth } from '../utils.js/checkAuth.js';
+import { checkAuth } from '../utils.js/check_auth.js';
 import { UserModel } from '../model/user.js';
 
-export const Jobs = async () => {
+export const Jobs = async (parent, args, context) => {
+  const user = checkAuth(context);
   try {
     const jobs = await JobModel.find().sort({ createdAt: -1 });
     if (jobs) {
@@ -16,7 +17,8 @@ export const Jobs = async () => {
   }
 };
 
-export const Job = async (parent, args) => {
+export const Job = async (parent, args, context) => {
+  const user = checkAuth(context);
   const { id } = args;
 
   try {
@@ -65,6 +67,7 @@ export const CreateJob = async (parent, args, context) => {
 
 export const UpdateJob = async (parent, args, context) => {
   const user = checkAuth(context);
+
   const { id } = args;
   const { company_name, job_title, tips, hours_worked, date } = args.input;
 
@@ -86,5 +89,17 @@ export const UpdateJob = async (parent, args, context) => {
     return updateJob;
   } catch (error) {
     console.log.error(error.message);
+  }
+};
+
+export const DeleteJob = async (parent, args, context) => {
+  const user = checkAuth(context);
+  const { id } = args;
+
+  try {
+    const remove = JobModel.findByIdAndDelete(id);
+    return remove;
+  } catch (error) {
+    throw new UserInputError(error.message);
   }
 };

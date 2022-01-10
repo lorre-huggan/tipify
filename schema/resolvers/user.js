@@ -16,7 +16,7 @@ export const userResolvers = {
   Mutation: {
     CreateUser,
     DeleteUser,
-    UpdateUsername,
     LoginUser,
+    UpdateUsername,
   },
 };
