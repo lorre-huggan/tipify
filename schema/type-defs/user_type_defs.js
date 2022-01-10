@@ -10,7 +10,6 @@ export const userTypeDefs = `
     email: String!
     password: String!
     currency: Currency!
-    jobs: [ID!]
     createdAt: String!
     token: String!
   }

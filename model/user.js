@@ -5,12 +5,6 @@ const userSchema = new mongoose.Schema({
   email: String,
   password: String,
   currency: String,
-  jobs: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Job',
-    },
-  ],
   createdAt: Number,
   token: String,
 });
