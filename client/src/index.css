@@ -57,3 +57,7 @@ textarea {
 :where([draggable='true']) {
   -webkit-user-drag: element;
 }
+
+body {
+  font-family: 'Lato', sans-serif;
+}
