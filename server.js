@@ -9,8 +9,6 @@ const apolloServer = new ApolloServer({
   context: ({ req }) => ({ req }),
 });
 
-// apolloServer.applyMiddleware({ cors: false });
-
 (async () => {
   try {
     await connectDB(DB_AUTH);

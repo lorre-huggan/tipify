@@ -1,32 +1,21 @@
-import { useQuery, gql } from '@apollo/client';
-import { addDays, fromUnixTime } from 'date-fns';
-
-const FETCH = gql`
-  query Query {
-    User(id: "61dc481e19908d25f8f41630") {
-      username
-      email
-    }
-  }
-`;
-
-const day = new Date();
-const tomorrow = addDays(day, 2);
-const split = tomorrow.toString().split(' ')[0];
-console.log(split);
-
-const x = fromUnixTime(1641852334);
-console.log({ days: x });
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Dashboard from './pages/dashboard/Dashboard';
+import Home from './pages/home/Home';
+import Login from './pages/login/Login';
+import PageNotFound from './pages/pageNotFound/404';
+import Signup from './pages/signup/Signup';
 
 function App() {
-  const { data } = useQuery(FETCH);
-  console.log(data);
-
   return (
-    <div>
-      <span className="text-xl text-red-500"></span>
-      hello
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
