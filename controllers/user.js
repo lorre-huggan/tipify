@@ -1,3 +1,4 @@
+//TODO Error handling
 import { UserModel } from '../model/user.js';
 import { UserInputError } from 'apollo-server';
 import bcrypt from 'bcryptjs';
@@ -73,7 +74,11 @@ export const LoginUser = async (_, { username, password }) => {
     throw new UserInputError('Wrong credentials');
   }
 
-  passwordValidate(password, user);
+  const pwCheck = await bcrypt.compare(password, user.password);
+
+  if (!pwCheck) {
+    throw new UserInputError('username or password incorrect');
+  }
 
   const token = createToken(user);
 
@@ -131,9 +136,11 @@ export const UpdatePassword = async (_, { password, newPassword }, context) => {
   }
 
   const userInDb = await UserModel.findOne({ username: user.username });
+  const pwMatch = await bcrypt.compare(password, userInDb.password);
 
-  passwordValidate(password, userInDb);
-
+  if (!pwMatch) {
+    throw new UserInputError('Incorrect Password');
+  }
   if (newPassword.length < 6) {
     return new UserInputError('password must be 6 or more characters long');
   }

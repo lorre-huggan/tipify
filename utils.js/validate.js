@@ -78,6 +78,7 @@ export const signupValidate = (password, confirmPassword, username, email) => {
     });
   }
 };
+
 export const newUsernameValidate = (username) => {
   if (!username || typeof username !== 'string') {
     throw new UserInputError('username invalid', {
@@ -89,9 +90,9 @@ export const newUsernameValidate = (username) => {
 };
 
 export const passwordValidate = async (password, user) => {
-  const match = await bcrypt.compare(password, user.password);
+  const pwCheck = await bcrypt.compare(password, user.password);
 
-  if (!match) {
-    throw new UserInputError('Wrong password or email');
+  if (!pwCheck) {
+    throw new UserInputError('Very Bad Credentials');
   }
 };

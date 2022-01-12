@@ -31,6 +31,7 @@
       text-align: center;
       font-weight: 600;
       @include text-2xl;
+      margin-bottom: $sp-2;
     }
     p {
       color: $color-6;
@@ -50,6 +51,8 @@
         text-align: left;
         width: 100%;
         margin-bottom: $sp-1;
+        @include text-xs;
+        font-weight: 900;
       }
       input {
         width: 100%;
@@ -94,6 +97,14 @@
         &:hover {
           background-color: $color-0;
         }
+      }
+      .login-error {
+        color: $color-leader;
+      }
+      .login-input-error {
+        border: 1px solid $color-leader;
+        color: $color-leader;
+        background-color: #e03f4f1e;
       }
     }
     p {

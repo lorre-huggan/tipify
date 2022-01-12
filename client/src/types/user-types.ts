@@ -5,3 +5,7 @@ export interface LoginUser {
   token: string;
   __typename: string;
 }
+export interface LoginInput {
+  username: string;
+  password: string;
+}
