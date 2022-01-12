@@ -3,6 +3,7 @@ import { useMutation } from '@apollo/client';
 import { USER_LOGIN } from '../../gql/request/user/request';
 import './styles.scss';
 import { useNavigate } from 'react-router-dom';
+import LoadingBox from '../../components/Loading';
 
 interface Props {}
 
@@ -49,6 +50,7 @@ const Login: React.FC<Props> = () => {
         <div className="login-heading">
           <span className="login-logo">TIPiFY</span>
           <h1>Welcome Back</h1>
+          {loading && <LoadingBox />}
           {/* <p>Sign in we're so excited to see you back!</p> */}
         </div>
         <div className="login-form">

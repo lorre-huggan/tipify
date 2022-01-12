@@ -9,7 +9,7 @@
   .login-form-container {
     @include shadow-sm;
     height: 35rem;
-    width: 28rem;
+    width: min(90%, 28rem);
     background-color: $color-3;
     border-radius: 8px;
     @include flex(column, center, center);
