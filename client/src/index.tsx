@@ -4,12 +4,16 @@ import './index.css';
 import App from './App';
 import { ApolloProvider } from '@apollo/client';
 import { apolloClient } from './apollo/client';
+import { UserProvider } from './context/user/userProvider';
+import { userInitialState, userReducer } from './context/user/UserReducer.';
 
 ReactDOM.render(
   <ApolloProvider client={apolloClient}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <UserProvider initialState={userInitialState} reducer={userReducer}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </UserProvider>
   </ApolloProvider>,
   document.getElementById('root')
 );

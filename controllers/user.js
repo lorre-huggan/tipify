@@ -4,11 +4,7 @@ import { UserInputError } from 'apollo-server';
 import bcrypt from 'bcryptjs';
 import { JWT } from '../utils.js/check_auth.js';
 import jwt from 'jsonwebtoken';
-import {
-  loginValidate,
-  passwordValidate,
-  signupValidate,
-} from '../utils.js/validate.js';
+import { loginValidate, signupValidate } from '../utils.js/validate.js';
 import { checkAuth } from '../utils.js/check_auth.js';
 
 export const Users = async () => {
@@ -30,9 +26,9 @@ export const User = async (_, { id }) => {
 };
 
 export const CreateUser = async (_, args) => {
-  const { username, email, currency, password, confirmPassword } = args.input;
+  const { username, email, currency, password, confirmPassword } = args;
 
-  signupValidate(password, confirmPassword, username, email);
+  signupValidate(password, confirmPassword, username, email, currency);
 
   const user = await UserModel.findOne({ username });
   if (user) {
@@ -41,6 +37,11 @@ export const CreateUser = async (_, args) => {
         username: 'This username is taken...',
       },
     });
+  }
+
+  const isEmail = await UserModel.findOne({ email });
+  if (isEmail) {
+    throw new UserInputError('user with email already signed up');
   }
 
   try {

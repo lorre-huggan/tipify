@@ -62,7 +62,7 @@
         border-radius: 4px;
         color: $color-2;
         background-color: $color-5;
-        transition: border $time-fs cubic-bezier(0.075, 0.82, 0.165, 1);
+        transition: border $time-fs $trans-1;
         &:hover {
           border: 1px solid #111111;
         }
@@ -71,7 +71,25 @@
         }
       }
       input:nth-child(4) {
-        margin-bottom: 0;
+        margin-bottom: $sp-4;
+      }
+      .sign-up-radio-container {
+        width: 100%;
+        @include flex(row, center, space-between);
+        div {
+          @include flex(column, center, center);
+          label {
+            display: inline-block;
+            text-align: center;
+          }
+          input {
+            width: 10%;
+            transition: background-color $time-fs $trans-1;
+            &:focus {
+              background-color: $color-raider;
+            }
+          }
+        }
       }
       span {
         text-align: left;
@@ -112,6 +130,7 @@
       color: $color-6;
       span {
         color: $color-raider;
+        cursor: pointer;
       }
     }
   }

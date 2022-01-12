@@ -30,7 +30,20 @@ export const loginValidate = (username, password) => {
     });
   }
 };
-export const signupValidate = (password, confirmPassword, username, email) => {
+export const signupValidate = (
+  password,
+  confirmPassword,
+  username,
+  email,
+  currency
+) => {
+  if (!currency || typeof currency !== 'string') {
+    throw new UserInputError('please select currency ', {
+      error: {
+        password: 'please select currency',
+      },
+    });
+  }
   if (!password || typeof password !== 'string') {
     throw new UserInputError('password invalid', {
       error: {

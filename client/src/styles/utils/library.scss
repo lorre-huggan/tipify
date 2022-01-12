@@ -11,6 +11,9 @@ $time-sl: 800ms;
 $time-md: 500ms;
 $time-fs: 300ms;
 
+//tranistions
+$trans-1: cubic-bezier(0.645, 0.045, 0.355, 1);
+
 //utility mixins----
 @mixin flex($direction, $align, $justify) {
   display: flex;

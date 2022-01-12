@@ -28,7 +28,7 @@ export const userTypeDefs = `
 
   extend type Mutation {
     LoginUser(username: String!, password: String!): User!
-    CreateUser(input: CreateUserInput!): User!
+    CreateUser(username: String!, email: String!, password: String! confirmPassword: String!, currency: String!): User!
     DeleteUser(id: ID!): User!
     UpdateUsername(username: String!, id: ID!): User!
     UpdatePassword(password: String!, newPassword: String!): User!

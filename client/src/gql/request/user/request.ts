@@ -10,6 +10,28 @@ export const USER_LOGIN = gql`
     }
   }
 `;
+export const USER_SIGN_UP = gql`
+  mutation signup(
+    $username: String!
+    $email: String!
+    $password: String!
+    $confirmPassword: String!
+    $currency: String!
+  ) {
+    CreateUser(
+      username: $username
+      email: $email
+      password: $password
+      confirmPassword: $confirmPassword
+      currency: $currency
+    ) {
+      _id
+      email
+      username
+      token
+    }
+  }
+`;
 
 export const GET_USERS = gql`
   query getUsers {

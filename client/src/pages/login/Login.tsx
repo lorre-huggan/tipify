@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { USER_LOGIN } from '../../gql/request/user/request';
 import './styles.scss';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import LoadingBox from '../../components/Loading';
+import { useUserState } from '../../context/user/userProvider';
 
 interface Props {}
 
@@ -14,6 +15,9 @@ const Login: React.FC<Props> = () => {
   });
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const [{ _id }, dispatch] = useUserState();
+
+  console.log(_id);
 
   const [LoginUser, { data, loading }] = useMutation(USER_LOGIN, {
     update(proxy, result) {
@@ -22,6 +26,11 @@ const Login: React.FC<Props> = () => {
         console.log('loading');
       }
       const { LoginUser } = result.data;
+      dispatch({
+        type: 'SET_USER',
+        ...LoginUser,
+      });
+
       navigate('/dashboard');
     },
     onError(error) {
@@ -75,10 +84,15 @@ const Login: React.FC<Props> = () => {
             />
             <span>forgot password?</span>
             {error && <p className="login-error">{error}!</p>}
-            <button type="submit">login</button>
+            <button type="submit" disabled={loading}>
+              login
+            </button>
           </form>
           <p>
-            Need an account? <span>Register</span>
+            Need an account?{' '}
+            <span>
+              <Link to={'/signup'}>Register</Link>
+            </span>
           </p>
         </div>
       </div>
