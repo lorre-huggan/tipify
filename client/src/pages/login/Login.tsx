@@ -15,20 +15,16 @@ const Login: React.FC<Props> = () => {
   });
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const [{ _id }, dispatch] = useUserState();
+  const [{}, dispatch] = useUserState();
 
-  console.log(_id);
-
-  const [LoginUser, { data, loading }] = useMutation(USER_LOGIN, {
-    update(proxy, result) {
+  const [LoginUser, { loading }] = useMutation(USER_LOGIN, {
+    update(proxy, { data: { LoginUser } }) {
       //TODO handle loading event...
-      if (loading) {
-        console.log('loading');
-      }
-      const { LoginUser } = result.data;
+
+      localStorage.setItem('token', LoginUser.token);
       dispatch({
-        type: 'SET_USER',
-        ...LoginUser,
+        type: 'LOGIN',
+        userData: LoginUser,
       });
 
       navigate('/dashboard');
@@ -60,7 +56,6 @@ const Login: React.FC<Props> = () => {
           <span className="login-logo">TIPiFY</span>
           <h1>Welcome Back</h1>
           {loading && <LoadingBox />}
-          {/* <p>Sign in we're so excited to see you back!</p> */}
         </div>
         <div className="login-form">
           <form onSubmit={handleSubmit}>

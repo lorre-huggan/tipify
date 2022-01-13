@@ -18,15 +18,15 @@ const SignUp: React.FC<Props> = () => {
   });
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const [{ _id }, dispatch] = useUserState();
+  const [{}, dispatch] = useUserState();
 
   const [CreateUser, { loading }] = useMutation(USER_SIGN_UP, {
-    update(proxy, result) {
+    update(_, { data: { CreateUser } }) {
       //TODO handle loading event...
-      const { CreateUser } = result.data;
+      localStorage.setItem('token', CreateUser.token);
       dispatch({
-        type: 'SET_USER',
-        ...CreateUser,
+        type: 'LOGIN',
+        userData: CreateUser,
       });
 
       navigate('/dashboard');

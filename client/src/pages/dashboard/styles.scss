@@ -1,5 +1,23 @@
 @use '../../styles/' as *;
 
-.test {
-  color: $color-mod;
+.dashboard {
+  margin-left: 5rem;
+  padding: 1rem;
+  width: 100%;
+  height: 100vh;
+  background-color: $color-3;
+}
+
+.surface {
+  width: 30rem;
+  height: 19rem;
+  border-radius: 8px;
+  padding: $sp-2;
+  border: 1px solid #11111180;
+  background-color: $color-5;
+  margin-bottom: $sp-3;
+  @include text-xl;
+  text-transform: uppercase;
+  font-weight: 900;
+  @include shadow-xs;
 }

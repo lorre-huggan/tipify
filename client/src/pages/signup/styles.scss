@@ -78,6 +78,7 @@
         @include flex(row, center, space-between);
         div {
           @include flex(column, center, center);
+          padding: 0 $sp-4;
           label {
             display: inline-block;
             text-align: center;

@@ -1,26 +1,48 @@
 import { LoginUser } from '../../types/user-types';
+import jwtDecode from 'jwt-decode';
+import { Token } from '../../hooks/useAuth';
 
-export const userInitialState: LoginUser = {
-  _id: '',
-  email: '',
-  username: '',
-  token: '',
-  __typename: '',
+export const userInitialState: UserInitState = {
+  userData: {
+    _id: '',
+    email: '',
+    username: '',
+    token: '',
+    __typename: '',
+  },
+  authUser: {
+    id: '',
+    email: '',
+    username: '',
+    iat: 0,
+    exp: 0,
+  },
 };
 
-interface Action extends LoginUser {
+interface Action extends UserInitState {
   type: string;
+}
+interface UserInitState {
+  userData: LoginUser;
+  authUser: Token;
 }
 
 export const userReducer = (state: LoginUser, action: Action) => {
   switch (action.type) {
-    case 'SET_USER':
+    case 'LOGIN':
       return {
-        _id: action._id,
-        email: action.email,
-        username: action.username,
-        token: action.token,
-        __typename: action.__typename,
+        ...state,
+        userData: action.userData,
+      };
+    case 'LOGOUT':
+      return {
+        ...state,
+        userData: null,
+      };
+    case 'AUTH':
+      return {
+        ...state,
+        authUser: action.authUser,
       };
     default:
       return state;

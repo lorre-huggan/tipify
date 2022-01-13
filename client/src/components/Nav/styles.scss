@@ -1,0 +1,52 @@
+@use '../../styles/' as *;
+
+section {
+  width: 5rem;
+  height: 100vh;
+  position: fixed;
+  background-color: $color-4;
+  left: 0;
+  top: 0;
+  border-right: 1px solid #11111170;
+
+  .icons {
+    @include flex(column, center, center);
+    ul {
+      li {
+        margin-top: $sp-2;
+        @include flex(column, center, center);
+        svg {
+          font-size: $sp-6;
+          color: $color-1;
+          transition: color $time-fs $trans-1;
+          cursor: pointer;
+          &:hover {
+            color: $color-helper;
+          }
+          &:hover + p {
+            opacity: 1;
+          }
+        }
+        p {
+          color: $color-6;
+          opacity: 0.3;
+          transition: opacity $time-md $trans-1;
+        }
+      }
+      li:nth-child(5) {
+        position: absolute;
+        bottom: 1rem;
+        svg {
+          color: $color-officer;
+          &:hover {
+            color: $color-helper;
+          }
+        }
+        p {
+          @include text-xs;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+}
