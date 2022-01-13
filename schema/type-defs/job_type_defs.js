@@ -31,6 +31,7 @@ export const jobTypeDefs = `
   extend type Query {
     Jobs: [Job]!
     Job(id: ID!): Job!
+    UserJobs(id: String!): [Job]!
   }
 
   extend type Mutation {

@@ -16,6 +16,20 @@ export const Jobs = async (parent, args, context) => {
   }
 };
 
+export const UserJobs = async (parent, { id }, context) => {
+  const user = checkAuth(context);
+  try {
+    const jobs = await JobModel.find({ user: id }).sort({ createdAt: -1 });
+    if (jobs) {
+      return jobs;
+    } else {
+      throw new UserInputError('Job Not Found ');
+    }
+  } catch (error) {
+    throw new UserInputError(error.message);
+  }
+};
+
 export const Job = async (parent, args, context) => {
   const user = checkAuth(context);
   const { id } = args;

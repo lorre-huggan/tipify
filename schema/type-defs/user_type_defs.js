@@ -4,6 +4,7 @@ export const userTypeDefs = `
     EUR
     USD
   }
+  
   type User {
     _id: ID!
     username: String!
@@ -13,6 +14,7 @@ export const userTypeDefs = `
     createdAt: String!
     token: String!
   }
+
   input CreateUserInput {
     username: String!
     email: String!
@@ -24,6 +26,7 @@ export const userTypeDefs = `
   extend type Query {
     Users: [User!]!
     User(id: ID!): User!
+    
   }
 
   extend type Mutation {
