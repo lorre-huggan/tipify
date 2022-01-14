@@ -4,7 +4,6 @@ const wageSchema = new mongoose.Schema({
   tips: Number,
   hours_worked: Number,
   date: Number,
-  uid: String,
 });
 
 const jobSchema = new mongoose.Schema({

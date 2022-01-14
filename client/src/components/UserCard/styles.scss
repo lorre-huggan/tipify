@@ -4,7 +4,41 @@
   width: 100%;
   min-height: 19rem;
   border-radius: 8px;
-  padding: $sp-2;
-  border: 1px solid #11111180;
+  padding: $sp-4;
+  border: 1px solid #11111130;
   background-color: $color-5;
+  position: relative;
+  .user-card-user-since {
+    @include text-xs;
+    text-transform: uppercase;
+    color: $color-2;
+    opacity: 0.25;
+    margin-bottom: $sp-1;
+  }
+  .user-card-user-avatar {
+    position: absolute;
+    top: $sp-4;
+    right: $sp-4;
+    font-size: $sp-4;
+    color: $color-helper;
+  }
+  .user-card-settings-icon {
+    @include flex(row, center, center);
+    position: absolute;
+    bottom: $sp-4;
+    left: $sp-4;
+    font-size: $sp-4;
+    color: $color-2;
+    opacity: 0.25;
+    cursor: pointer;
+    transition: opacity $time-fs $trans-1;
+    &:hover {
+      opacity: 1;
+      color: $color-member;
+    }
+  }
+  h2 {
+    @include text-2xl;
+    margin-bottom: $sp-1;
+  }
 }

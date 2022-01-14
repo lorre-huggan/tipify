@@ -116,3 +116,32 @@ export const DeleteJob = async (parent, args, context) => {
     throw new UserInputError(error.message);
   }
 };
+
+export const DeleteShift = async (_, args, context) => {
+  const user = checkAuth(context);
+  const { jobId, wageId } = args;
+  const job = await JobModel.findOne({ _id: jobId });
+
+  if (user.id !== job.user.toString()) {
+    throw new UserInputError('User Not Authorized');
+  }
+  if (!job.wages) {
+    return new UserInputError('Items not found ');
+  }
+
+  const shift = job.wages;
+
+  const updatedJob = shift.filter((job) => {
+    return job._id.toString() !== wageId;
+  });
+
+  job.wages = updatedJob;
+  job.updatedAt = Date.now();
+
+  try {
+    const updated = await job.save();
+    return updated;
+  } catch (error) {
+    console.log(error.message);
+  }
+};

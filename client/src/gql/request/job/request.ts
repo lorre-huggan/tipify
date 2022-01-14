@@ -10,10 +10,21 @@ export const GET_USER_JOBS = gql`
         tips
         hours_worked
         date
-        uid
+        _id
       }
       createdAt
       updatedAt
+    }
+  }
+`;
+
+export const DELETE_WAGE = gql`
+  mutation deleteWage($jobId: String!, $wageId: String!) {
+    DeleteShift(jobId: $jobId, wageId: $wageId) {
+      company_name
+      updatedAt
+      username
+      user
     }
   }
 `;

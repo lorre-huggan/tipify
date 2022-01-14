@@ -5,6 +5,7 @@ import {
   UpdateJob,
   DeleteJob,
   UserJobs,
+  DeleteShift,
 } from '../../controllers/job.js';
 
 export const jobResolvers = {
@@ -17,5 +18,6 @@ export const jobResolvers = {
     CreateJob,
     UpdateJob,
     DeleteJob,
+    DeleteShift,
   },
 };

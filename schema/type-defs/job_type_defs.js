@@ -14,7 +14,7 @@ export const jobTypeDefs = `
     tips: Float!
     hours_worked: Int!
     date: String!
-    uid: String!
+    _id:ID!
   }
 
   input JobInput {
@@ -39,5 +39,6 @@ export const jobTypeDefs = `
     CreateJob(input: JobInput!): Job!
     UpdateJob(input: JobInput!, id: ID!): Job!
     DeleteJob(input: ID!): Job!
+    DeleteShift(jobId:String!, wageId:String!): Job!
   }
 `;
