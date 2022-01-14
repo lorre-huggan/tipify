@@ -3,7 +3,7 @@ import './styles.scss';
 
 interface Props {}
 
-const LoadingBox: React.FC = () => {
+const LoadingBox: React.FC<Props> = ({}) => {
   return (
     <div className="balls">
       <div></div>

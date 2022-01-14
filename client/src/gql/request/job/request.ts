@@ -1,9 +1,18 @@
 import { gql } from '@apollo/client';
 
-const GET_JOBS = gql`
+export const GET_USER_JOBS = gql`
   query userJobs($userJobsId: String!) {
-    userJobs(id: $userJobsId) {
+    UserJobs(id: $userJobsId) {
+      _id
       company_name
+      job_title
+      wages {
+        tips
+        hours_worked
+        date
+      }
+      createdAt
+      updatedAt
     }
   }
 `;

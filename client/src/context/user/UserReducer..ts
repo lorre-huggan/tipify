@@ -1,6 +1,4 @@
-import { LoginUser } from '../../types/user-types';
-import jwtDecode from 'jwt-decode';
-import { Token } from '../../hooks/useAuth';
+import { AuthUser, LoginUser } from '../../types/user-types';
 
 export const userInitialState: UserInitState = {
   userData: {
@@ -24,7 +22,7 @@ interface Action extends UserInitState {
 }
 interface UserInitState {
   userData: LoginUser;
-  authUser: Token;
+  authUser: AuthUser;
 }
 
 export const userReducer = (state: LoginUser, action: Action) => {

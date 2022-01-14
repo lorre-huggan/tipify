@@ -1,9 +1,10 @@
 import { UserInputError } from 'apollo-server';
 import bcrypt from 'bcryptjs';
-import { UserModel } from '../model/user.js';
 
 const emailRegEx =
   /(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
+
+const usernameRegEx = /^[a-z0-9_-]{3,15}$/;
 
 export const loginValidate = (username, password) => {
   if (!username || typeof username !== 'string') {
@@ -38,67 +39,34 @@ export const signupValidate = (
   currency
 ) => {
   if (!currency || typeof currency !== 'string') {
-    throw new UserInputError('please select currency ', {
-      error: {
-        password: 'please select currency',
-      },
-    });
+    throw new UserInputError('please select currency ');
   }
   if (!password || typeof password !== 'string') {
-    throw new UserInputError('password invalid', {
-      error: {
-        password: 'password invalid',
-      },
-    });
+    throw new UserInputError('password invalid');
   }
 
   if (password.length < 6) {
-    throw new UserInputError('password invalid', {
-      error: {
-        password: 'Password length must be 6 or more characters long',
-      },
-    });
+    throw new UserInputError('password must be 6 or mor characters long');
   }
 
   if (!confirmPassword || password !== confirmPassword) {
-    throw new UserInputError('password invalid', {
-      error: {
-        password: 'Passwords dont match',
-      },
-    });
-  }
-
-  if (!email || typeof email !== 'string') {
-    throw new UserInputError('email invalid', {
-      error: {
-        password: 'email invalid',
-      },
-    });
+    throw new UserInputError('passwords dont match please retry');
   }
 
   if (!emailRegEx.test(email)) {
-    throw new UserInputError('email invalid', {
-      error: {
-        password: 'email credentials invalid',
-      },
-    });
+    throw new UserInputError('Email is not valid');
   }
-  if (!username || typeof username !== 'string') {
-    throw new UserInputError('username invalid', {
-      error: {
-        password: 'username invalid',
-      },
-    });
+
+  if (!usernameRegEx.test(username)) {
+    throw new UserInputError(
+      'Username must be between 3-15 characters. Letters and numbers only '
+    );
   }
 };
 
 export const newUsernameValidate = (username) => {
   if (!username || typeof username !== 'string') {
-    throw new UserInputError('username invalid', {
-      error: {
-        password: 'username invalid',
-      },
-    });
+    throw new UserInputError('username invalid');
   }
 };
 
