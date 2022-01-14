@@ -1,0 +1,49 @@
+@use '../../styles/' as *;
+
+.job-card-container {
+  width: 100%;
+  min-height: 19rem;
+  border-radius: 8px;
+  padding: $sp-4;
+  border: 1px solid #11111180;
+  background-color: $color-5;
+  position: relative;
+  .job-card-time {
+    @include flex(row, center, left);
+    text-transform: uppercase;
+    @include text-xs;
+    margin-bottom: $sp-1;
+    span {
+    }
+    svg {
+      margin-right: $sp-1;
+    }
+  }
+  .job-card-company-name {
+    @include text-xl;
+  }
+  .job-card-job-title {
+    font-weight: 900;
+    color: $black;
+    @include text-xs;
+  }
+  .job-card-earned {
+    @include flex(row, center, center);
+    position: absolute;
+    bottom: $sp-4;
+    right: $sp-4;
+    span {
+      color: $color-officer;
+      margin-left: 2px;
+      font-weight: 900;
+    }
+    svg {
+      font-size: $sp-4;
+    }
+  }
+  .job-card-hours {
+    position: absolute;
+    bottom: $sp-4;
+    left: $sp-4;
+  }
+}

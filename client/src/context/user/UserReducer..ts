@@ -15,6 +15,7 @@ export const userInitialState: UserInitState = {
     iat: 0,
     exp: 0,
     createdAt: 0,
+    currency: '',
   },
 };
 

@@ -165,6 +165,7 @@ const createToken = (user) => {
       email: user.email,
       username: user.username,
       createdAt: user.createdAt,
+      currency: user.currency,
     },
     JWT,
     { expiresIn: '1h' }

@@ -6,18 +6,11 @@
   width: 100%;
   height: 100vh;
   background-color: $color-3;
+  width: calc(100vw - 5rem);
 }
 
-.surface {
-  width: 30rem;
-  height: 19rem;
-  border-radius: 8px;
-  padding: $sp-2;
-  border: 1px solid #11111180;
-  background-color: $color-5;
-  margin-bottom: $sp-3;
-  @include text-xl;
-  text-transform: uppercase;
-  font-weight: 900;
-  @include shadow-xs;
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $sp-2;
 }
