@@ -52,7 +52,7 @@ export const CreateUser = async (_, args) => {
       currency,
       password: hashedPassword,
       jobs: [],
-      createdAt: Date.now(),
+      createdAt: new Date(),
     });
     const res = await newUser.save();
     const token = createToken(res);
@@ -164,6 +164,7 @@ const createToken = (user) => {
       id: user._id,
       email: user.email,
       username: user.username,
+      createdAt: user.createdAt,
     },
     JWT,
     { expiresIn: '1h' }

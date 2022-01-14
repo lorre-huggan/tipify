@@ -7,6 +7,8 @@ import { GET_USER_JOBS } from '../../gql/request/job/request';
 import { userInfo } from 'os';
 import { AuthUser } from '../../types/user-types';
 import { UserJobs } from '../../types/job-types';
+import ResponsiveDatePicker from '../../components/DatePicker';
+import UserCard from '../../components/UserCard';
 
 interface Props {}
 
@@ -24,9 +26,8 @@ const Dashboard = (props: Props) => {
       {/* Nav */}
       <Nav username={authUser?.username} />
       {/* components */}
-      <div className="surface">{authUser?.username}</div>
+      {!loading && <UserCard user={authUser} data={data?.UserJobs} />}
 
-      {loading && <p>Loading........</p>}
       {/* footer */}
     </main>
   );

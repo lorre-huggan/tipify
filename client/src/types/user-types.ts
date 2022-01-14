@@ -19,4 +19,5 @@ export interface AuthUser {
   username: string;
   iat: number;
   exp: number;
+  createdAt: number;
 }

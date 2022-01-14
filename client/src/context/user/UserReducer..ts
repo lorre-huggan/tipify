@@ -14,6 +14,7 @@ export const userInitialState: UserInitState = {
     username: '',
     iat: 0,
     exp: 0,
+    createdAt: 0,
   },
 };
 
