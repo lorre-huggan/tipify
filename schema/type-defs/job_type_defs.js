@@ -14,6 +14,7 @@ export const jobTypeDefs = `
     tips: Float!
     hours_worked: Int!
     date: String!
+    uid: String!
   }
 
   input JobInput {
