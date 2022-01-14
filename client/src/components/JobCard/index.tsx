@@ -3,7 +3,11 @@ import React, { useState } from 'react';
 import { UserJob, Wage } from '../../types/job-types';
 import { AuthUser } from '../../types/user-types';
 import './styles.scss';
-import { AiOutlineClockCircle } from 'react-icons/ai';
+import {
+  AiFillEdit,
+  AiOutlineClockCircle,
+  AiOutlineDelete,
+} from 'react-icons/ai';
 import {
   RiMoneyDollarCircleLine,
   RiMoneyEuroCircleLine,
@@ -39,6 +43,10 @@ const JobCard: React.FC<Props> = ({ user, data, job, idx }) => {
         {user.currency === 'EUR' ? <RiMoneyEuroCircleLine /> : ''}
         <span>{data?.tips}</span>
       </span>
+      <div className="job-card-mods">
+        <AiOutlineDelete className="job-card-delete" />
+        <AiFillEdit className="job-card-edit" />
+      </div>
     </div>
   );
 };

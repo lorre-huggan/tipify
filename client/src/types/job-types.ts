@@ -13,6 +13,7 @@ export interface Wage {
   tips: number;
   hours_worked: number;
   date: string;
+  uid: string;
 }
 
 export interface UserJobs {

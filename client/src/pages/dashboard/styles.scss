@@ -7,10 +7,17 @@
   height: 100vh;
   background-color: $color-3;
   width: calc(100vw - 5rem);
+  position: relative;
 }
 
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: $sp-2;
+}
+
+.add-job {
+  min-height: 14.25rem;
+  width: 100%;
+  margin-bottom: $sp-2;
 }

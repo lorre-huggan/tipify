@@ -24,6 +24,10 @@ const Dashboard = (props: Props) => {
 
   //TODO handle loading and errors
 
+  if (data) {
+    console.log(data);
+  }
+
   const chart = {
     datasets: {},
   };
@@ -32,6 +36,7 @@ const Dashboard = (props: Props) => {
     <main className="dashboard">
       {/* Nav */}
       <Nav username={authUser?.username} />
+      <div className="add-job"></div>
       {/* components */}
       <div className="dashboard-grid">
         {!loading && <UserCard user={authUser} data={data?.UserJobs} />}

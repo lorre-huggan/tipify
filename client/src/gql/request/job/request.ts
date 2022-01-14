@@ -10,6 +10,7 @@ export const GET_USER_JOBS = gql`
         tips
         hours_worked
         date
+        uid
       }
       createdAt
       updatedAt

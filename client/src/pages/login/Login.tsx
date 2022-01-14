@@ -5,6 +5,8 @@ import './styles.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import LoadingBox from '../../components/Loading';
 import { useUserState } from '../../context/user/userProvider';
+import { UseAuth } from '../../hooks/useAuth';
+import { AuthUser } from '../../types/user-types';
 
 interface Props {}
 
@@ -16,6 +18,12 @@ const Login: React.FC<Props> = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const [{}, dispatch] = useUserState();
+
+  const { authUser }: { authUser: AuthUser } = UseAuth();
+
+  if (authUser.id) {
+    navigate('/dashboard');
+  }
 
   const [LoginUser, { loading }] = useMutation(USER_LOGIN, {
     update(proxy, { data: { LoginUser } }) {
