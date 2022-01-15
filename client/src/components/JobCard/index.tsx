@@ -37,6 +37,7 @@ const JobCard: React.FC<Props> = ({ user, data, job, idx }) => {
       alert(error.message);
     },
   });
+  console.log(job._id.toString());
 
   const handleDelete = () => {
     DeleteShift({

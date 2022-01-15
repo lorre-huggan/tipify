@@ -19,8 +19,8 @@ export const GET_USER_JOBS = gql`
 `;
 
 export const DELETE_WAGE = gql`
-  mutation deleteWage($user: String!, $wageId: String!) {
-    DeleteShift(user: $user, wageId: $wageId) {
+  mutation deleteWage($jobId: String!, $wageId: String!) {
+    DeleteShift(jobId: $jobId, wageId: $wageId) {
       company_name
       updatedAt
       user

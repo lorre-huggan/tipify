@@ -48,18 +48,19 @@ export const Job = async (parent, args, context) => {
 };
 
 export const CreateJob = async (parent, args, context) => {
-  const user = checkAuth(context);
+  const userAuth = checkAuth(context);
 
-  const { company_name, job_title, wages } = args.input;
+  const { company_name, job_title, wages, user } = args.input;
 
   const company = await JobModel.findOne({ company_name });
 
   if (company) {
-    throw new UserInputError('company name already exist', {
-      error: {
-        username: 'company already exist...',
-      },
-    });
+    if (company.company_name === company_name && company.user === user)
+      throw new UserInputError('company name already exist', {
+        error: {
+          username: 'company already exist...',
+        },
+      });
   }
 
   if (company_name)
@@ -68,8 +69,7 @@ export const CreateJob = async (parent, args, context) => {
         company_name,
         job_title,
         wages,
-        user: user.id,
-        username: user.username,
+        user: userAuth.username,
         createdAt: Date.now().toString(),
       });
       const job = await newJob.save();
@@ -80,7 +80,7 @@ export const CreateJob = async (parent, args, context) => {
 };
 
 export const UpdateJob = async (parent, args, context) => {
-  const user = checkAuth(context);
+  const userAuth = checkAuth(context);
 
   const { id } = args;
   const { company_name, job_title, tips, hours_worked, date } = args.input;
@@ -107,7 +107,7 @@ export const UpdateJob = async (parent, args, context) => {
 };
 
 export const DeleteJob = async (parent, args, context) => {
-  const user = checkAuth(context);
+  const userAuth = checkAuth(context);
   const { id } = args;
 
   try {
@@ -123,7 +123,7 @@ export const DeleteShift = async (_, args, context) => {
   const { jobId, wageId } = args;
   const job = await JobModel.findOne({ _id: jobId });
 
-  if (user.id !== job.user.toString()) {
+  if (user.username !== job.user) {
     throw new UserInputError('User Not Authorized');
   }
   if (!job.wages) {
