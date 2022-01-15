@@ -32,13 +32,13 @@ export const jobTypeDefs = `
   extend type Query {
     Jobs: [Job]!
     Job(id: ID!): Job!
-    UserJobs(id: String!): [Job]!
+    UserJobs(user: String!): [Job]!
   }
 
   extend type Mutation {
     CreateJob(input: JobInput!): Job!
     UpdateJob(input: JobInput!, id: ID!): Job!
-    DeleteJob(input: ID!): Job!
+    DeleteJob(id: ID!): Job!
     DeleteShift(jobId:String!, wageId:String!): Job!
   }
 `;

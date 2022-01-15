@@ -3,7 +3,8 @@ import { UserInputError } from 'apollo-server';
 import { checkAuth } from '../utils.js/check_auth.js';
 
 export const Jobs = async (parent, args, context) => {
-  const user = checkAuth(context);
+  //TODO admin auth
+  const userAuth = checkAuth(context);
   try {
     const jobs = await JobModel.find().sort({ createdAt: -1 });
     if (jobs) {
@@ -16,10 +17,10 @@ export const Jobs = async (parent, args, context) => {
   }
 };
 
-export const UserJobs = async (parent, { id }, context) => {
-  const user = checkAuth(context);
+export const UserJobs = async (parent, { user }, context) => {
+  const userAuth = checkAuth(context);
   try {
-    const jobs = await JobModel.find({ user: id }).sort({ createdAt: -1 });
+    const jobs = await JobModel.find({ user }).sort({ createdAt: -1 });
     if (jobs) {
       return jobs;
     } else {

@@ -21,7 +21,7 @@ const Login: React.FC<Props> = () => {
 
   const { authUser }: { authUser: AuthUser } = UseAuth();
 
-  if (authUser.id) {
+  if (localStorage.getItem('token')) {
     navigate('/dashboard');
   }
 

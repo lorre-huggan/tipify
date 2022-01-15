@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const GET_USER_JOBS = gql`
-  query userJobs($userJobsId: String!) {
-    UserJobs(id: $userJobsId) {
+  query userJobs($user: String!) {
+    UserJobs(user: $user) {
       _id
       company_name
       job_title
@@ -19,11 +19,10 @@ export const GET_USER_JOBS = gql`
 `;
 
 export const DELETE_WAGE = gql`
-  mutation deleteWage($jobId: String!, $wageId: String!) {
-    DeleteShift(jobId: $jobId, wageId: $wageId) {
+  mutation deleteWage($user: String!, $wageId: String!) {
+    DeleteShift(user: $user, wageId: $wageId) {
       company_name
       updatedAt
-      username
       user
     }
   }

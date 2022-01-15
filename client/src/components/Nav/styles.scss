@@ -17,11 +17,11 @@ section {
         @include flex(column, center, center);
         svg {
           font-size: $sp-6;
-          color: $color-1;
+          color: $color-helper;
           transition: color $time-fs $trans-1;
           cursor: pointer;
           &:hover {
-            color: $color-helper;
+            color: $color-officer;
           }
           &:hover + p {
             opacity: 1;

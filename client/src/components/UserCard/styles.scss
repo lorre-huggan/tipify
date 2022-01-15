@@ -6,13 +6,13 @@
   border-radius: 8px;
   padding: $sp-4;
   border: 1px solid #11111130;
-  background-color: $color-5;
+  background-color: $color-1;
   position: relative;
+  border: 1px solid #ffffff60;
   .user-card-user-since {
     @include text-xs;
     text-transform: uppercase;
     color: $color-2;
-    opacity: 0.25;
     margin-bottom: $sp-1;
   }
   .user-card-user-avatar {
@@ -20,7 +20,7 @@
     top: $sp-4;
     right: $sp-4;
     font-size: $sp-4;
-    color: $color-helper;
+    color: $color-guild-member;
   }
   .user-card-settings-icon {
     @include flex(row, center, center);
@@ -29,7 +29,7 @@
     left: $sp-4;
     font-size: $sp-4;
     color: $color-2;
-    opacity: 0.25;
+    opacity: 0.5;
     cursor: pointer;
     transition: opacity $time-fs $trans-1;
     &:hover {
@@ -40,5 +40,10 @@
   h2 {
     @include text-2xl;
     margin-bottom: $sp-1;
+    font-weight: 900;
+    color: $color-2;
+  }
+  p {
+    color: $color-2;
   }
 }

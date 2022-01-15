@@ -16,7 +16,7 @@ const Dashboard = (props: Props) => {
   const { authUser }: { authUser: AuthUser } = UseAuth();
   //TODO handle loading and errors
   const { loading, data, error } = useQuery<UserJobs>(GET_USER_JOBS, {
-    variables: { userJobsId: authUser.id },
+    variables: { user: authUser?.username },
   });
 
   if (data) {

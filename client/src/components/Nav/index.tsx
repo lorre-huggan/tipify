@@ -7,11 +7,20 @@ import {
   MdWrongLocation,
   MdZoomOutMap,
 } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
+
 interface Props {
   username: string;
 }
 
 const Nav: React.FC<Props> = ({ username }) => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/login');
+  };
+
   return (
     <section>
       <div className="icons">
@@ -20,9 +29,8 @@ const Nav: React.FC<Props> = ({ username }) => {
             <MdDashboard />
             <p>Add Job</p>
           </li>
-          <li>
-            <MdBookmark />
-            <p>Favorite</p>
+          <li onClick={handleLogout}>
+            <MdWork />
           </li>
           <li>
             <MdZoomOutMap />
@@ -31,6 +39,10 @@ const Nav: React.FC<Props> = ({ username }) => {
           <li>
             <MdWrongLocation />
             <p>lorem</p>
+          </li>
+          <li>
+            <MdWork />
+            <p>logout</p>
           </li>
           <li>
             <MdWork />
