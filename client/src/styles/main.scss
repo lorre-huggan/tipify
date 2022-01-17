@@ -2,7 +2,7 @@
 
 :root {
   @each $color, $shades in $colors {
-    @each $shade, $value in $value {
+    @each $shade, $value in $shades {
       --#{$color}-#{$shade}: #{$value};
     }
   }
