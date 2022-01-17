@@ -1,23 +1,37 @@
 @use '../../styles/' as *;
 
 .dashboard {
-  margin-left: 5rem;
   padding: 1rem;
-  width: 100%;
   height: 100vh;
+  width: 100%;
   background-color: $color-3;
-  width: calc(100vw - 5rem);
   position: relative;
 }
 
 .dashboard-grid {
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: $sp-2;
+  gap: 1rem;
+  grid-template-areas:
+    'user'
+    'add-shift'
+    'analytics'
+    'shift1'
+    'shift2';
 }
 
-.add-job {
-  min-height: 14.25rem;
-  width: 100%;
-  margin-bottom: $sp-2;
+@include md-screen {
+  .dashboard {
+    margin-left: 5rem;
+    width: calc(100vw - 5rem);
+    @include flex(column, center, center);
+  }
+  .dashboard-grid {
+    grid-auto-columns: 1fr;
+    gap: 1rem;
+    display: grid;
+    grid-template-areas:
+      'user add-shift add-shift analytics'
+      'user shift1 shift2 analytics';
+  }
 }

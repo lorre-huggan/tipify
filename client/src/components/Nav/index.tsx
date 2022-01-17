@@ -31,6 +31,7 @@ const Nav: React.FC<Props> = ({ username }) => {
           </li>
           <li onClick={handleLogout}>
             <MdWork />
+            <p>Log Out</p>
           </li>
           <li>
             <MdZoomOutMap />

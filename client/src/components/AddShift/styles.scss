@@ -1,0 +1,19 @@
+@use '../../styles/' as *;
+
+.add-shift-container {
+  grid-area: add-shift;
+  background-color: $grey-dark;
+  border: 1px solid $pink;
+  padding: $sp-4;
+  border-radius: 8px;
+  .add-shift-heading {
+    h2 {
+      @include text-xl;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+  }
+  .add-shift-form {
+    @include flex(column, center, center);
+  }
+}

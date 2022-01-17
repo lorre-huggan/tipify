@@ -1,50 +1,62 @@
 @use '../../styles/' as *;
 
 section {
-  width: 5rem;
-  min-height: 100vh;
+  width: 100vw;
+  min-height: 5rem;
   position: fixed;
-  background-color: $color-4;
+  background-color: $grey-dark;
   left: 0;
-  top: 0;
-  border-right: 1px solid #11111170;
+  bottom: 0;
+  border-top: 1px solid #11111170;
+  z-index: 99;
 
   .icons {
-    @include flex(column, center, center);
+    @include flex(row, center, center);
     ul {
+      @include flex(row, center, space-between);
+      width: 100%;
+      padding: $sp-1 $sp-4;
       li {
-        margin-top: $sp-2;
         @include flex(column, center, center);
         svg {
           font-size: $sp-6;
-          color: $color-helper;
+          color: $grey-light;
           transition: color $time-fs $trans-1;
           cursor: pointer;
           &:hover {
-            color: $color-officer;
+            color: $green;
           }
           &:hover + p {
             opacity: 1;
           }
         }
         p {
-          color: $color-6;
+          color: $white;
           opacity: 0.3;
           transition: opacity $time-md $trans-1;
         }
       }
-      li:nth-child(5) {
-        position: absolute;
-        bottom: 1rem;
-        svg {
-          color: $color-officer;
-          &:hover {
-            color: $color-helper;
+    }
+  }
+}
+
+@include md-screen {
+  section {
+    width: 5rem;
+    min-height: 100vh;
+    top: 0;
+    .icons {
+      @include flex(column, center, center);
+      margin-top: $sp-2;
+      ul {
+        @include flex(column, center, left);
+        padding: 0;
+        li {
+          margin-bottom: $sp-2;
+          p {
+            text-align: center;
+            @include text-xs;
           }
-        }
-        p {
-          @include text-xs;
-          text-transform: uppercase;
         }
       }
     }

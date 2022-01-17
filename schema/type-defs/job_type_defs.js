@@ -29,6 +29,14 @@ export const jobTypeDefs = `
     date: String!
   }
 
+  input ShiftInput {
+    tips:Float!
+    hours_worked: Int!
+    date: String!
+    _id:String!
+
+  }
+
   extend type Query {
     Jobs: [Job]!
     Job(id: ID!): Job!
@@ -37,6 +45,7 @@ export const jobTypeDefs = `
 
   extend type Mutation {
     CreateJob(input: JobInput!): Job!
+    CreateShift(input: ShiftInput!): Job!
     UpdateJob(input: JobInput!, id: ID!): Job!
     DeleteJob(id: ID!): Job!
     DeleteShift(jobId:String!, wageId:String!): Job!

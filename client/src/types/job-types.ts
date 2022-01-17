@@ -4,15 +4,15 @@ export interface UserJob {
   company_name: string;
   job_title: string;
   wages: Wage[];
-  createdAt: string;
-  updatedAt: string;
+  createdAt: number;
+  updatedAt: number;
 }
 
 export interface Wage {
   __typename: string;
   tips: number;
   hours_worked: number;
-  date: string;
+  date: number;
   _id: string;
 }
 

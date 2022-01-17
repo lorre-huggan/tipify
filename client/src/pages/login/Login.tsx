@@ -10,12 +10,17 @@ import { AuthUser } from '../../types/user-types';
 
 interface Props {}
 
+interface Values {
+  username: string;
+  password: string;
+}
+
 const Login: React.FC<Props> = () => {
-  const [values, setValues] = useState({
+  const [values, setValues] = useState<Values>({
     username: '',
     password: '',
   });
-  const [error, setError] = useState('');
+  const [error, setError] = useState<string>('');
   const navigate = useNavigate();
   const [{}, dispatch] = useUserState();
 

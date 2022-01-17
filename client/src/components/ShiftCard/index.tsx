@@ -20,9 +20,10 @@ interface Props {
   data: Wage | undefined;
   job: UserJob;
   idx: number;
+  gridArea: number;
 }
 
-const JobCard: React.FC<Props> = ({ user, data, job, idx }) => {
+const ShiftCard: React.FC<Props> = ({ user, data, job, idx, gridArea }) => {
   const getDate = fromUnixTime(Number(data?.date)).toString();
   const day = getDate.split(' ')[0];
   const month = getDate.split(' ')[1];
@@ -46,30 +47,33 @@ const JobCard: React.FC<Props> = ({ user, data, job, idx }) => {
   };
 
   return (
-    <div className="job-card-container" style={{}}>
+    <div
+      className="shift-card-container"
+      style={{ gridArea: `shift${gridArea}` }}
+    >
       {loading && <p>Loading</p>}
-      <div className="job-card-time">
+      <div className="shift-card-time">
         <AiOutlineClockCircle />
         <span>{`${day} ${dayNum} ${month} ${year}`}</span>
       </div>
 
-      <h3 className="job-card-company-name">{`${job.company_name}`}</h3>
-      <span className="job-card-job-title">{`${job.job_title}`}</span>
-      <span className="job-card-hours">{`${data?.hours_worked} Hours`}</span>
-      <span className="job-card-earned">
+      <h3 className="shift-card-company-name">{`${job.company_name}`}</h3>
+      <span className="shift-card-job-title">{`${job.job_title}`}</span>
+      <span className="shift-card-hours">{`${data?.hours_worked} Hours`}</span>
+      <span className="shift-card-earned">
         {user.currency === 'GBP' ? <RiMoneyPoundCircleLine /> : ''}
         {user.currency === 'USD' ? <RiMoneyDollarCircleLine /> : ''}
         {user.currency === 'EUR' ? <RiMoneyEuroCircleLine /> : ''}
         <span>{data?.tips}</span>
       </span>
-      <div className="job-card-mods">
+      <div className="shift-card-mods">
         <button onClick={handleDelete}>
-          <AiOutlineDelete className="job-card-delete" />
+          <AiOutlineDelete className="shift-card-delete" />
         </button>
-        <AiFillEdit className="job-card-edit" />
+        <AiFillEdit className="shift-card-edit" />
       </div>
     </div>
   );
 };
 
-export default JobCard;
+export default ShiftCard;

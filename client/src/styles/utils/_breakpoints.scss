@@ -1,25 +1,25 @@
 //breakpoints----
-@mixin sm {
+@mixin sm-screen {
   @media (min-width: 640px) {
     @content;
   }
 }
-@mixin md {
-  @media (min-width: 640px) {
+@mixin md-screen {
+  @media (min-width: 768px) {
     @content;
   }
 }
-@mixin lg {
+@mixin lg-screen {
   @media (min-width: 1024px) {
     @content;
   }
 }
-@mixin xl {
+@mixin xl-screen {
   @media (min-width: 1280px) {
     @content;
   }
 }
-@mixin xxl {
+@mixin xxl-screen {
   @media (min-width: 1536px) {
     @content;
   }

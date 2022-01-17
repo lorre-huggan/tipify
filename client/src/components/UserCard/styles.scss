@@ -1,14 +1,14 @@
 @use '../../styles/' as *;
 
 .user-card-container {
+  grid-area: user;
   width: 100%;
-  min-height: 19rem;
+  min-height: 20rem;
   border-radius: 8px;
   padding: $sp-4;
-  border: 1px solid #11111130;
-  background-color: $color-1;
   position: relative;
-  border: 1px solid #ffffff60;
+  border: 1px solid $blue;
+  background-color: $grey-dark;
   .user-card-user-since {
     @include text-xs;
     text-transform: uppercase;
@@ -22,19 +22,30 @@
     font-size: $sp-4;
     color: $color-guild-member;
   }
+  .user-card-work-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.25rem;
+    margin-bottom: $sp-1;
+  }
+  .user-card-analytics {
+    @include flex(column, left, left);
+    p {
+      @include text-xl;
+      font-weight: 900;
+    }
+  }
   .user-card-settings-icon {
     @include flex(row, center, center);
     position: absolute;
     bottom: $sp-4;
     left: $sp-4;
     font-size: $sp-4;
-    color: $color-2;
-    opacity: 0.5;
+    color: $grey;
     cursor: pointer;
-    transition: opacity $time-fs $trans-1;
+    transition: color $time-fs $trans-1;
     &:hover {
-      opacity: 1;
-      color: $color-member;
+      color: $grey;
     }
   }
   h2 {
@@ -46,4 +57,7 @@
   p {
     color: $color-2;
   }
+}
+
+@include md-screen {
 }

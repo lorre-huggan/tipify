@@ -6,9 +6,10 @@ import { GET_USER_JOBS } from '../../gql/request/job/request';
 import { AuthUser } from '../../types/user-types';
 import { UserJobs } from '../../types/job-types';
 import UserCard from '../../components/UserCard';
-import JobCard from '../../components/JobCard';
 import './styles.scss';
-import { log } from 'console';
+import AddShift from '../../components/AddShift';
+import Analytics from '../../components/Analytics';
+import ShiftCard from '../../components/ShiftCard';
 
 interface Props {}
 
@@ -20,30 +21,45 @@ const Dashboard = (props: Props) => {
   });
 
   if (data) {
-    console.log(data);
+    console.log(data.UserJobs);
   }
 
   return (
     <main className="dashboard">
-      {/* Nav */}
       <Nav username={authUser?.username} />
-      {/* <div className="add-job"></div> */}
-      {/* components */}
-      <div className="dashboard-grid">
-        {!loading && <UserCard user={authUser} data={data?.UserJobs} />}
 
-        {!loading &&
-          data &&
-          data?.UserJobs.map((job, idx) => {
-            return job.wages.map((j, i) => {
-              return (
-                <JobCard key={i} user={authUser} job={job} data={j} idx={idx} />
-              );
-            });
-          })}
-      </div>
+      {data?.UserJobs.length === 0 ? (
+        <AddShift />
+      ) : (
+        <div className="dashboard-grid">
+          {/* components */}
+          {/* self improvement message */}
+          {!loading && (
+            <>
+              <UserCard user={authUser} data={data?.UserJobs} />
+              <AddShift />
+              <Analytics />
+            </>
+          )}
 
-      {/* footer */}
+          {!loading &&
+            data &&
+            data?.UserJobs.map((job, idx) => {
+              return job.wages.slice(0, 2).map((j, i) => {
+                return (
+                  <ShiftCard
+                    key={i}
+                    user={authUser}
+                    job={job}
+                    data={j}
+                    idx={idx}
+                    gridArea={i + 1}
+                  />
+                );
+              });
+            })}
+        </div>
+      )}
     </main>
   );
 };

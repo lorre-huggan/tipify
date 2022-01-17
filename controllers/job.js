@@ -79,6 +79,23 @@ export const CreateJob = async (parent, args, context) => {
     }
 };
 
+export const CreateShift = async (_, args, context) => {
+  userAuth = checkAuth(context);
+
+  const { tips, hours_worked, date, _id } = args.input;
+
+  const job = await JobModel.findOne({ _id });
+
+  job.wages.push({ tips, hours_worked, date });
+
+  try {
+    const newWage = await job.save();
+    return newWage;
+  } catch (error) {
+    throw new UserInputError('error');
+  }
+};
+
 export const UpdateJob = async (parent, args, context) => {
   const userAuth = checkAuth(context);
 

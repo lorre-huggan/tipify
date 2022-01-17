@@ -1,14 +1,14 @@
 @use '../../styles/' as *;
 
-.job-card-container {
+.shift-card-container {
   width: 100%;
   min-height: 19rem;
   border-radius: 8px;
   padding: $sp-4;
-  border: 1px solid #11111130;
-  background-color: $color-5;
+  border: 1px solid $red;
+  background-color: $grey-dark;
   position: relative;
-  .job-card-time {
+  .shift-card-time {
     @include flex(row, center, left);
     text-transform: uppercase;
     @include text-xs;
@@ -19,15 +19,15 @@
       margin-right: $sp-1;
     }
   }
-  .job-card-company-name {
+  .shift-card-company-name {
     @include text-xl;
   }
-  .job-card-job-title {
+  .shift-card-job-title {
     font-weight: 900;
-    color: $black;
+    color: $yellow;
     @include text-xs;
   }
-  .job-card-earned {
+  .shift-card-earned {
     @include flex(row, center, center);
     position: absolute;
     bottom: $sp-4;
@@ -41,19 +41,19 @@
       font-size: $sp-4;
     }
   }
-  .job-card-hours {
+  .shift-card-hours {
     position: absolute;
     bottom: $sp-4;
     left: $sp-4;
   }
-  .job-card-mods {
+  .shift-card-mods {
     position: absolute;
     top: $sp-4;
     right: $sp-4;
     font-size: $sp-4;
     color: $color-6;
     opacity: 0.5;
-    .job-card-delete {
+    .shift-card-delete {
       transition: all $time-fs $trans-1;
       &:hover {
         color: $color-leader;
@@ -61,7 +61,7 @@
         opacity: 1;
       }
     }
-    .job-card-edit {
+    .shift-card-edit {
       transition: all $time-fs $trans-1;
       margin-left: $sp-1;
       &:hover {
