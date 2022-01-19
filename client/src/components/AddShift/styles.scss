@@ -14,6 +14,16 @@
     }
   }
   .add-shift-form {
-    @include flex(column, center, center);
+    @include flex(column, left, center);
+    width: 19rem;
+    margin: 0rem auto;
+    label {
+      margin-bottom: $sp-1;
+      text-align: left;
+      text-transform: uppercase;
+      @include text-xs;
+    }
+    @include input;
+    @include button;
   }
 }

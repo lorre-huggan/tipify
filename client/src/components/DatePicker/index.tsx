@@ -1,26 +1,51 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
 import { getUnixTime } from 'date-fns';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import MobileDatePicker from '@mui/lab/MobileDatePicker';
+import './styles.scss';
+interface Props {
+  setDate: React.Dispatch<React.SetStateAction<any>>;
+}
 
-export default function ResponsiveDatePicker() {
-  const [value, setValue] = React.useState<Date | null>(new Date());
+const theme = createTheme({
+  components: {
+    // Name of the component ⚛️
+  },
+});
 
+const ResponsiveDatePicker: React.FC<Props> = ({ setDate }) => {
+  const [value, setValue] = useState<number | null>(Date.now());
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <DatePicker
-        disableFuture
-        label="Choose Date"
-        openTo="year"
-        views={['year', 'month', 'day']}
-        value={value}
-        onChange={(newValue) => {
-          setValue(newValue);
-        }}
-        renderInput={(params) => <TextField {...params} />}
-      />
+      <ThemeProvider theme={theme}>
+        {/* <DatePicker
+          disableFuture
+          label="Choose Date"
+          openTo="day"
+          views={['year', 'month', 'day']}
+          value={x}
+          onChange={(newValue) => {
+            setDate(getUnixTime(newValue!));
+            console.log(getUnixTime(newValue!));
+          }}
+          renderInput={(params) => <TextField {...params} />}
+        /> */}
+        <MobileDatePicker
+          disableFuture
+          value={value}
+          onChange={(newValue) => {
+            setValue(newValue);
+            setDate(value);
+          }}
+          renderInput={(params) => <TextField {...params} />}
+        />
+      </ThemeProvider>
     </LocalizationProvider>
   );
-}
+};
+
+export default ResponsiveDatePicker;

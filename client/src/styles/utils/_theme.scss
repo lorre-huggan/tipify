@@ -112,3 +112,10 @@ $colors: (
     '700': hsl(51, 100%, 18%),
   ),
 );
+
+$primary-gradient: linear-gradient(
+  35deg,
+  hsl(202deg 100% 55%) 0%,
+  hsl(202deg 91% 39%) 51%,
+  hsl(202deg 100% 25%) 100%
+);

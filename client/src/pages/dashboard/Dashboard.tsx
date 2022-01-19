@@ -20,16 +20,12 @@ const Dashboard = (props: Props) => {
     variables: { user: authUser?.username },
   });
 
-  if (data) {
-    console.log(data.UserJobs);
-  }
-
   return (
     <main className="dashboard">
       <Nav username={authUser?.username} />
 
       {data?.UserJobs.length === 0 ? (
-        <AddShift />
+        <AddShift id={authUser.id} />
       ) : (
         <div className="dashboard-grid">
           {/* components */}
@@ -37,7 +33,7 @@ const Dashboard = (props: Props) => {
           {!loading && (
             <>
               <UserCard user={authUser} data={data?.UserJobs} />
-              <AddShift />
+              <AddShift id={authUser.id} />
               <Analytics />
             </>
           )}

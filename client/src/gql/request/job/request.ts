@@ -27,3 +27,13 @@ export const DELETE_WAGE = gql`
     }
   }
 `;
+
+export const CREATE_SHIFT = gql`
+  mutation createShift($input: ShiftInput!) {
+    CreateShift(input: $input) {
+      _id
+      company_name
+      job_title
+    }
+  }
+`;
