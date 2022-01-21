@@ -23,6 +23,7 @@
       text-transform: uppercase;
       @include text-xs;
     }
+
     @include input;
     @include button;
   }

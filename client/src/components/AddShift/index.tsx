@@ -6,7 +6,7 @@ import { useMutation } from '@apollo/client';
 import { CREATE_SHIFT } from '../../gql/request/job/request';
 
 interface Props {
-  id: string;
+  user: string;
 }
 
 interface AddValues {
@@ -14,7 +14,7 @@ interface AddValues {
   hours_worked: number;
 }
 
-const AddShift: React.FC<Props> = ({ id }) => {
+const AddShift: React.FC<Props> = ({ user }) => {
   const [date, setDate] = useState<any>(new Date());
   const [values, setValues] = useState<AddValues>({
     tips: 0,
@@ -23,7 +23,7 @@ const AddShift: React.FC<Props> = ({ id }) => {
   const [error, setError] = useState<string>('');
 
   const [CreateShift, { loading }] = useMutation(CREATE_SHIFT, {
-    update(proxy, {}) {
+    update(proxy) {
       console.log('done');
     },
     onError(error) {
@@ -41,21 +41,15 @@ const AddShift: React.FC<Props> = ({ id }) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // CreateShift({
-    //   variables: {
-    //     input: {
-    //       tips: Number(values.tips),
-    //       hours_worked: Number(values.hours_worked),
-    //       date: String(getUnixTime(date)),
-    //       _id: id,
-    //     },
-    //   },
-    // });
-    console.log({
-      tips: Number(values.tips),
-      hours_worked: Number(values.hours_worked),
-      date: getUnixTime(date),
-      _id: id,
+    CreateShift({
+      variables: {
+        input: {
+          tips: Number(values.tips),
+          hours_worked: Number(values.hours_worked),
+          date: getUnixTime(date),
+          user: user,
+        },
+      },
     });
   };
 
@@ -65,6 +59,7 @@ const AddShift: React.FC<Props> = ({ id }) => {
         <h2>Add Shift</h2>
       </div>
       <form className="add-shift-form" onSubmit={handleSubmit}>
+        <label>Enter Date</label>
         <ResponsiveDatePicker setDate={setDate} />
         <label>Tips</label>
         <input
@@ -74,7 +69,7 @@ const AddShift: React.FC<Props> = ({ id }) => {
           onChange={handleChange}
           autoComplete="off"
           step="any"
-          min="1"
+          min="0.01"
         />
         <label>Hours</label>
         <input

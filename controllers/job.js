@@ -52,43 +52,41 @@ export const CreateJob = async (parent, args, context) => {
 
   const { company_name, job_title, wages, user } = args.input;
 
-  const company = await JobModel.findOne({ company_name });
+  const userExist = await JobModel.findOne({ user });
 
-  if (company) {
-    if (company.company_name === company_name && company.user === user)
-      throw new UserInputError('company name already exist', {
-        error: {
-          username: 'company already exist...',
-        },
-      });
+  if (userExist) {
+    if (userExist.user === user)
+      throw new UserInputError('users cannot create more than one job');
   }
 
-  if (company_name)
-    try {
-      const newJob = new JobModel({
-        company_name,
-        job_title,
-        wages,
-        user: userAuth.username,
-        createdAt: Date.now().toString(),
-      });
-      const job = await newJob.save();
-      return job;
-    } catch (error) {
-      throw new UserInputError(error.message);
-    }
+  try {
+    const newJob = new JobModel({
+      company_name,
+      job_title,
+      wages,
+      user: userAuth.username,
+      createdAt: Date.now().toString(),
+    });
+    const job = await newJob.save();
+    return job;
+  } catch (error) {
+    throw new UserInputError(error.message);
+  }
 };
 
 export const CreateShift = async (_, args, context) => {
-  userAuth = checkAuth(context);
+  console.log('ping');
+  const userAuth = checkAuth(context);
 
-  const { tips, hours_worked, date, _id } = args.input;
-
-  const job = await JobModel.findOne({ _id });
-
-  job.wages.push({ tips, hours_worked, date });
+  const { tips, hours_worked, date, user } = args.input;
 
   try {
+    const job = await JobModel.findOne({ user });
+
+    console.log(job);
+
+    job.wages.push({ tips, hours_worked, date });
+
     const newWage = await job.save();
     return newWage;
   } catch (error) {

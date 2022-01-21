@@ -34,15 +34,17 @@ const ResponsiveDatePicker: React.FC<Props> = ({ setDate }) => {
           }}
           renderInput={(params) => <TextField {...params} />}
         /> */}
-        <MobileDatePicker
-          disableFuture
-          value={value}
-          onChange={(newValue) => {
-            setValue(newValue);
-            setDate(value);
-          }}
-          renderInput={(params) => <TextField {...params} />}
-        />
+        <div style={{ marginBottom: '0.5rem' }}>
+          <MobileDatePicker
+            disableFuture
+            value={value}
+            onChange={(newValue) => {
+              setValue(newValue);
+              setDate(value);
+            }}
+            renderInput={(params) => <TextField {...params} />}
+          />
+        </div>
       </ThemeProvider>
     </LocalizationProvider>
   );
