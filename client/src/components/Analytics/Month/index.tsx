@@ -1,11 +1,12 @@
 import React from 'react';
 import './styles.scss';
 import { Bar } from 'react-chartjs-2';
-import BarChart from '../BarChart';
-import LineChart from '../LineChart';
-import { UserJob, UserJobs, Wage } from '../../types/job-types';
+import BarChart from '../../BarChart';
+import LineChart from '../../LineChart';
+import { UserJob, UserJobs, Wage } from '../../../types/job-types';
 import { fromUnixTime } from 'date-fns';
-import PieChart from '../PieChart';
+import PieChart from '../../PieChart/Month';
+import Card from '../../Card';
 interface Props {
   data: UserJob[] | undefined;
 }
@@ -16,7 +17,7 @@ interface Index {
   hours: number;
 }
 
-const Analytics: React.FC<Props> = ({ data }) => {
+const MonthAnalytics: React.FC<Props> = ({ data }) => {
   const tips: number[] = [];
   const dates: number[] = [];
   const hours: number[] = [];
@@ -72,13 +73,14 @@ const Analytics: React.FC<Props> = ({ data }) => {
   const workedHoursTotal: number[] = [];
 
   sorted.forEach((sort: Index[]) => {
-    const eachDate = sort.map((s: Index) => s.date);
-    const eachTip = sort.map((t: Index) => {
-      return t.tips;
+    const eachDate = sort.map((date: Index) => date.date);
+    const eachTip = sort.map((tip: Index) => {
+      return tip.tips;
     });
     const tipTotal = eachTip.reduce((total: number, item: number) => {
       return total + item;
     });
+
     tipMonthTotal.push(Number(tipTotal.toFixed(2)));
 
     const eachHours = sort.map((h: Index) => h.hours);
@@ -89,29 +91,28 @@ const Analytics: React.FC<Props> = ({ data }) => {
 
     workedHoursTotal.push(workedTotal);
 
-    eachDate.map((x: string) => {
+    eachDate.forEach((x: string) => {
       usedMonths.push(x);
-      return x;
     });
   });
 
   const setMonths = new Set(usedMonths);
   const singleMonths: string[] = Array.from(setMonths);
 
-  console.log(tipMonthTotal);
-
   return (
-    <div className="analytics-container">
-      <p>Analytics</p>
-      <div>
-        <PieChart
-          tipData={tipMonthTotal}
-          workedData={workedHoursTotal}
-          labelData={singleMonths}
-        />
+    <Card>
+      <div className="analytics-container">
+        <p>Month</p>
+        <div>
+          <PieChart
+            tipData={tipMonthTotal}
+            workedData={workedHoursTotal}
+            labelData={singleMonths}
+          />
+        </div>
       </div>
-    </div>
+    </Card>
   );
 };
 
-export default Analytics;
+export default MonthAnalytics;

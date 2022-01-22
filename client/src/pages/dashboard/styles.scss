@@ -6,19 +6,20 @@
   width: 100%;
   background-color: $color-3;
   position: relative;
-}
 
-.dashboard-grid {
-  width: 100%;
-  display: grid;
-  gap: 1rem;
-  grid-template-areas:
-    'user'
-    'add-shift'
-    'analytics'
-    'shift1'
-    'shift2';
-  margin-bottom: 10rem;
+  .dashboard-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: 1rem;
+  }
+  .dashboard-shift-grid {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: $sp-1;
+  }
 }
 
 @include md-screen {
@@ -28,12 +29,9 @@
     @include flex(column, center, center);
   }
   .dashboard-grid {
-    grid-auto-columns: 1fr;
     gap: 1rem;
     display: grid;
-    grid-template-areas:
-      'user add-shift add-shift analytics'
-      'user shift1 shift2 analytics';
     margin-bottom: 0;
+    grid-template-columns: repeat(3, 1fr);
   }
 }

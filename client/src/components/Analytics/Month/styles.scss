@@ -1,0 +1,8 @@
+@use '../../../styles/index' as *;
+
+.analytics-container {
+  grid-area: analytics;
+  background-color: $grey-dark;
+  padding: $sp-4;
+  border-radius: 8px;
+}

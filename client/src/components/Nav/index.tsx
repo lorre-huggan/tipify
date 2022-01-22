@@ -33,22 +33,6 @@ const Nav: React.FC<Props> = ({ username }) => {
             <MdWork />
             <p>Log Out</p>
           </li>
-          <li>
-            <MdZoomOutMap />
-            <p>Account</p>
-          </li>
-          <li>
-            <MdWrongLocation />
-            <p>lorem</p>
-          </li>
-          <li>
-            <MdWork />
-            <p>logout</p>
-          </li>
-          <li>
-            <MdWork />
-            <p>lorem</p>
-          </li>
         </ul>
       </div>
     </section>

@@ -2,13 +2,14 @@
 
 .user-card-container {
   grid-area: user;
-  width: 100%;
-  min-height: 20rem;
-  border-radius: 8px;
+  min-height: 16rem;
+  border-radius: $sp-min;
   padding: $sp-4;
   position: relative;
-  border: 1px solid $blue;
-  background-color: $grey-dark;
+  height: 100%;
+  //border: 1px solid $blue;
+  //background-color: $grey-dark;
+
   .user-card-user-since {
     @include text-xs;
     text-transform: uppercase;

@@ -10,6 +10,7 @@ import {
   RiMoneyEuroCircleLine,
   RiMoneyPoundCircleLine,
 } from 'react-icons/ri';
+import Card from '../Card';
 interface Props {
   user: AuthUser;
   data: UserJob[] | undefined;
@@ -30,30 +31,32 @@ const UserCard: React.FC<Props> = ({ user, data }) => {
   }, 0);
 
   return (
-    <div className="user-card-container">
-      <p className="user-card-user-since">{`User since ${y}`}</p>
-      <div className="user-card-user-avatar">
-        <RiUserFill />
+    <Card>
+      <div className="user-card-container">
+        <p className="user-card-user-since">{`User since ${y}`}</p>
+        <div className="user-card-user-avatar">
+          <RiUserFill />
+        </div>
+        <h2>{user.username}</h2>
+        <p>Working at</p>
+        <div className="user-card-work-grid">
+          {data?.map((job) => {
+            return (
+              <div key={job._id}>
+                <p>{job.company_name}</p>
+              </div>
+            );
+          })}
+        </div>
+        <div className="user-card-analytics">
+          <p>All time tips</p>
+          <p>{`£${totalTips.toFixed(2)}`}</p>
+        </div>
+        <div className="user-card-settings-icon">
+          <RiSettings5Line />
+        </div>
       </div>
-      <h2>{user.username}</h2>
-      <p>Working at</p>
-      <div className="user-card-work-grid">
-        {data?.map((job) => {
-          return (
-            <div key={job._id}>
-              <p>{job.company_name}</p>
-            </div>
-          );
-        })}
-      </div>
-      <div className="user-card-analytics">
-        <p>All time tips</p>
-        <p>{`£${totalTips.toFixed(2)}`}</p>
-      </div>
-      <div className="user-card-settings-icon">
-        <RiSettings5Line />
-      </div>
-    </div>
+    </Card>
   );
 };
 

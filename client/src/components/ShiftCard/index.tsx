@@ -19,11 +19,9 @@ interface Props {
   user: AuthUser;
   data: Wage | undefined;
   job: UserJob;
-  idx: number;
-  gridArea: number;
 }
 
-const ShiftCard: React.FC<Props> = ({ user, data, job, idx, gridArea }) => {
+const ShiftCard: React.FC<Props> = ({ user, data, job }) => {
   const getDate = fromUnixTime(Number(data?.date)).toString();
   const day = getDate.split(' ')[0];
   const month = getDate.split(' ')[1];
@@ -38,7 +36,6 @@ const ShiftCard: React.FC<Props> = ({ user, data, job, idx, gridArea }) => {
       alert(error.message);
     },
   });
-  console.log(job._id.toString());
 
   const handleDelete = () => {
     DeleteShift({
@@ -47,10 +44,7 @@ const ShiftCard: React.FC<Props> = ({ user, data, job, idx, gridArea }) => {
   };
 
   return (
-    <div
-      className="shift-card-container"
-      style={{ gridArea: `shift${gridArea}` }}
-    >
+    <div className="shift-card-container">
       {loading && <p>Loading</p>}
       <div className="shift-card-time">
         <AiOutlineClockCircle />

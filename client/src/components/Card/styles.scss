@@ -1,0 +1,18 @@
+@use '../../styles/' as *;
+
+.card-container {
+  border-radius: $sp-min;
+  padding: 2px;
+  position: relative;
+  background: $primary-gradient;
+  box-shadow: 0px 0px 0.7px rgba(0, 0, 0, 0.045),
+    0px 0px 1.7px rgba(0, 0, 0, 0.065), 0px 0px 3.1px rgba(0, 0, 0, 0.08),
+    0px 0px 5.6px rgba(0, 0, 0, 0.095), 0px 0px 10.4px rgba(0, 0, 0, 0.115),
+    0px 0px 25px rgba(0, 0, 0, 0.16);
+  .card-inner {
+    padding: $sp-2;
+    background-color: $grey-dark;
+    height: 100%;
+    border-radius: 2px;
+  }
+}

@@ -4,12 +4,14 @@ import Nav from '../../components/Nav';
 import { useQuery } from '@apollo/client';
 import { GET_USER_JOBS } from '../../gql/request/job/request';
 import { AuthUser } from '../../types/user-types';
-import { UserJobs } from '../../types/job-types';
+import { UserJobs, Wage } from '../../types/job-types';
 import UserCard from '../../components/UserCard';
 import './styles.scss';
 import AddShift from '../../components/AddShift';
-import Analytics from '../../components/Analytics';
+import MonthAnalytics from '../../components/Analytics/Month';
+import DailyAnalytics from '../../components/Analytics/Daily';
 import ShiftCard from '../../components/ShiftCard';
+import { compareDesc } from 'date-fns';
 
 interface Props {}
 
@@ -20,44 +22,80 @@ const Dashboard = (props: Props) => {
     variables: { user: authUser?.username },
   });
 
+  const shifts: Wage[] = [];
+
+  data?.UserJobs.map((wage) => {
+    return wage.wages.map((w) => {
+      shifts.push(w);
+      return w;
+    });
+  });
+
+  const sortedShifts = shifts.sort((a, b) =>
+    compareDesc(Number(a.date), Number(b.date))
+  );
+
   return (
     <main className="dashboard">
       <Nav username={authUser?.username} />
-
-      {data?.UserJobs.length === 0 ? (
-        <AddShift user={authUser?.username} />
-      ) : (
-        <div className="dashboard-grid">
-          {/* components */}
-          {/* self improvement message */}
-          {!loading && (
-            <>
-              <UserCard user={authUser} data={data?.UserJobs} />
-              <AddShift user={authUser?.username} />
-              <Analytics data={data?.UserJobs} />
-            </>
-          )}
-
-          {!loading &&
-            data &&
-            data?.UserJobs.map((job, idx) => {
-              return job.wages.slice(0, 2).map((j, i) => {
+      {!loading && (
+        <>
+          <div className="dashboard-grid">
+            <UserCard user={authUser} data={data?.UserJobs} />
+            <AddShift user={authUser?.username} />
+            <MonthAnalytics data={data?.UserJobs} />
+            <DailyAnalytics data={data?.UserJobs} />
+          </div>
+          <div className="dashboard-shift-grid">
+            {sortedShifts &&
+              sortedShifts.map((shift, i) => {
                 return (
                   <ShiftCard
                     key={i}
                     user={authUser}
-                    job={job}
-                    data={j}
-                    idx={idx}
-                    gridArea={i + 1}
+                    job={data?.UserJobs[0]!}
+                    data={shift}
                   />
                 );
-              });
-            })}
-        </div>
+              })}
+          </div>
+        </>
       )}
     </main>
   );
 };
 
 export default Dashboard;
+
+{
+  /* {data?.UserJobs.length === 0 ? (
+  <AddShift user={authUser?.username} />
+) : (
+  <div className="dashboard-grid">
+    {!loading && (
+      <>
+        <UserCard user={authUser} data={data?.UserJobs} />
+        <AddShift user={authUser?.username} />
+        <Analytics data={data?.UserJobs} />
+      </>
+    )}
+
+    {!loading &&
+      data &&
+      data?.UserJobs.map((job, idx) => {
+        return job.wages.slice(0, 2).map((j, i) => {
+          return (
+            <ShiftCard
+              key={i}
+              user={authUser}
+              job={job}
+              data={j}
+              idx={idx}
+              gridArea={i + 1}
+            />
+          );
+        });
+      })}
+  </div>
+)} */
+}

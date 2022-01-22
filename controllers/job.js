@@ -75,15 +75,12 @@ export const CreateJob = async (parent, args, context) => {
 };
 
 export const CreateShift = async (_, args, context) => {
-  console.log('ping');
   const userAuth = checkAuth(context);
 
   const { tips, hours_worked, date, user } = args.input;
 
   try {
     const job = await JobModel.findOne({ user });
-
-    console.log(job);
 
     job.wages.push({ tips, hours_worked, date });
 

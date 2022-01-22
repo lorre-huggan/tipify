@@ -3,7 +3,6 @@
 .add-shift-container {
   grid-area: add-shift;
   background-color: $grey-dark;
-  border: 1px solid $pink;
   padding: $sp-4;
   border-radius: 8px;
   .add-shift-heading {
@@ -15,7 +14,7 @@
   }
   .add-shift-form {
     @include flex(column, left, center);
-    width: 19rem;
+    min-width: 1rem;
     margin: 0rem auto;
     label {
       margin-bottom: $sp-1;
@@ -25,6 +24,6 @@
     }
 
     @include input;
-    @include button;
+    @include button(primary);
   }
 }

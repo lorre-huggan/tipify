@@ -4,6 +4,7 @@ import { getUnixTime } from 'date-fns';
 import './styles.scss';
 import { useMutation } from '@apollo/client';
 import { CREATE_SHIFT } from '../../gql/request/job/request';
+import Card from '../Card';
 
 interface Props {
   user: string;
@@ -54,37 +55,39 @@ const AddShift: React.FC<Props> = ({ user }) => {
   };
 
   return (
-    <div className="add-shift-container">
-      <div className="add-shift-heading">
-        <h2>Add Shift</h2>
+    <Card>
+      <div className="add-shift-container">
+        <div className="add-shift-heading">
+          <h2>Add Shift</h2>
+        </div>
+        <form className="add-shift-form" onSubmit={handleSubmit}>
+          <label>Enter Date</label>
+          <ResponsiveDatePicker setDate={setDate} />
+          <label>Tips</label>
+          <input
+            name="tips"
+            type="number"
+            value={values.tips}
+            onChange={handleChange}
+            autoComplete="off"
+            step="any"
+            min="0.01"
+          />
+          <label>Hours</label>
+          <input
+            name="hours_worked"
+            type="number"
+            value={values.hours_worked}
+            onChange={handleChange}
+            autoComplete="off"
+            step="any"
+            min="1"
+            max="24"
+          />
+          <button>ADD</button>
+        </form>
       </div>
-      <form className="add-shift-form" onSubmit={handleSubmit}>
-        <label>Enter Date</label>
-        <ResponsiveDatePicker setDate={setDate} />
-        <label>Tips</label>
-        <input
-          name="tips"
-          type="number"
-          value={values.tips}
-          onChange={handleChange}
-          autoComplete="off"
-          step="any"
-          min="0.01"
-        />
-        <label>Hours</label>
-        <input
-          name="hours_worked"
-          type="number"
-          value={values.hours_worked}
-          onChange={handleChange}
-          autoComplete="off"
-          step="any"
-          min="1"
-          max="24"
-        />
-        <button>ADD</button>
-      </form>
-    </div>
+    </Card>
   );
 };
 
