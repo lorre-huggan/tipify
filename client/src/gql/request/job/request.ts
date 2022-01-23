@@ -21,9 +21,15 @@ export const GET_USER_JOBS = gql`
 export const DELETE_WAGE = gql`
   mutation deleteWage($jobId: String!, $wageId: String!) {
     DeleteShift(jobId: $jobId, wageId: $wageId) {
+      _id
       company_name
-      updatedAt
-      user
+      job_title
+      wages {
+        tips
+        hours_worked
+        date
+        _id
+      }
     }
   }
 `;

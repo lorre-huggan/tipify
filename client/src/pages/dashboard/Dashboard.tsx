@@ -37,7 +37,7 @@ const Dashboard = (props: Props) => {
 
   return (
     <main className="dashboard">
-      <Nav username={authUser?.username} />
+      <Nav />
       {!loading && (
         <>
           <div className="dashboard-grid">
@@ -66,36 +66,3 @@ const Dashboard = (props: Props) => {
 };
 
 export default Dashboard;
-
-{
-  /* {data?.UserJobs.length === 0 ? (
-  <AddShift user={authUser?.username} />
-) : (
-  <div className="dashboard-grid">
-    {!loading && (
-      <>
-        <UserCard user={authUser} data={data?.UserJobs} />
-        <AddShift user={authUser?.username} />
-        <Analytics data={data?.UserJobs} />
-      </>
-    )}
-
-    {!loading &&
-      data &&
-      data?.UserJobs.map((job, idx) => {
-        return job.wages.slice(0, 2).map((j, i) => {
-          return (
-            <ShiftCard
-              key={i}
-              user={authUser}
-              job={job}
-              data={j}
-              idx={idx}
-              gridArea={i + 1}
-            />
-          );
-        });
-      })}
-  </div>
-)} */
-}

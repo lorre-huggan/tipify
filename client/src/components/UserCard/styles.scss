@@ -13,27 +13,32 @@
   .user-card-user-since {
     @include text-xs;
     text-transform: uppercase;
-    color: $color-2;
-    margin-bottom: $sp-1;
+    color: $grey-light;
+    margin-bottom: $sp-4;
   }
   .user-card-user-avatar {
     position: absolute;
     top: $sp-4;
     right: $sp-4;
     font-size: $sp-4;
-    color: $color-guild-member;
+    color: $teal;
   }
   .user-card-work-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.25rem;
-    margin-bottom: $sp-1;
+    margin-bottom: $sp-4;
+    @include text-sm;
   }
   .user-card-analytics {
     @include flex(column, left, left);
     p {
-      @include text-xl;
+      @include text-sm;
+      text-transform: uppercase;
+      color: $green;
+      width: 100%;
       font-weight: 900;
+      margin-bottom: $sp-4;
+    }
+    h1 {
+      @include text-8xl;
     }
   }
   .user-card-settings-icon {
@@ -42,17 +47,17 @@
     bottom: $sp-4;
     left: $sp-4;
     font-size: $sp-4;
-    color: $grey;
+    color: $grey-light;
     cursor: pointer;
     transition: color $time-fs $trans-1;
     &:hover {
       color: $grey;
     }
   }
-  h2 {
-    @include text-2xl;
+  h4 {
+    @include text-xl;
     margin-bottom: $sp-1;
-    font-weight: 900;
+    font-weight: 300;
     color: $color-2;
   }
   p {

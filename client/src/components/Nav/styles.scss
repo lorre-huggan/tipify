@@ -24,7 +24,7 @@ section {
           transition: color $time-fs $trans-1;
           cursor: pointer;
           &:hover {
-            color: $green;
+            color: $teal;
           }
           &:hover + p {
             opacity: 1;

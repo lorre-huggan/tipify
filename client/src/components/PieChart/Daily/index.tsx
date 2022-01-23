@@ -24,7 +24,7 @@ const PieChart: React.FC<Props> = ({ tipData, labelData }) => {
           '#e03f4f',
           '#e86435',
         ],
-        borderWidth: 1,
+        borderWidth: 2,
       },
     ],
   };

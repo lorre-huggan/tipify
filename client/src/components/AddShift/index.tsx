@@ -36,7 +36,6 @@ const AddShift: React.FC<Props> = ({ user }) => {
       });
 
       //write data back to cache
-
       proxy.writeQuery({ query: GET_USER_JOBS, data });
     },
     onError: (error) => {
@@ -82,8 +81,8 @@ const AddShift: React.FC<Props> = ({ user }) => {
             value={values.tips}
             onChange={handleChange}
             autoComplete="off"
-            step="any"
-            min="0.01"
+            step=".05"
+            min="0.00"
           />
           <label>Hours</label>
           <input

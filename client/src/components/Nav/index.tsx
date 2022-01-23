@@ -1,19 +1,11 @@
 import React from 'react';
 import './styles.scss';
-import {
-  MdBookmark,
-  MdDashboard,
-  MdWork,
-  MdWrongLocation,
-  MdZoomOutMap,
-} from 'react-icons/md';
+import { MdDashboard, MdWork } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 
-interface Props {
-  username: string;
-}
+interface Props {}
 
-const Nav: React.FC<Props> = ({ username }) => {
+const Nav: React.FC<Props> = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
