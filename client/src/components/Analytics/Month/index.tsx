@@ -1,9 +1,6 @@
 import React from 'react';
 import './styles.scss';
-import { Bar } from 'react-chartjs-2';
-import BarChart from '../../BarChart';
-import LineChart from '../../LineChart';
-import { UserJob, UserJobs, Wage } from '../../../types/job-types';
+import { UserJob, Wage } from '../../../types/job-types';
 import { fromUnixTime } from 'date-fns';
 import PieChart from '../../PieChart/Month';
 import Card from '../../Card';
@@ -22,14 +19,14 @@ const MonthAnalytics: React.FC<Props> = ({ data }) => {
   const dates: number[] = [];
   const hours: number[] = [];
   const months: string[] = [];
-  const wages: any = [];
+  const wages: Wage[][] = [];
   const index: Index[] = [];
 
   data?.forEach((wage) => {
     wages.push(wage.wages);
   });
 
-  wages[0].forEach((x: any) => {
+  wages[0].forEach((x: Wage) => {
     tips.push(x.tips);
     dates.push(x.date);
     hours.push(x.hours_worked);

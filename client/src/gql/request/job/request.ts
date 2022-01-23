@@ -34,6 +34,12 @@ export const CREATE_SHIFT = gql`
       _id
       company_name
       job_title
+      wages {
+        tips
+        hours_worked
+        date
+        _id
+      }
     }
   }
 `;

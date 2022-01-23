@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ResponsiveDatePicker from '../DatePicker';
 import { getUnixTime } from 'date-fns';
 import './styles.scss';
 import { useMutation } from '@apollo/client';
-import { CREATE_SHIFT } from '../../gql/request/job/request';
+import { CREATE_SHIFT, GET_USER_JOBS } from '../../gql/request/job/request';
 import Card from '../Card';
+import { UseAuth } from '../../hooks/useAuth';
+import { AuthUser } from '../../types/user-types';
+import { UserJobs } from '../../types/job-types';
 
 interface Props {
   user: string;
@@ -16,6 +19,7 @@ interface AddValues {
 }
 
 const AddShift: React.FC<Props> = ({ user }) => {
+  const { authUser }: { authUser: AuthUser } = UseAuth();
   const [date, setDate] = useState<any>(new Date());
   const [values, setValues] = useState<AddValues>({
     tips: 0,
@@ -24,11 +28,19 @@ const AddShift: React.FC<Props> = ({ user }) => {
   const [error, setError] = useState<string>('');
 
   const [CreateShift, { loading }] = useMutation(CREATE_SHIFT, {
-    update(proxy) {
-      console.log('done');
+    update: (proxy, { data: { CreateShift } }) => {
+      //read data from cache
+      const data: UserJobs | null = proxy.readQuery({
+        query: GET_USER_JOBS,
+        variables: { user: authUser?.username },
+      });
+
+      //write data back to cache
+
+      proxy.writeQuery({ query: GET_USER_JOBS, data });
     },
-    onError(error) {
-      console.log(error.message);
+    onError: (error) => {
+      console.log(error);
     },
   });
 
@@ -84,8 +96,9 @@ const AddShift: React.FC<Props> = ({ user }) => {
             min="1"
             max="24"
           />
-          <button>ADD</button>
+          <button disabled={loading}>ADD</button>
         </form>
+        {error && <p>{error}</p>}
       </div>
     </Card>
   );

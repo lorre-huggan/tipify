@@ -3,7 +3,7 @@ import './styles.scss';
 import { UserJob, Wage } from '../../../types/job-types';
 import PieChart from '../../PieChart/Daily';
 import Card from '../../Card';
-import { getDateString, numberReducer } from '../../../untils/helpers';
+import { getDateString, numberReducer } from '../../../utils/helpers';
 
 interface Props {
   data: UserJob[] | undefined;
@@ -31,38 +31,34 @@ const DayAnalytics: React.FC<Props> = ({ data }) => {
 
   const dayArray = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
-  const getTipForDay = () => {
-    shifts.forEach((shift) => {
-      const { day } = getDateString(shift.date);
-      switch (day) {
-        case 'Mon':
-          Mon.push(shift.tips);
-          break;
-        case 'Tue':
-          Tue.push(shift.tips);
-          break;
-        case 'Wed':
-          Wed.push(shift.tips);
-          break;
-        case 'Thu':
-          Thu.push(shift.tips);
-          break;
-        case 'Fri':
-          Fri.push(shift.tips);
-          break;
-        case 'Sat':
-          Sat.push(shift.tips);
-          break;
-        case 'Sun':
-          Sun.push(shift.tips);
-          break;
-        default:
-          break;
-      }
-    });
-  };
-
-  getTipForDay();
+  shifts.forEach((shift) => {
+    const { day } = getDateString(shift.date);
+    switch (day) {
+      case 'Mon':
+        Mon.push(shift.tips);
+        break;
+      case 'Tue':
+        Tue.push(shift.tips);
+        break;
+      case 'Wed':
+        Wed.push(shift.tips);
+        break;
+      case 'Thu':
+        Thu.push(shift.tips);
+        break;
+      case 'Fri':
+        Fri.push(shift.tips);
+        break;
+      case 'Sat':
+        Sat.push(shift.tips);
+        break;
+      case 'Sun':
+        Sun.push(shift.tips);
+        break;
+      default:
+        break;
+    }
+  });
 
   let MonTips: number = numberReducer(Mon);
   let TueTips: number = numberReducer(Tue);

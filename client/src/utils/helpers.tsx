@@ -19,8 +19,7 @@ export function getDateString(date: number): DateObject {
 }
 
 export function numberReducer(numArray: number[]): number {
-  const reduced = numArray.reduce((total: number, item: number) => {
+  return numArray.reduce((total: number, item: number) => {
     return total + item;
-  });
-  return reduced;
+  }, 0);
 }
