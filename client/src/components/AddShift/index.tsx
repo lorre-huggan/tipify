@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ResponsiveDatePicker from '../DatePicker';
+import ResponsiveDatePicker from '../DateInput/DatePicker';
 import { getUnixTime } from 'date-fns';
 import './styles.scss';
 import { useMutation } from '@apollo/client';
@@ -81,7 +81,7 @@ const AddShift: React.FC<Props> = ({ user }) => {
             value={values.tips}
             onChange={handleChange}
             autoComplete="off"
-            step=".05"
+            step="any"
             min="0.00"
           />
           <label>Hours</label>

@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.scss';
-import { MdDashboard, MdWork } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
+import { BiLogOut } from 'react-icons/bi';
 
 interface Props {}
 
@@ -17,12 +17,8 @@ const Nav: React.FC<Props> = () => {
     <section>
       <div className="icons">
         <ul>
-          <li>
-            <MdDashboard />
-            <p>Add Job</p>
-          </li>
           <li onClick={handleLogout}>
-            <MdWork />
+            <BiLogOut />
             <p>Log Out</p>
           </li>
         </ul>

@@ -10,6 +10,7 @@
       @include text-xl;
       font-weight: 900;
       text-transform: uppercase;
+      margin-bottom: $sp-2;
     }
   }
   .add-shift-form {
@@ -25,5 +26,8 @@
 
     @include input;
     @include button(black);
+    div {
+      width: 100%;
+    }
   }
 }

@@ -4,38 +4,21 @@ import { UserJob, Wage } from '../../../types/job-types';
 import { fromUnixTime } from 'date-fns';
 import PieChart from '../../PieChart/Month';
 import Card from '../../Card';
+import { getDateString, numberReducer } from '../../../utils/helpers';
 interface Props {
   data: UserJob[] | undefined;
 }
 
-interface Index {
-  date: string;
-  tips: number;
-  hours: number;
-}
-
 const MonthAnalytics: React.FC<Props> = ({ data }) => {
-  const tips: number[] = [];
-  const dates: number[] = [];
-  const hours: number[] = [];
-  const months: string[] = [];
   const wages: Wage[][] = [];
-  const index: Index[] = [];
+  const shifts: Wage[] = [];
 
   data?.forEach((wage) => {
     wages.push(wage.wages);
   });
 
   wages[0].forEach((x: Wage) => {
-    tips.push(x.tips);
-    dates.push(x.date);
-    hours.push(x.hours_worked);
-    months.push(fromUnixTime(x.date).toString().split(' ')[1]);
-    index.push({
-      date: fromUnixTime(x.date).toString().split(' ')[1],
-      tips: x.tips,
-      hours: x.hours_worked,
-    });
+    shifts.push(x);
   });
 
   const monthsArray = [
@@ -44,8 +27,8 @@ const MonthAnalytics: React.FC<Props> = ({ data }) => {
     'Mar',
     'Apr',
     'May',
-    'June',
-    'July',
+    'Jun',
+    'Jul',
     'Aug',
     'Sept',
     'Oct',
@@ -53,59 +36,97 @@ const MonthAnalytics: React.FC<Props> = ({ data }) => {
     'Dec',
   ];
 
-  const sorted: any = [];
+  let Jan: number[] = [];
+  let Feb: number[] = [];
+  let Mar: number[] = [];
+  let Apr: number[] = [];
+  let May: number[] = [];
+  let Jun: number[] = [];
+  let Jul: number[] = [];
+  let Aug: number[] = [];
+  let Sep: number[] = [];
+  let Oct: number[] = [];
+  let Nov: number[] = [];
+  let Dec: number[] = [];
 
-  monthsArray.forEach((month) => {
-    const filter = index.filter((idx) => {
-      return idx.date === month;
-    });
-
-    if (filter.length > 0) {
-      sorted.push([...filter]);
+  shifts.forEach((shift) => {
+    const { month } = getDateString(shift.date);
+    switch (month) {
+      case 'Jan':
+        Jan.push(shift.tips);
+        break;
+      case 'Feb':
+        Feb.push(shift.tips);
+        break;
+      case 'Mar':
+        Mar.push(shift.tips);
+        break;
+      case 'Apr':
+        Apr.push(shift.tips);
+        break;
+      case 'May':
+        May.push(shift.tips);
+        break;
+      case 'Jun':
+        Jun.push(shift.tips);
+        break;
+      case 'Jul':
+        Jul.push(shift.tips);
+        break;
+      case 'Aug':
+        Aug.push(shift.tips);
+        break;
+      case 'Sep':
+        Sep.push(shift.tips);
+        break;
+      case 'Oct':
+        Oct.push(shift.tips);
+        break;
+      case 'Nov':
+        Nov.push(shift.tips);
+        break;
+      case 'Dec':
+        Dec.push(shift.tips);
+        break;
+      default:
+        break;
     }
   });
 
-  const usedMonths: string[] = [];
-  const tipMonthTotal: number[] = [];
-  const workedHoursTotal: number[] = [];
+  let JanTips: number = numberReducer(Jan);
+  let FebTips: number = numberReducer(Feb);
+  let MarTips: number = numberReducer(Mar);
+  let AprTips: number = numberReducer(Apr);
+  let MayTips: number = numberReducer(May);
+  let JunTips: number = numberReducer(Jun);
+  let JulTips: number = numberReducer(Jul);
+  let AugTips: number = numberReducer(Aug);
+  let SepTips: number = numberReducer(Sep);
+  let OctTips: number = numberReducer(Oct);
+  let NovTips: number = numberReducer(Nov);
+  let DecTips: number = numberReducer(Dec);
 
-  sorted.forEach((sort: Index[]) => {
-    const eachDate = sort.map((date: Index) => date.date);
-    const eachTip = sort.map((tip: Index) => {
-      return tip.tips;
-    });
-    const tipTotal = eachTip.reduce((total: number, item: number) => {
-      return total + item;
-    });
-
-    tipMonthTotal.push(Number(tipTotal.toFixed(2)));
-
-    const eachHours = sort.map((h: Index) => h.hours);
-
-    const workedTotal = eachHours.reduce((total: number, item: number) => {
-      return total + item;
-    });
-
-    workedHoursTotal.push(workedTotal);
-
-    eachDate.forEach((x: string) => {
-      usedMonths.push(x);
-    });
-  });
-
-  const setMonths = new Set(usedMonths);
-  const singleMonths: string[] = Array.from(setMonths);
+  const monthlyTips = [
+    Number(JanTips.toFixed(2)),
+    Number(FebTips.toFixed(2)),
+    Number(MarTips.toFixed(2)),
+    Number(AprTips.toFixed(2)),
+    Number(MayTips.toFixed(2)),
+    Number(JunTips.toFixed(2)),
+    Number(JulTips.toFixed(2)),
+    Number(AugTips.toFixed(2)),
+    Number(SepTips.toFixed(2)),
+    Number(OctTips.toFixed(2)),
+    Number(NovTips.toFixed(2)),
+    Number(DecTips.toFixed(2)),
+  ];
 
   return (
     <Card>
       <div className="analytics-container">
-        <p>Month</p>
+        <h2>Month</h2>
         <div>
-          <PieChart
-            tipData={tipMonthTotal}
-            workedData={workedHoursTotal}
-            labelData={singleMonths}
-          />
+          <PieChart tipData={monthlyTips} labelData={monthsArray} />
         </div>
       </div>
     </Card>

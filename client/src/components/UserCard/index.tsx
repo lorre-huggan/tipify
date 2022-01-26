@@ -6,6 +6,7 @@ import { formatDistanceToNow } from 'date-fns';
 import { RiUserFill, RiSettings5Line } from 'react-icons/ri';
 import Card from '../Card';
 import { numberReducer } from '../../utils/helpers';
+import { AiOutlineClose } from 'react-icons/ai';
 interface Props {
   user: AuthUser;
   data: UserJob[] | undefined;
@@ -13,6 +14,7 @@ interface Props {
 
 const UserCard: React.FC<Props> = ({ user, data }) => {
   const [currency, setCurrency] = useState<string>('£');
+  const [settings, setSettings] = useState<boolean>(false);
 
   useEffect(() => {
     switch (user?.currency) {
@@ -43,29 +45,41 @@ const UserCard: React.FC<Props> = ({ user, data }) => {
 
   const totalTips = numberReducer(tips);
 
+  const handleSettings = () => {
+    setSettings(!settings);
+  };
+
   return (
     <Card>
       <div className="user-card-container">
-        <p className="user-card-user-since">{`User since ${userSince}`}</p>
         <div className="user-card-user-avatar">
-          <RiUserFill />
+          {settings ? <RiSettings5Line /> : <RiUserFill />}
         </div>
-        <h4>{user.username}</h4>
-        <div className="user-card-work-grid">
-          {data?.map((job) => {
-            return (
-              <div key={job._id}>
-                <p>{`${job.job_title} at ${job.company_name}`}</p>
-              </div>
-            );
-          })}
-        </div>
-        <div className="user-card-analytics">
-          <p>Total tips grossed</p>
-          <h1>{`${currency}${totalTips.toFixed(2)}`}</h1>
-        </div>
-        <div className="user-card-settings-icon">
-          <RiSettings5Line />
+        {settings ? (
+          <>
+            <div>Settings</div>
+          </>
+        ) : (
+          <>
+            <p className="user-card-user-since">{`User since ${userSince}`}</p>
+            <h4>{user.username}</h4>
+            <div className="user-card-work-grid">
+              {data?.map((job) => {
+                return (
+                  <div key={job._id}>
+                    <p>{`${job.job_title} at ${job.company_name}`}</p>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="user-card-analytics">
+              <p>My all time tips</p>
+              <h1>{`${currency}${totalTips.toFixed(2)}`}</h1>
+            </div>
+          </>
+        )}
+        <div className="user-card-settings-icon" onClick={handleSettings}>
+          {!settings ? <RiSettings5Line /> : <AiOutlineClose />}
         </div>
       </div>
     </Card>

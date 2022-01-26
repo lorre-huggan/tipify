@@ -15,6 +15,7 @@
     text-transform: uppercase;
     color: $grey-light;
     margin-bottom: $sp-4;
+    opacity: 0.2;
   }
   .user-card-user-avatar {
     position: absolute;
@@ -24,21 +25,27 @@
     color: $teal;
   }
   .user-card-work-grid {
-    margin-bottom: $sp-4;
+    margin-bottom: $sp-6;
     @include text-sm;
+    p {
+      color: $grey-light;
+    }
   }
   .user-card-analytics {
     @include flex(column, left, left);
+    padding: $sp-2;
+    border-radius: 8px;
     p {
       @include text-sm;
-      text-transform: uppercase;
-      color: $green;
       width: 100%;
       font-weight: 900;
-      margin-bottom: $sp-4;
+      margin-bottom: $sp-2;
+      text-align: center;
+      opacity: 0.4;
     }
     h1 {
       @include text-8xl;
+      text-align: center;
     }
   }
   .user-card-settings-icon {
@@ -51,13 +58,13 @@
     cursor: pointer;
     transition: color $time-fs $trans-1;
     &:hover {
-      color: $grey;
+      color: $teal;
     }
   }
   h4 {
     @include text-xl;
     margin-bottom: $sp-1;
-    font-weight: 300;
+    font-weight: 900;
     color: $color-2;
   }
   p {

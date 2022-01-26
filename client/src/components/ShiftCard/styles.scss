@@ -1,17 +1,7 @@
 @use '../../styles/' as *;
 
 .shift-card-deleted {
-  width: 100%;
-  min-height: 10rem;
-  border-radius: 8px;
-  padding: $sp-4;
-  background-color: $grey-dark;
-  border: 2px solid $black;
-  @include shadow-sm;
-  position: relative;
   transform: translateY(-100px);
-  transition: background-color $time-fs $trans-1, border $time-fs $trans-1,
-    opacity $time-fs $trans-1, transform $time-fs $trans-1;
   opacity: 0;
 }
 
@@ -25,7 +15,7 @@
   @include shadow-sm;
   position: relative;
   transition: background-color $time-fs $trans-1, border $time-fs $trans-1,
-    opacity $time-fs $trans-1;
+    opacity $time-fs $trans-1, transform $time-fs $trans-1;
   &:hover {
     background-color: $black;
     border: 2px solid $teal;
@@ -35,7 +25,7 @@
     text-transform: uppercase;
     @include text-xs;
     margin-bottom: $sp-1;
-    span {
+    small {
     }
     svg {
       margin-right: $sp-1;
@@ -46,7 +36,7 @@
   }
   .shift-card-job-title {
     font-weight: 900;
-    color: $orange;
+    color: $grey-light;
     @include text-xs;
   }
   .shift-card-earned {
@@ -54,14 +44,9 @@
     position: absolute;
     bottom: $sp-4;
     right: $sp-4;
-    span {
-      color: $teal;
-      margin-left: 2px;
-      font-weight: 900;
-    }
-    svg {
-      font-size: $sp-4;
-    }
+    color: $green;
+    font-weight: 900;
+    @include text-xl;
   }
   .shift-card-hours {
     position: absolute;

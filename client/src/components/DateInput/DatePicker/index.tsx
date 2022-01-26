@@ -5,13 +5,24 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MobileDatePicker from '@mui/lab/MobileDatePicker';
 import './styles.scss';
+import type {} from '@mui/lab/themeAugmentation';
+
 interface Props {
   setDate: React.Dispatch<React.SetStateAction<any>>;
 }
 
 const theme = createTheme({
   components: {
-    // Name of the component ⚛️
+    // Name of the component
+    MuiTextField: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          backgroundColor: '#23272a',
+        },
+      },
+    },
   },
 });
 

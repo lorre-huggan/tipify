@@ -4,61 +4,41 @@ import Nav from '../../components/Nav';
 import { useQuery } from '@apollo/client';
 import { GET_USER_JOBS } from '../../gql/request/job/request';
 import { AuthUser } from '../../types/user-types';
-import { UserJobs, Wage } from '../../types/job-types';
-import UserCard from '../../components/UserCard';
+import { UserJobs } from '../../types/job-types';
 import './styles.scss';
-import AddShift from '../../components/AddShift';
-import MonthAnalytics from '../../components/Analytics/Month';
-import DailyAnalytics from '../../components/Analytics/Daily';
-import ShiftCard from '../../components/ShiftCard';
-import { compareDesc } from 'date-fns';
+import DateRangePicker from '../../components/DateInput/DateRangePicker';
+import { useState } from 'react';
+import { DateRange } from '@mui/lab/DateRangePicker';
+import DashboardGrid from '../../components/DashboardGrid';
+import ShiftGrid from '../../components/ShiftGrid';
 
 interface Props {}
 
 const Dashboard = (props: Props) => {
   const { authUser }: { authUser: AuthUser } = UseAuth();
-  //TODO handle loading and errors
   const { loading, data, error } = useQuery<UserJobs>(GET_USER_JOBS, {
     variables: { user: authUser?.username },
   });
 
-  const shifts: Wage[] = [];
+  const [dateRange, setDateRange] = useState<DateRange<Date>>([null, null]);
 
-  data?.UserJobs.map((wage) => {
-    return wage.wages.map((w) => {
-      shifts.push(w);
-      return w;
-    });
-  });
-
-  const sortedShifts = shifts.sort((a, b) =>
-    compareDesc(Number(a.date), Number(b.date))
-  );
+  //TODO Handle error
+  if (error) {
+    return <Error />;
+  }
+  //TODO handle loading
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <main className="dashboard">
       <Nav />
       {!loading && (
         <>
-          <div className="dashboard-grid">
-            <UserCard user={authUser} data={data?.UserJobs} />
-            <AddShift user={authUser?.username} />
-            <MonthAnalytics data={data?.UserJobs} />
-            <DailyAnalytics data={data?.UserJobs} />
-          </div>
-          <div className="dashboard-shift-grid">
-            {sortedShifts &&
-              sortedShifts.map((shift, i) => {
-                return (
-                  <ShiftCard
-                    key={i}
-                    user={authUser}
-                    job={data?.UserJobs[0]!}
-                    data={shift}
-                  />
-                );
-              })}
-          </div>
+          <DashboardGrid data={data} />
+          <DateRangePicker dateRange={dateRange} setDateRange={setDateRange} />
+          <ShiftGrid data={data} dateRange={dateRange} />
         </>
       )}
     </main>
@@ -66,3 +46,19 @@ const Dashboard = (props: Props) => {
 };
 
 export default Dashboard;
+
+export const Loading: React.FC = () => {
+  return (
+    <main>
+      <h1>Error</h1>
+    </main>
+  );
+};
+
+export const Error: React.FC = () => {
+  return (
+    <main>
+      <h1>Loading</h1>
+    </main>
+  );
+};

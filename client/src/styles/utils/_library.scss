@@ -52,7 +52,7 @@ $trans-1: cubic-bezier(0.645, 0.045, 0.355, 1);
     margin-bottom: $sp-4;
     border-radius: 4px;
     color: $color-2;
-    background-color: $color-5;
+    background-color: $grey;
     transition: border $time-fs cubic-bezier(0.075, 0.82, 0.165, 1);
     &:hover {
       border: 1px solid #111111;

@@ -6,9 +6,8 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 interface Props {
   tipData: Array<number>;
   labelData: Array<string>;
-  workedData: Array<number>;
 }
-const PieChart: React.FC<Props> = ({ tipData, labelData, workedData }) => {
+const PieChart: React.FC<Props> = ({ tipData, labelData }) => {
   const data = {
     labels: labelData,
     datasets: [
@@ -23,6 +22,12 @@ const PieChart: React.FC<Props> = ({ tipData, labelData, workedData }) => {
           '#18acff',
           '#7547a3',
           '#ffe75c',
+          '#e18868',
+          '#aee2dd',
+          '#ffbddd',
+          '#a5ddfd',
+          '#8d7c9e',
+          '#fcf2b7',
         ],
         borderWidth: 2,
       },

@@ -1,0 +1,17 @@
+@use '../../styles/' as *;
+
+.dashboard-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+  margin-bottom: 1rem;
+}
+
+@include md-screen {
+  .dashboard-grid {
+    gap: 1rem;
+    display: grid;
+    margin-bottom: 0;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

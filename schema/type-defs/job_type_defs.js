@@ -12,7 +12,7 @@ export const jobTypeDefs = `
 
   type Wage {
     tips: Float!
-    hours_worked: Int!
+    hours_worked: Float!
     date: String!
     _id:ID!
   }
@@ -25,13 +25,13 @@ export const jobTypeDefs = `
 
   input WageInput {
     tips: Float!
-    hours_worked: Int!
+    hours_worked: Float!
     date: Int!
   }
 
   input ShiftInput {
     tips:Float!
-    hours_worked: Int!
+    hours_worked: Float!
     date: Int!
     user:String!
 

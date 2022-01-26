@@ -1,0 +1,9 @@
+@use '../../styles/' as *;
+
+.dashboard-shift-grid {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: $sp-1;
+}

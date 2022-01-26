@@ -14,12 +14,11 @@ section {
     @include flex(row, center, center);
     ul {
       @include flex(row, center, space-between);
-      width: 100%;
       padding: $sp-1 $sp-4;
       li {
         @include flex(column, center, center);
         svg {
-          font-size: $sp-6;
+          font-size: $sp-4;
           color: $grey-light;
           transition: color $time-fs $trans-1;
           cursor: pointer;
@@ -32,7 +31,7 @@ section {
         }
         p {
           color: $white;
-          opacity: 0.3;
+          opacity: 0;
           transition: opacity $time-md $trans-1;
         }
       }
@@ -52,7 +51,6 @@ section {
         @include flex(column, center, left);
         padding: 0;
         li {
-          margin-bottom: $sp-2;
           p {
             text-align: center;
             @include text-xs;
