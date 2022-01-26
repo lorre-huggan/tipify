@@ -2,10 +2,5 @@
 
 .date-range-picker {
   @include flex(column, center, center);
-  color: $white;
   margin: $sp-4 0;
-}
-
-.range-picker {
-  color: $white;
 }

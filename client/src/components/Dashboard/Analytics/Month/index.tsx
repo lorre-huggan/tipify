@@ -1,10 +1,10 @@
 import React from 'react';
 import './styles.scss';
-import { UserJob, Wage } from '../../../types/job-types';
+import { UserJob, Wage } from '../../../../types/job-types';
 import { fromUnixTime } from 'date-fns';
 import PieChart from '../../PieChart/Month';
-import Card from '../../Card';
-import { getDateString, numberReducer } from '../../../utils/helpers';
+import Card from '../../../Card';
+import { getDateString, numberReducer } from '../../../../utils/helpers';
 interface Props {
   data: UserJob[] | undefined;
 }

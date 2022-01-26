@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import ResponsiveDatePicker from '../DateInput/DatePicker';
+import ResponsiveDatePicker from '../../DateInput/DatePicker';
 import { getUnixTime } from 'date-fns';
 import './styles.scss';
 import { useMutation } from '@apollo/client';
-import { CREATE_SHIFT, GET_USER_JOBS } from '../../gql/request/job/request';
-import Card from '../Card';
-import { UseAuth } from '../../hooks/useAuth';
-import { AuthUser } from '../../types/user-types';
-import { UserJobs } from '../../types/job-types';
+import { CREATE_SHIFT, GET_USER_JOBS } from '../../../gql/request/job/request';
+import Card from '../../Card';
+import { UseAuth } from '../../../hooks/useAuth';
+import { AuthUser } from '../../../types/user-types';
+import { UserJobs } from '../../../types/job-types';
 
 interface Props {
   user: string;

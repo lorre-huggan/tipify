@@ -1,6 +1,6 @@
 import './styles.scss';
 import { UseAuth } from '../../hooks/useAuth';
-import Nav from '../../components/Nav';
+import Nav from '../../components/Dashboard/Nav';
 import { useQuery } from '@apollo/client';
 import { GET_USER_JOBS } from '../../gql/request/job/request';
 import { AuthUser } from '../../types/user-types';
@@ -9,8 +9,8 @@ import './styles.scss';
 import DateRangePicker from '../../components/DateInput/DateRangePicker';
 import { useState } from 'react';
 import { DateRange } from '@mui/lab/DateRangePicker';
-import DashboardGrid from '../../components/DashboardGrid';
-import ShiftGrid from '../../components/ShiftGrid';
+import DashboardGrid from '../../components/Dashboard/DashboardGrid';
+import ShiftGrid from '../../components/Dashboard/ShiftGrid';
 
 interface Props {}
 
@@ -30,22 +30,30 @@ const Dashboard = (props: Props) => {
   if (loading) {
     return <Loading />;
   }
+  //TODO handle no jobs
+  if (data?.UserJobs.length === 0) {
+    return <NoJobs />;
+  }
 
   return (
     <main className="dashboard">
       <Nav />
-      {!loading && (
-        <>
-          <DashboardGrid data={data} />
-          <DateRangePicker dateRange={dateRange} setDateRange={setDateRange} />
-          <ShiftGrid data={data} dateRange={dateRange} />
-        </>
-      )}
+      <DashboardGrid data={data} />
+      <DateRangePicker dateRange={dateRange} setDateRange={setDateRange} />
+      <ShiftGrid data={data} dateRange={dateRange} />
     </main>
   );
 };
 
 export default Dashboard;
+
+export const NoJobs: React.FC = () => {
+  return (
+    <main>
+      <h1>Add Job</h1>
+    </main>
+  );
+};
 
 export const Loading: React.FC = () => {
   return (

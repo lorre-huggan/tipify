@@ -9,19 +9,19 @@ import { getUnixTime } from 'date-fns';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
-  components: {
-    // Name of the component
-    MuiTextField: {
-      styleOverrides: {
-        // Name of the slot
-        root: {
-          // Some CSS
-          backgroundColor: '#ffffff70',
-          borderRadius: '8px',
-        },
-      },
-    },
-  },
+  // components: {
+  //   // Name of the component
+  //   MuiTextField: {
+  //     styleOverrides: {
+  //       // Name of the slot
+  //       root: {
+  //         // Some CSS
+  //         backgroundColor: '#ffffff70',
+  //         borderRadius: '8px',
+  //       },
+  //     },
+  //   },
+  // },
 });
 
 interface Props {

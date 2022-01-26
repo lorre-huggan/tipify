@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { UserJob } from '../../types/job-types';
-import { AuthUser } from '../../types/user-types';
+import { UserJob } from '../../../types/job-types';
+import { AuthUser } from '../../../types/user-types';
 import './styles.scss';
 import { formatDistanceToNow } from 'date-fns';
 import { RiUserFill, RiSettings5Line } from 'react-icons/ri';
-import Card from '../Card';
-import { numberReducer } from '../../utils/helpers';
+import Card from '../../Card';
+import { numberReducer } from '../../../utils/helpers';
 import { AiOutlineClose } from 'react-icons/ai';
+import AllTips from './AllTips';
 interface Props {
   user: AuthUser;
   data: UserJob[] | undefined;
@@ -64,18 +65,9 @@ const UserCard: React.FC<Props> = ({ user, data }) => {
             <p className="user-card-user-since">{`User since ${userSince}`}</p>
             <h4>{user.username}</h4>
             <div className="user-card-work-grid">
-              {data?.map((job) => {
-                return (
-                  <div key={job._id}>
-                    <p>{`${job.job_title} at ${job.company_name}`}</p>
-                  </div>
-                );
-              })}
+              <p>{`${data![0].job_title} at ${data![0].company_name}`}</p>
             </div>
-            <div className="user-card-analytics">
-              <p>My all time tips</p>
-              <h1>{`${currency}${totalTips.toFixed(2)}`}</h1>
-            </div>
+            <AllTips currency={currency} totalTips={totalTips} />
           </>
         )}
         <div className="user-card-settings-icon" onClick={handleSettings}>

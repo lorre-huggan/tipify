@@ -1,8 +1,8 @@
 import { compareDesc, getUnixTime } from 'date-fns';
 import React from 'react';
-import { UseAuth } from '../../hooks/useAuth';
-import { UserJobs, Wage } from '../../types/job-types';
-import { AuthUser } from '../../types/user-types';
+import { UseAuth } from '../../../hooks/useAuth';
+import { UserJobs, Wage } from '../../../types/job-types';
+import { AuthUser } from '../../../types/user-types';
 import ShiftCard from '../ShiftCard';
 import { DateRange } from '@mui/lab/DateRangePicker';
 

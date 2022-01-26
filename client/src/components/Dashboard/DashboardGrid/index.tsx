@@ -1,7 +1,7 @@
 import React from 'react';
-import { UseAuth } from '../../hooks/useAuth';
-import { UserJobs } from '../../types/job-types';
-import { AuthUser } from '../../types/user-types';
+import { UseAuth } from '../../../hooks/useAuth';
+import { UserJobs } from '../../../types/job-types';
+import { AuthUser } from '../../../types/user-types';
 import AddShift from '../AddShift';
 import MonthAnalytics from '../Analytics/Month';
 import UserCard from '../UserCard';

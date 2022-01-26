@@ -1,21 +1,12 @@
 import { fromUnixTime } from 'date-fns';
 import React, { useEffect, useState } from 'react';
-import { UserJob, Wage } from '../../types/job-types';
-import { AuthUser } from '../../types/user-types';
+import { UserJob, Wage } from '../../../types/job-types';
+import { AuthUser } from '../../../types/user-types';
 import './styles.scss';
-import {
-  AiFillEdit,
-  AiOutlineClockCircle,
-  AiOutlineDelete,
-} from 'react-icons/ai';
-import {
-  RiMoneyDollarCircleLine,
-  RiMoneyEuroCircleLine,
-  RiMoneyPoundCircleLine,
-} from 'react-icons/ri';
+import { AiOutlineClockCircle, AiOutlineDelete } from 'react-icons/ai';
 import { useMutation } from '@apollo/client';
-import { DELETE_WAGE, GET_USER_JOBS } from '../../gql/request/job/request';
-import { UseAuth } from '../../hooks/useAuth';
+import { DELETE_WAGE, GET_USER_JOBS } from '../../../gql/request/job/request';
+import { UseAuth } from '../../../hooks/useAuth';
 interface Props {
   user: AuthUser;
   data: Wage | undefined;
