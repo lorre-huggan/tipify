@@ -92,7 +92,11 @@ const Login: React.FC<Props> = () => {
             />
             <span>forgot password?</span>
             {error && <p className="login-error">{error}!</p>}
-            <button type="submit" disabled={loading}>
+            <button
+              className={error ? 'shake-vertical' : ''}
+              type="submit"
+              disabled={loading}
+            >
               login
             </button>
           </form>

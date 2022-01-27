@@ -49,3 +49,14 @@ export const CREATE_SHIFT = gql`
     }
   }
 `;
+
+export const CREATE_JOB = gql`
+  mutation createJob($input: JobInput!) {
+    CreateJob(input: $input) {
+      _id
+      company_name
+      job_title
+      user
+    }
+  }
+`;

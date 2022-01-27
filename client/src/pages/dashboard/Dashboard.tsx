@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { DateRange } from '@mui/lab/DateRangePicker';
 import DashboardGrid from '../../components/Dashboard/DashboardGrid';
 import ShiftGrid from '../../components/Dashboard/ShiftGrid';
+import AddJob from '../../components/Dashboard/AddJob';
 
 interface Props {}
 
@@ -30,9 +31,14 @@ const Dashboard = (props: Props) => {
   if (loading) {
     return <Loading />;
   }
-  //TODO handle no jobs
+
   if (data?.UserJobs.length === 0) {
-    return <NoJobs />;
+    return (
+      <main className="dashboard">
+        <Nav />
+        <AddJob data={data} user={authUser} />
+      </main>
+    );
   }
 
   return (
@@ -47,17 +53,9 @@ const Dashboard = (props: Props) => {
 
 export default Dashboard;
 
-export const NoJobs: React.FC = () => {
-  return (
-    <main>
-      <h1>Add Job</h1>
-    </main>
-  );
-};
-
 export const Loading: React.FC = () => {
   return (
-    <main>
+    <main className="dashboard">
       <h1>Error</h1>
     </main>
   );
@@ -65,7 +63,7 @@ export const Loading: React.FC = () => {
 
 export const Error: React.FC = () => {
   return (
-    <main>
+    <main className="dashboard">
       <h1>Loading</h1>
     </main>
   );

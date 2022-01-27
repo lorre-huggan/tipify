@@ -12,6 +12,7 @@ ReactDOM.render(
   <ApolloProvider client={apolloClient}>
     <UserProvider initialState={userInitialState} reducer={userReducer}>
       <React.StrictMode>
+        
         <App />
       </React.StrictMode>
     </UserProvider>

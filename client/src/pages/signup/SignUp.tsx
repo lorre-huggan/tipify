@@ -20,12 +20,12 @@ const SignUp: React.FC<Props> = () => {
   const navigate = useNavigate();
   const [{ authUser }, dispatch] = useUserState();
 
-  if (authUser.id) {
+  if (localStorage.getItem('token')) {
     navigate('/dashboard');
   }
 
   const [CreateUser, { loading }] = useMutation(USER_SIGN_UP, {
-    update(_, { data: { CreateUser } }) {
+    update: (_, { data: { CreateUser } }) => {
       //TODO handle loading event...
       localStorage.setItem('token', CreateUser.token);
       dispatch({
@@ -35,7 +35,7 @@ const SignUp: React.FC<Props> = () => {
 
       navigate('/dashboard');
     },
-    onError(error) {
+    onError: (error) => {
       setError(error.message);
     },
   });

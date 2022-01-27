@@ -1,0 +1,54 @@
+@use '../../../styles/' as *;
+
+.add-job-container {
+  height: 100vh;
+  @include flex(column, center, center);
+
+  .add-job {
+    position: relative;
+    width: 30rem;
+    background-color: $grey-dark;
+    padding: $sp-6;
+    border-radius: 8px;
+    @include shadow-sm;
+
+    .add-job-username {
+      position: absolute;
+      top: $sp-6;
+      right: $sp-6;
+      @include text-xs;
+      color: $teal;
+    }
+
+    .add-job-heading {
+      margin-bottom: $sp-4;
+      @include text-2xl;
+    }
+
+    .add-job-heading {
+      h2 {
+        @include text-xl;
+        font-weight: 900;
+        text-transform: uppercase;
+        margin-bottom: $sp-2;
+      }
+    }
+    .add-job-form {
+      @include flex(column, left, center);
+      min-width: 1rem;
+      margin: 0rem auto;
+      label {
+        margin-bottom: $sp-1;
+        text-align: left;
+        text-transform: uppercase;
+        @include text-xs;
+      }
+
+      @include input;
+      @include button(black);
+      div {
+        width: 100%;
+      }
+    }
+  }
+}
