@@ -50,13 +50,12 @@ export const Job = async (parent, args, context) => {
 export const CreateJob = async (parent, args, context) => {
   const userAuth = checkAuth(context);
 
-  const { company_name, job_title, wages, user } = args.input;
+  const { company_name, job_title, wages } = args.input;
 
-  const userExist = await JobModel.findOne({ user });
+  const user = await JobModel.findOne({ user: userAuth.username });
 
-  if (userExist) {
-    if (userExist.user === user)
-      throw new UserInputError('users cannot create more than one job');
+  if (user) {
+    throw new UserInputError('users cannot create more than one job');
   }
 
   try {

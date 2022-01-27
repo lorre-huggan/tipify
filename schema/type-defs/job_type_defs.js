@@ -21,6 +21,7 @@ export const jobTypeDefs = `
     company_name: String!
     job_title: String!
     wages: [WageInput]
+    user:String!
   }
 
   input WageInput {
