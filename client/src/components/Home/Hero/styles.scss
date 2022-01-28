@@ -1,0 +1,7 @@
+@use '../../../styles/' as *;
+
+.hero-container {
+  @include flex(row, center, space-between);
+  width: 100%;
+  padding: $sp-4;
+}

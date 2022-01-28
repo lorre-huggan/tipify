@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './styles/root.scss';
 import './index.scss';
-import './styles/main.scss';
 import App from './App';
 import { ApolloProvider } from '@apollo/client';
 import { apolloClient } from './gql/apollo/client';
@@ -12,7 +12,6 @@ ReactDOM.render(
   <ApolloProvider client={apolloClient}>
     <UserProvider initialState={userInitialState} reducer={userReducer}>
       <React.StrictMode>
-        
         <App />
       </React.StrictMode>
     </UserProvider>

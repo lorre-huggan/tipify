@@ -25,6 +25,11 @@
       @include logo-font;
       @include text-7xl;
       margin-bottom: $sp-4;
+      cursor: pointer;
+      transition: color $time-sl $trans-1;
+      &:hover {
+        color: $teal;
+      }
     }
     h1 {
       color: $color-2;

@@ -8,6 +8,7 @@ import Card from '../../Card';
 import { numberReducer } from '../../../utils/helpers';
 import { AiOutlineClose } from 'react-icons/ai';
 import AllTips from './AllTips';
+import Account from './Account';
 interface Props {
   user: AuthUser;
   data: UserJob[] | undefined;
@@ -58,7 +59,7 @@ const UserCard: React.FC<Props> = ({ user, data }) => {
         </div>
         {settings ? (
           <>
-            <div>Settings</div>
+            <Account id={data![0]._id}/>
           </>
         ) : (
           <>

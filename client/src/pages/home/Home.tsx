@@ -1,14 +1,20 @@
 import React from 'react';
+import Body from '../../components/Home/Body';
+import Footer from '../../components/Home/Footer';
+import Hero from '../../components/Home/Hero';
+import Nav from '../../components/Home/Nav';
+import './styles.scss';
+
 interface Props {}
 
 const Home = (props: Props) => {
-  const newArr = new Array(200).fill(0);
   return (
-    <div>
-      {newArr.map(() => {
-        return <p>Home</p>;
-      })}
-    </div>
+    <main className="home-container">
+      <Nav />
+      <Hero />
+      <Body />
+      <Footer />
+    </main>
   );
 };
 

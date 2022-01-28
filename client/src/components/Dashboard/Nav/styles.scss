@@ -1,6 +1,6 @@
 @use '../../../styles/' as *;
 
-section {
+.dashboard-nav {
   width: 100vw;
   min-height: 5rem;
   position: fixed;
@@ -40,7 +40,7 @@ section {
 }
 
 @include md-screen {
-  section {
+  .dashboard-nav {
     width: 5rem;
     min-height: 100vh;
     top: 0;

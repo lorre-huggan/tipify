@@ -136,12 +136,6 @@ const ShiftCard: React.FC<Props> = ({ user, data, job }) => {
   }, [month, day]);
 
   const [DeleteShift, { loading }] = useMutation(DELETE_WAGE, {
-    update: (proxy, { data: { DeleteShift } }) => {
-      const _data: any = proxy.readQuery({
-        query: GET_USER_JOBS,
-        variables: { user: authUser.username },
-      });
-    },
     onError: (error) => {
       console.log(error);
     },
@@ -152,9 +146,12 @@ const ShiftCard: React.FC<Props> = ({ user, data, job }) => {
     setTimeout(() => {
       DeleteShift({
         variables: { jobId: job._id.toString(), wageId: data?._id.toString() },
+        refetchQueries: [
+          { query: GET_USER_JOBS, variables: { user: user.username } },
+        ],
       });
       setDeleted(false);
-    }, 500);
+    }, 1500);
   };
 
   return (

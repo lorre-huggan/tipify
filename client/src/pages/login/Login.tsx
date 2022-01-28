@@ -66,7 +66,9 @@ const Login: React.FC<Props> = () => {
     <section className="login-container">
       <div className="login-form-container">
         <div className="login-heading">
-          <span className="login-logo">TIPiFY</span>
+          <Link to="/">
+            <h1 className="login-logo">TIPiFY</h1>
+          </Link>
           <h1>Welcome Back</h1>
           {loading && <LoadingBox />}
         </div>

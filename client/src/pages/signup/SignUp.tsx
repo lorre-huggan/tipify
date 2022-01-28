@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { USER_SIGN_UP } from '../../gql/request/user/request';
 import './styles.scss';
@@ -20,9 +20,13 @@ const SignUp: React.FC<Props> = () => {
   const navigate = useNavigate();
   const [{ authUser }, dispatch] = useUserState();
 
-  if (localStorage.getItem('token')) {
-    navigate('/dashboard');
-  }
+  const token = localStorage.getItem('token');
+
+  useEffect(() => {
+    if (token) {
+      navigate('/dashboard');
+    }
+  }, [token]);
 
   const [CreateUser, { loading }] = useMutation(USER_SIGN_UP, {
     update: (_, { data: { CreateUser } }) => {
@@ -61,7 +65,9 @@ const SignUp: React.FC<Props> = () => {
     <section className="login-container">
       <div className="login-form-container">
         <div className="login-heading">
-          <span className="login-logo">TIPiFY</span>
+          <Link to="/">
+            <h1 className="login-logo">TIPiFY</h1>
+          </Link>
           <h1>Welcome</h1>
           {loading && <LoadingBox />}
           {/* <p>Sign in we're so excited to see you back!</p> */}

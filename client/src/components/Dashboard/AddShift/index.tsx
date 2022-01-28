@@ -74,7 +74,7 @@ const AddShift: React.FC<Props> = ({ user }) => {
         <form className="add-shift-form" onSubmit={handleSubmit}>
           <label>Enter Date</label>
           <ResponsiveDatePicker setDate={setDate} />
-          <label>Tips</label>
+          <label>$Tips</label>
           <input
             name="tips"
             type="number"

@@ -14,7 +14,7 @@ const Nav: React.FC<Props> = () => {
   };
 
   return (
-    <section>
+    <section className="dashboard-nav">
       <div className="icons">
         <ul>
           <li onClick={handleLogout}>

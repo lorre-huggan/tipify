@@ -17,7 +17,7 @@ $color-guild-member: #ffe75c;
 
 $white: #ffffff;
 $base: #4752c4;
-$primary: #5865f2;
+$base-1: #5865f2;
 $grey: #36393f;
 $grey-dark: #23272a;
 $grey-light: #929292;
@@ -29,6 +29,10 @@ $green: #29cc7a;
 $teal: #3fe0d0;
 $yellow: #ffe75c;
 $orange: #e86435;
+
+$primary: $teal;
+$secondary: $orange;
+$accent: $purple;
 
 $colors: (
   primary: (

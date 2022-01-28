@@ -1,0 +1,31 @@
+@use '../../../styles/' as *;
+
+.home-nav {
+  width: 100%;
+  background-color: $black;
+  color: $white;
+  .nav-inner-container {
+    height: 4rem;
+    padding: $sp-4;
+    @include flex(row, center, space-between);
+    .nav-logo {
+      @include logo-font;
+      @include text-2xl;
+      color: $teal;
+    }
+    .nav-links {
+      ul {
+        @include flex(row, center, center);
+        li {
+          margin-left: $sp-1;
+          @include text-sm;
+          cursor: pointer;
+          transition: color $time-fs $trans-1;
+          &:hover {
+            color: $teal;
+          }
+        }
+      }
+    }
+  }
+}

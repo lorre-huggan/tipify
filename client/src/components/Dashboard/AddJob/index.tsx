@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client';
 import React, { useState } from 'react';
 import { CREATE_JOB, GET_USER_JOBS } from '../../../gql/request/job/request';
-import { UserJobs } from '../../../types/job-types';
+import { UserJob, UserJobs } from '../../../types/job-types';
 import { AuthUser } from '../../../types/user-types';
 import './styles.scss';
 
@@ -23,16 +23,28 @@ const AddJob: React.FC<Props> = ({ data, user }) => {
   });
 
   const [CreateJob, { loading }] = useMutation(CREATE_JOB, {
-    update: (proxy, { data: { CreateJob } }) => {
-      //read data from cache
-      const data: UserJobs | null = proxy.readQuery({
-        query: GET_USER_JOBS,
-        variables: { user: user.username },
-      });
-
-      //write data back to cache
-      proxy.writeQuery({ query: GET_USER_JOBS, data });
-    },
+    // update: (cache, { data: CreateJob }) => {
+    //const newJobFromResponse: UserJob = CreateJob.CreateJob;
+    // const existingJobs: any = cache.readQuery({
+    //   query: GET_USER_JOBS,
+    // });
+    // console.log({ exist: existingJobs });
+    // const newUserJob = {
+    //   _id: Date.now(),
+    //   company_name: newJobFromResponse.company_name,
+    //   job_title: newJobFromResponse.job_title,
+    //   wages: [],
+    //   user: user.username,
+    //   createdAt: Date.now(),
+    //   updatedAt: Date.now(),
+    // };
+    // cache.writeQuery({
+    //   query: GET_USER_JOBS,
+    //   data: {
+    //     UserJobs: [{ ...newUserJob }],
+    //   },
+    // });
+    // },
     onError: (error) => {
       console.log(error);
     },
@@ -56,6 +68,9 @@ const AddJob: React.FC<Props> = ({ data, user }) => {
           user: user.username,
         },
       },
+      refetchQueries: [
+        { query: GET_USER_JOBS, variables: { user: user.username } },
+      ],
     });
   };
 
