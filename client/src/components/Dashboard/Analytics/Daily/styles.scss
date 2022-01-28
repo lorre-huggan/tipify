@@ -5,7 +5,11 @@
   background-color: $grey-dark;
   padding: $sp-4;
   border-radius: 8px;
+  @include flex(column, center, center);
   h2 {
-    @include text-2xl;
+    @include text-xl;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: $sp-2;
   }
 }

@@ -1,0 +1,82 @@
+@use './theme' as *;
+@use './library' as *;
+@use './typeography' as *;
+
+@mixin label {
+  label {
+    text-transform: uppercase;
+    color: var(--col-grey-100);
+    text-align: left;
+    width: 100%;
+    margin-bottom: $sp-1;
+    @include text-xs;
+    font-weight: 900;
+  }
+}
+
+@mixin input {
+  input {
+    width: 100%;
+    border: 1px solid var(--col-grey-800);
+    padding: $sp-1;
+    margin-bottom: $sp-4;
+    border-radius: 4px;
+    color: var(--col-grey-100);
+    background-color: var(--col-grey-600);
+    transition: border $time-fs cubic-bezier(0.075, 0.82, 0.165, 1);
+    &:hover {
+      border: 1px solid #111111;
+    }
+    &:focus {
+      border: 1px solid var(--col-primary-300);
+    }
+  }
+  .form-error {
+    color: var(--col-red-300);
+  }
+  .form-input-error {
+    border: 1px solid var(--col-red-300);
+    color: var(--col-red-200);
+    background-color: #e03f4f0e;
+  }
+}
+
+@mixin button($theme) {
+  button {
+    width: 100%;
+    padding: $sp-2;
+    text-align: center;
+    @if $theme == primary {
+      background-color: var(--col-primary-500);
+    } @else if $theme == secondary {
+      background-color: var(--col-secondary-500);
+    } @else {
+      background-color: $grey;
+    }
+    border-radius: 4px;
+    margin: $sp-2 0rem;
+    font-weight: 900;
+    color: $white;
+    text-transform: capitalize;
+    cursor: pointer;
+    transition: background-color $time-fs $trans-1;
+    &:hover {
+      @if $theme == primary {
+        background-color: var(--col-primary-400);
+      } @else if $theme == secondary {
+        background-color: var(--col-secondary-600);
+      } @else {
+        background-color: $black;
+      }
+    }
+  }
+}
+
+@mixin form($theme) {
+  @include flex(column, left, center);
+  min-width: 1rem;
+  margin: 0rem auto;
+  @include label;
+  @include input;
+  @include button($theme);
+}

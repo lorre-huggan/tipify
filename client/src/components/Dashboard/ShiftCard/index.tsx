@@ -7,6 +7,7 @@ import { AiOutlineClockCircle, AiOutlineDelete } from 'react-icons/ai';
 import { useMutation } from '@apollo/client';
 import { DELETE_WAGE, GET_USER_JOBS } from '../../../gql/request/job/request';
 import { UseAuth } from '../../../hooks/useAuth';
+import { handleCurrency } from '../../../utils/helpers';
 interface Props {
   user: AuthUser;
   data: Wage | undefined;
@@ -17,26 +18,8 @@ const ShiftCard: React.FC<Props> = ({ user, data, job }) => {
   const { authUser }: { authUser: AuthUser } = UseAuth();
   const getDate = fromUnixTime(Number(data?.date)).toString();
   const [deleted, setDeleted] = useState<boolean>(false);
-  const [currency, setCurrency] = useState<string>('£');
   const [monthTheme, setMonthTheme] = useState('');
   const [dayTheme, setDayTheme] = useState('');
-
-  useEffect(() => {
-    switch (user?.currency) {
-      case 'GBP':
-        setCurrency('£');
-        break;
-      case 'USD':
-        setCurrency('$');
-        break;
-      case 'EUR':
-        setCurrency('€');
-        break;
-      default:
-        setCurrency('£');
-        break;
-    }
-  }, [user.currency]);
 
   const day = getDate.split(' ')[0];
   const month = getDate.split(' ')[1];
@@ -142,27 +125,16 @@ const ShiftCard: React.FC<Props> = ({ user, data, job }) => {
   });
 
   const handleDelete = () => {
-    setDeleted(true);
-    setTimeout(() => {
-      DeleteShift({
-        variables: { jobId: job._id.toString(), wageId: data?._id.toString() },
-        refetchQueries: [
-          { query: GET_USER_JOBS, variables: { user: user.username } },
-        ],
-      });
-      setDeleted(false);
-    }, 1500);
+    DeleteShift({
+      variables: { jobId: job._id.toString(), wageId: data?._id.toString() },
+      refetchQueries: [
+        { query: GET_USER_JOBS, variables: { user: user.username } },
+      ],
+    });
   };
 
   return (
-    <div
-      className={
-        deleted
-          ? 'shift-card-container shift-card-deleted'
-          : 'shift-card-container'
-      }
-      style={{ borderColor: monthTheme }}
-    >
+    <div className="shift-card-container" style={{ borderColor: monthTheme }}>
       {loading && <p>Loading</p>}
       <div className="shift-card-time">
         <AiOutlineClockCircle style={{ color: dayTheme }} />
@@ -172,7 +144,9 @@ const ShiftCard: React.FC<Props> = ({ user, data, job }) => {
       <h3 className="shift-card-company-name">{`${job.company_name}`}</h3>
       <p className="shift-card-job-title">{`${job.job_title}`}</p>
       <h3 className="shift-card-hours">{`${data?.hours_worked} Hour Shift`}</h3>
-      <p className="shift-card-earned">{`${currency}${data?.tips}`}</p>
+      <p className="shift-card-earned">{`${handleCurrency(authUser.currency)}${
+        data?.tips
+      }`}</p>
       <div className="shift-card-mods">
         <button onClick={handleDelete}>
           <AiOutlineDelete className="shift-card-delete" />

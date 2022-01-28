@@ -1,7 +1,6 @@
 import React from 'react';
 import './styles.scss';
 import { UserJob, Wage } from '../../../../types/job-types';
-import { fromUnixTime } from 'date-fns';
 import PieChart from '../../PieChart/Month';
 import Card from '../../../Card';
 import { getDateString, numberReducer } from '../../../../utils/helpers';
@@ -124,10 +123,12 @@ const MonthAnalytics: React.FC<Props> = ({ data }) => {
   return (
     <Card>
       <div className="analytics-container">
-        <h2>Month</h2>
-        <div>
-          <PieChart tipData={monthlyTips} labelData={monthsArray} />
-        </div>
+        <h2>Monthly tip earnings</h2>
+        {data && (
+          <div>
+            <PieChart tipData={monthlyTips} labelData={monthsArray} />
+          </div>
+        )}
       </div>
     </Card>
   );

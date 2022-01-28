@@ -8,6 +8,7 @@ import Card from '../../Card';
 import { UseAuth } from '../../../hooks/useAuth';
 import { AuthUser } from '../../../types/user-types';
 import { UserJobs } from '../../../types/job-types';
+import { handleCurrency } from '../../../utils/helpers';
 
 interface Props {
   user: string;
@@ -67,14 +68,14 @@ const AddShift: React.FC<Props> = ({ user }) => {
 
   return (
     <Card>
-      <div className="add-shift-container">
+      <div className="add-shift">
         <div className="add-shift-heading">
           <h2>Add Shift</h2>
         </div>
         <form className="add-shift-form" onSubmit={handleSubmit}>
           <label>Enter Date</label>
           <ResponsiveDatePicker setDate={setDate} />
-          <label>$Tips</label>
+          <label>{`${handleCurrency(authUser.currency)}tips`}</label>
           <input
             name="tips"
             type="number"
@@ -95,7 +96,9 @@ const AddShift: React.FC<Props> = ({ user }) => {
             min="1"
             max="24"
           />
-          <button disabled={loading}>ADD</button>
+          <button className="add-shift-button" disabled={loading}>
+            ADD
+          </button>
         </form>
         {error && <p>{error}</p>}
       </div>

@@ -1,0 +1,21 @@
+@use '../../../styles/' as *;
+
+.logo {
+  color: var(--col-grey-700);
+  margin-bottom: $sp-2;
+  @include logo-font;
+  @include text-7xl;
+  margin-bottom: $sp-4;
+  cursor: pointer;
+  transition: color $time-sl $trans-1;
+  &:hover {
+    color: $teal;
+  }
+  h1 {
+    color: $color-2;
+    text-align: center;
+    font-weight: 600;
+    @include text-2xl;
+    margin-bottom: $sp-2;
+  }
+}

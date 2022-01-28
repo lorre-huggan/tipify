@@ -2,8 +2,16 @@
 
 .dashboard-shift-grid {
   width: 100%;
-
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: $sp-1;
+}
+
+.dashboard-shift-no-shifts {
+  @include flex(column, center, center);
+  width: 100%;
+  h1 {
+    @include text-7xl;
+    text-transform: uppercase;
+  }
 }

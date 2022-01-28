@@ -23,28 +23,6 @@ const AddJob: React.FC<Props> = ({ data, user }) => {
   });
 
   const [CreateJob, { loading }] = useMutation(CREATE_JOB, {
-    // update: (cache, { data: CreateJob }) => {
-    //const newJobFromResponse: UserJob = CreateJob.CreateJob;
-    // const existingJobs: any = cache.readQuery({
-    //   query: GET_USER_JOBS,
-    // });
-    // console.log({ exist: existingJobs });
-    // const newUserJob = {
-    //   _id: Date.now(),
-    //   company_name: newJobFromResponse.company_name,
-    //   job_title: newJobFromResponse.job_title,
-    //   wages: [],
-    //   user: user.username,
-    //   createdAt: Date.now(),
-    //   updatedAt: Date.now(),
-    // };
-    // cache.writeQuery({
-    //   query: GET_USER_JOBS,
-    //   data: {
-    //     UserJobs: [{ ...newUserJob }],
-    //   },
-    // });
-    // },
     onError: (error) => {
       console.log(error);
     },

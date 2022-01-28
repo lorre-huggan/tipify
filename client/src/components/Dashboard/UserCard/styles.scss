@@ -22,7 +22,7 @@
     top: $sp-4;
     right: $sp-4;
     font-size: $sp-4;
-    color: $teal;
+    color: $primary;
   }
   .user-card-work-grid {
     margin-bottom: $sp-6;
@@ -42,7 +42,7 @@
     cursor: pointer;
     transition: color $time-fs $trans-1;
     &:hover {
-      color: $teal;
+      color: $primary;
     }
   }
   h4 {

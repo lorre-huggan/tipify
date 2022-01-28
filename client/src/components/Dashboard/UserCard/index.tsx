@@ -15,37 +15,9 @@ interface Props {
 }
 
 const UserCard: React.FC<Props> = ({ user, data }) => {
-  const [currency, setCurrency] = useState<string>('£');
   const [settings, setSettings] = useState<boolean>(false);
 
-  useEffect(() => {
-    switch (user?.currency) {
-      case 'GBP':
-        setCurrency('£');
-        break;
-      case 'USD':
-        setCurrency('$');
-        break;
-      case 'EUR':
-        setCurrency('€');
-        break;
-      default:
-        setCurrency('£');
-        break;
-    }
-  }, [user.currency]);
-
   const userSince = formatDistanceToNow(user?.createdAt, { addSuffix: true });
-
-  let tips: number[] = [];
-
-  data?.forEach((dat) => {
-    dat.wages.forEach((wage) => {
-      tips.push(wage.tips);
-    });
-  });
-
-  const totalTips = numberReducer(tips);
 
   const handleSettings = () => {
     setSettings(!settings);
@@ -59,7 +31,7 @@ const UserCard: React.FC<Props> = ({ user, data }) => {
         </div>
         {settings ? (
           <>
-            <Account id={data![0]._id}/>
+            <Account id={data![0]._id} />
           </>
         ) : (
           <>
@@ -68,7 +40,7 @@ const UserCard: React.FC<Props> = ({ user, data }) => {
             <div className="user-card-work-grid">
               <p>{`${data![0].job_title} at ${data![0].company_name}`}</p>
             </div>
-            <AllTips currency={currency} totalTips={totalTips} />
+            <AllTips user={user} data={data} />
           </>
         )}
         <div className="user-card-settings-icon" onClick={handleSettings}>

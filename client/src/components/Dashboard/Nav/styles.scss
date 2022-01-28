@@ -23,7 +23,7 @@
           transition: color $time-fs $trans-1;
           cursor: pointer;
           &:hover {
-            color: $teal;
+            color: $primary;
           }
           &:hover + p {
             opacity: 1;

@@ -23,3 +23,16 @@ export function numberReducer(numArray: number[]): number {
     return total + item;
   }, 0);
 }
+
+export function handleCurrency(currency: string): string {
+  switch (currency) {
+    case 'GBP':
+      return '£';
+    case 'USD':
+      return '$';
+    case 'EUR':
+      return '€';
+    default:
+      return '$';
+  }
+}

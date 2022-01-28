@@ -1,11 +1,11 @@
 @use '../../../styles/' as *;
 
-.add-shift-container {
+.add-shift {
   grid-area: add-shift;
   background-color: $grey-dark;
   padding: $sp-4;
   border-radius: 8px;
-  .add-shift-heading {
+  &-heading {
     h2 {
       @include text-xl;
       font-weight: 900;
@@ -13,19 +13,8 @@
       margin-bottom: $sp-2;
     }
   }
-  .add-shift-form {
-    @include flex(column, left, center);
-    min-width: 1rem;
-    margin: 0rem auto;
-    label {
-      margin-bottom: $sp-1;
-      text-align: left;
-      text-transform: uppercase;
-      @include text-xs;
-    }
-
-    @include input;
-    @include button(black);
+  &-form {
+    @include form(primary);
     div {
       width: 100%;
     }

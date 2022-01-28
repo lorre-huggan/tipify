@@ -63,13 +63,13 @@ const Login: React.FC<Props> = () => {
   };
 
   return (
-    <section className="login-container">
+    <section className="login">
       <div className="login-form-container">
         <div className="login-heading">
           <Link to="/">
             <h1 className="login-logo">TIPiFY</h1>
           </Link>
-          <h1>Welcome Back</h1>
+          <h4>Welcome Back</h4>
           {loading && <LoadingBox />}
         </div>
         <div className="login-form">
@@ -95,7 +95,7 @@ const Login: React.FC<Props> = () => {
             <span>forgot password?</span>
             {error && <p className="login-error">{error}!</p>}
             <button
-              className={error ? 'shake-vertical' : ''}
+              className={error ? 'login-button shake-vertical' : 'login-button'}
               type="submit"
               disabled={loading}
             >

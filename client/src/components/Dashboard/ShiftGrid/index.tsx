@@ -5,7 +5,7 @@ import { UserJobs, Wage } from '../../../types/job-types';
 import { AuthUser } from '../../../types/user-types';
 import ShiftCard from '../ShiftCard';
 import { DateRange } from '@mui/lab/DateRangePicker';
-
+import './styles.scss';
 type Props = {
   data: UserJobs | undefined;
   dateRange: DateRange<Date>;
@@ -44,7 +44,7 @@ const ShiftGrid: React.FC<Props> = ({ dateRange, data }) => {
 
   if (sortedShifts.length === 0) {
     return (
-      <div>
+      <div className="dashboard-shift-no-shifts">
         <h1>No Shifts </h1>
       </div>
     );

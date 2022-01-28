@@ -4,7 +4,7 @@ import Nav from '../../components/Dashboard/Nav';
 import { useQuery } from '@apollo/client';
 import { GET_USER_JOBS } from '../../gql/request/job/request';
 import { AuthUser } from '../../types/user-types';
-import { UserJobs } from '../../types/job-types';
+import { UserJobs, Wage } from '../../types/job-types';
 import './styles.scss';
 import DateRangePicker from '../../components/DateInput/DateRangePicker';
 import { useState } from 'react';
@@ -22,6 +22,16 @@ const Dashboard = (props: Props) => {
   });
 
   const [dateRange, setDateRange] = useState<DateRange<Date>>([null, null]);
+
+  const userWages = () => {
+    let x: Wage[] = [];
+    if (data?.UserJobs[0]) {
+      x = data?.UserJobs[0].wages;
+      return x;
+    } else {
+      return;
+    }
+  };
 
   //TODO Handle error
   if (error) {
@@ -45,7 +55,9 @@ const Dashboard = (props: Props) => {
     <main className="dashboard">
       <Nav />
       <DashboardGrid data={data} />
-      <DateRangePicker dateRange={dateRange} setDateRange={setDateRange} />
+      {userWages()?.length !== 0 && (
+        <DateRangePicker dateRange={dateRange} setDateRange={setDateRange} />
+      )}
       <ShiftGrid data={data} dateRange={dateRange} />
     </main>
   );

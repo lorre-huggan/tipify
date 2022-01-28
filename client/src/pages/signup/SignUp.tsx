@@ -62,21 +62,21 @@ const SignUp: React.FC<Props> = () => {
   };
 
   return (
-    <section className="login-container">
-      <div className="login-form-container">
-        <div className="login-heading">
+    <section className="signup">
+      <div className="signup-form-container">
+        <div className="signup-heading">
           <Link to="/">
-            <h1 className="login-logo">TIPiFY</h1>
+            <h1 className="signup-logo">TIPiFY</h1>
           </Link>
-          <h1>Welcome</h1>
+          <h4>Welcome</h4>
           {loading && <LoadingBox />}
           {/* <p>Sign in we're so excited to see you back!</p> */}
         </div>
-        <div className="login-form">
+        <div className="signup-form">
           <form onSubmit={handleSubmit}>
             <label>username</label>
             <input
-              className={error ? 'login-input-error' : ''}
+              className={error ? 'form-input-error' : ''}
               name="username"
               type="text"
               value={values.username}
@@ -85,7 +85,7 @@ const SignUp: React.FC<Props> = () => {
             />
             <label>Email</label>
             <input
-              className={error ? 'login-input-error' : ''}
+              className={error ? 'form-input-error' : ''}
               name="email"
               type="email"
               value={values.email}
@@ -94,7 +94,7 @@ const SignUp: React.FC<Props> = () => {
             />
             <label>Password</label>
             <input
-              className={error ? 'login-input-error' : ''}
+              className={error ? 'form-input-error' : ''}
               name="password"
               type="password"
               value={values.password}
@@ -103,7 +103,7 @@ const SignUp: React.FC<Props> = () => {
             />
             <label>Re-Type Password</label>
             <input
-              className={error ? 'login-input-error' : ''}
+              className={error ? 'form-input-error' : ''}
               name="confirmPassword"
               type="password"
               value={values.confirmPassword}
@@ -115,7 +115,7 @@ const SignUp: React.FC<Props> = () => {
               <div>
                 <label htmlFor="GBP">GBP</label>
                 <input
-                  className={error ? 'login-input-error' : ''}
+                  className={error ? 'form-input-error' : ''}
                   name="currency"
                   type="radio"
                   id="GBP"
@@ -127,7 +127,7 @@ const SignUp: React.FC<Props> = () => {
               <div>
                 <label htmlFor="USD">USD</label>
                 <input
-                  className={error ? 'login-input-error' : ''}
+                  className={error ? 'form-input-error' : ''}
                   name="currency"
                   type="radio"
                   id="USD"
@@ -139,7 +139,7 @@ const SignUp: React.FC<Props> = () => {
               <div>
                 <label htmlFor="EUR">EUR</label>
                 <input
-                  className={error ? 'login-input-error' : ''}
+                  className={error ? 'form-input-error' : ''}
                   name="currency"
                   type="radio"
                   id="EUR"
@@ -149,13 +149,13 @@ const SignUp: React.FC<Props> = () => {
                 />
               </div>
             </div>
-            {error && <p className="login-error">{error}!</p>}
-            <button type="submit" disabled={loading}>
+            {error && <p className="form-error">{error}!</p>}
+            <button className="signup-button" type="submit" disabled={loading}>
               Sign Up
             </button>
           </form>
           <p>
-            Already han an account?{' '}
+            Already have an account?{' '}
             <span>
               <Link to={'/login'}>Login</Link>
             </span>
