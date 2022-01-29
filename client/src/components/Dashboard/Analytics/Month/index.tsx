@@ -121,8 +121,8 @@ const MonthAnalytics: React.FC<Props> = ({ data }) => {
   ];
 
   return (
-    <Card>
-      <div className="analytics-container">
+    <Card area="month">
+      <div className="month-analytics-container">
         <h2>Monthly tip earnings</h2>
         {data && (
           <div>

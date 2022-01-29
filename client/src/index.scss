@@ -1,10 +1,5 @@
 @use './styles/' as *;
-/*** The new CSS Reset - version 1.4.4 (last updated 22.12.2021) ***/
 
-/*
-    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
-    - The "symbol *" part is to solve Firefox SVG sprite bug
- */
 *:where(:not(iframe, canvas, img, svg, video):not(svg *, symbol *)) {
   all: unset;
   display: revert;
@@ -61,8 +56,8 @@ textarea {
 
 body {
   font-family: 'Lato', sans-serif;
-  color: $color-2;
-  background-color: $color-3;
+  color: $white;
+  background-color: $grey-dark;
   overflow-x: hidden;
 }
 
@@ -71,9 +66,9 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-  background: $color-raider;
+  background: $teal;
 }
 
 body::-webkit-scrollbar-thumb {
-  background: $color-4;
+  background: $grey-dark;
 }

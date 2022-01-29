@@ -1,11 +1,21 @@
 @use '../../../../styles/index' as *;
 
-.analytics-container {
-  grid-area: analytics;
+.month-analytics-container {
   background-color: $grey-dark;
-  padding: $sp-4;
   border-radius: 8px;
+  @include flex(column, center, center);
   h2 {
-    @include text-2xl;
+    @include text-sm;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: $sp-2;
+  }
+}
+@include xs-screen {
+  .month-analytics-container {
+    padding: $sp-2;
+    h2 {
+      @include text-xl;
+    }
   }
 }

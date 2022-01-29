@@ -29,6 +29,7 @@
     }
     &:focus {
       border: 1px solid var(--col-primary-300);
+      box-shadow: 0px 0px 6px var(--col-primary-300);
     }
   }
   .form-error {
@@ -73,9 +74,9 @@
 }
 
 @mixin form($theme) {
-  @include flex(column, left, center);
   min-width: 1rem;
   margin: 0rem auto;
+  @include flex(column, left, center);
   @include label;
   @include input;
   @include button($theme);

@@ -1,8 +1,8 @@
 @use '../../styles/' as *;
 
 .card-container {
+  width: 100%;
   border-radius: $sp-min;
-  padding: 2px;
   position: relative;
   background: $grey;
   box-shadow: 0px 0px 0.7px rgba(0, 0, 0, 0.045),
@@ -14,5 +14,12 @@
     background-color: $grey-dark;
     height: 100%;
     border-radius: 2px;
+  }
+}
+
+@include xs-screen {
+  .card-container {
+    width: max(300px, 100%);
+    padding: 2px;
   }
 }

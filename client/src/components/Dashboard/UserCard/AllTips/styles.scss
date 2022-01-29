@@ -13,7 +13,15 @@
     opacity: 0.4;
   }
   h1 {
-    @include text-8xl;
+    @include text-6xl;
     text-align: center;
+  }
+}
+
+@include xs-screen {
+  .user-card-analytics {
+    h1 {
+      @include text-8xl;
+    }
   }
 }

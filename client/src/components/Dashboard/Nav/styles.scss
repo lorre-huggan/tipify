@@ -14,11 +14,11 @@
     @include flex(row, center, center);
     ul {
       @include flex(row, center, space-between);
-      padding: $sp-1 $sp-4;
+      padding: $sp-1;
       li {
         @include flex(column, center, center);
         svg {
-          font-size: $sp-4;
+          font-size: $sp-6;
           color: $grey-light;
           transition: color $time-fs $trans-1;
           cursor: pointer;
@@ -33,13 +33,14 @@
           color: $white;
           opacity: 0;
           transition: opacity $time-md $trans-1;
+          display: none;
         }
       }
     }
   }
 }
 
-@include md-screen {
+@include lg-screen {
   .dashboard-nav {
     width: 5rem;
     min-height: 100vh;
@@ -54,6 +55,9 @@
           p {
             text-align: center;
             @include text-xs;
+          }
+          svg {
+            font-size: $sp-4;
           }
         }
       }

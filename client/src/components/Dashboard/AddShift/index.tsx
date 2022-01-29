@@ -67,7 +67,7 @@ const AddShift: React.FC<Props> = ({ user }) => {
   };
 
   return (
-    <Card>
+    <Card area="add-shift">
       <div className="add-shift">
         <div className="add-shift-heading">
           <h2>Add Shift</h2>

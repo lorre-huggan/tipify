@@ -6,6 +6,7 @@ import AddShift from '../AddShift';
 import MonthAnalytics from '../Analytics/Month';
 import UserCard from '../UserCard';
 import DailyAnalytics from '../Analytics/Daily';
+import './styles.scss';
 
 type Props = {
   data: UserJobs | undefined;

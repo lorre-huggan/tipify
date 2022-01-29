@@ -93,7 +93,6 @@ const Login: React.FC<Props> = () => {
               autoComplete="off"
             />
             <span>forgot password?</span>
-            {error && <p className="login-error">{error}!</p>}
             <button
               className={error ? 'login-button shake-vertical' : 'login-button'}
               type="submit"
@@ -101,6 +100,9 @@ const Login: React.FC<Props> = () => {
             >
               login
             </button>
+            <div style={{ height: '1rem', marginBottom: '0.25rem' }}>
+              {error && <p className="form-error">{error}!</p>}
+            </div>
           </form>
           <p>
             Need an account?{' '}

@@ -4,33 +4,15 @@
   padding: 1rem;
   min-height: 100vh;
   width: 100%;
-  background-color: $color-3;
+  background-color: $grey;
   position: relative;
-
-  .dashboard-grid {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(4, 1fr);
-    margin-bottom: 1rem;
-  }
-  .dashboard-shift-grid {
-    width: 100%;
-
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: $sp-1;
-  }
+  margin-bottom: 5rem;
 }
 
-@include md-screen {
+@include lg-screen {
   .dashboard {
+    margin-bottom: 0;
     margin-left: 5rem;
     width: calc(100vw - 5rem);
-  }
-  .dashboard-grid {
-    gap: 1rem;
-    display: grid;
-    margin-bottom: 0;
-    grid-template-columns: repeat(3, 1fr);
   }
 }

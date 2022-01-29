@@ -149,10 +149,18 @@ const SignUp: React.FC<Props> = () => {
                 />
               </div>
             </div>
-            {error && <p className="form-error">{error}!</p>}
-            <button className="signup-button" type="submit" disabled={loading}>
+            <button
+              className={
+                error ? 'signup-button shake-vertical' : 'signup-button'
+              }
+              type="submit"
+              disabled={loading}
+            >
               Sign Up
             </button>
+            <div style={{ height: '1rem', marginBottom: '0.25rem' }}>
+              {error && <p className="form-error">{error}!</p>}
+            </div>
           </form>
           <p>
             Already have an account?{' '}

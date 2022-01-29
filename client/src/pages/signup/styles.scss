@@ -62,6 +62,7 @@
             transition: background-color $time-fs $trans-1;
             &:focus {
               background-color: var(--col-primary-300);
+              box-shadow: 0px 0px 10px var(--col-primary-300);
             }
           }
         }
@@ -78,5 +79,68 @@
         }
       }
     }
+  }
+}
+
+.shake-vertical {
+  -webkit-animation: shake-vertical 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955)
+    both;
+  animation: shake-vertical 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+}
+
+@-webkit-keyframes shake-vertical {
+  0%,
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70% {
+    -webkit-transform: translateX(-8px);
+    transform: translateX(-8px);
+  }
+  20%,
+  40%,
+  60% {
+    -webkit-transform: translateX(8px);
+    transform: translateX(8px);
+  }
+  80% {
+    -webkit-transform: translateX(6.4px);
+    transform: translateX(6.4px);
+  }
+  90% {
+    -webkit-transform: translateX(-6.4px);
+    transform: translateX(-6.4px);
+  }
+}
+@keyframes shake-vertical {
+  0%,
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70% {
+    -webkit-transform: translateX(-8px);
+    transform: translateX(-8px);
+  }
+  20%,
+  40%,
+  60% {
+    -webkit-transform: translateX(8px);
+    transform: translateX(8px);
+  }
+  80% {
+    -webkit-transform: translateX(6.4px);
+    transform: translateX(6.4px);
+  }
+  90% {
+    -webkit-transform: translateX(-6.4px);
+    transform: translateX(-6.4px);
   }
 }

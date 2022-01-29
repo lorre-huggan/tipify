@@ -3,7 +3,7 @@
 .dashboard-shift-grid {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: $sp-1;
 }
 
@@ -13,5 +13,23 @@
   h1 {
     @include text-7xl;
     text-transform: uppercase;
+  }
+}
+
+@include xs-screen {
+  .dashboard-shift-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@include md-screen {
+  .dashboard-shift-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@include lg-screen {
+  .dashboard-shift-grid {
+    grid-template-columns: repeat(4, 1fr);
   }
 }

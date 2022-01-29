@@ -1,17 +1,40 @@
-@use '../../styles/' as *;
+@use '../../../styles/' as *;
 
 .dashboard-grid {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'user'
+    'add-shift'
+    'month'
+    'daily';
   margin-bottom: 1rem;
 }
 
 @include md-screen {
   .dashboard-grid {
-    gap: 1rem;
-    display: grid;
     margin-bottom: 0;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'user add-shift'
+      'month month'
+      'daily daily';
+  }
+}
+
+@include lg-screen {
+  .dashboard-grid {
+    margin-bottom: 0;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: 'user add-shift' 'month daily ';
+  }
+}
+
+@include xxl-screen {
+  .dashboard-grid {
+    margin-bottom: 0;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: 'user add-shift month daily ';
   }
 }
