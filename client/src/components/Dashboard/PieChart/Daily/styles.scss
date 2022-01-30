@@ -1,0 +1,14 @@
+@use '../../../../styles/' as *;
+
+.pie-chart {
+  position: relative;
+  height: 16rem;
+  width: 16rem;
+}
+
+@include xs-screen {
+  .pie-chart {
+    height: max(300px, 100%);
+    width: max(300px, 100%);
+  }
+}

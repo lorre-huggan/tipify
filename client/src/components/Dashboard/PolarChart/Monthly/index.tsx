@@ -1,13 +1,19 @@
 import React from 'react';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Pie } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  RadialLinearScale,
+  ArcElement,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { PolarArea } from 'react-chartjs-2';
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Legend);
 interface Props {
   tipData: Array<number>;
   labelData: Array<string>;
 }
-const PieChart: React.FC<Props> = ({ tipData, labelData }) => {
+const PolarChart: React.FC<Props> = ({ tipData, labelData }) => {
   const data = {
     labels: labelData,
     datasets: [
@@ -36,9 +42,9 @@ const PieChart: React.FC<Props> = ({ tipData, labelData }) => {
 
   return (
     <div className="pie-chart">
-      <Pie data={data} />
+      <PolarArea data={data} />
     </div>
   );
 };
 
-export default PieChart;
+export default PolarChart;

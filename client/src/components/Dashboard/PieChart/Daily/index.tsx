@@ -1,6 +1,7 @@
 import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
+import './styles.scss';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 interface Props {
@@ -29,7 +30,13 @@ const PieChart: React.FC<Props> = ({ tipData, labelData }) => {
     ],
   };
 
-  return <Pie data={data} />;
+  const options = {};
+
+  return (
+    <div className="pie-chart">
+      <Pie data={data} options={options} />
+    </div>
+  );
 };
 
 export default PieChart;

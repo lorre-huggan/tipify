@@ -1,14 +1,40 @@
 @use '../../../../styles/index' as *;
 
-.daily-analytics-container {
+.daily-analytics {
   background-color: $grey-dark;
   padding: $sp-4;
   border-radius: 8px;
   @include flex(column, center, center);
+  overflow: hidden;
   h2 {
     @include text-xl;
     font-weight: 900;
     text-transform: uppercase;
     margin-bottom: $sp-2;
+  }
+  &-charts {
+    @include flex(row, center, left);
+  }
+  &-selector {
+    width: 100%;
+    @include flex(row, center, center);
+    margin-top: $sp-4;
+    button {
+      width: 1rem;
+      height: 1rem;
+      background-color: var(--col-grey-100);
+      border-radius: 50%;
+      margin: 0.25rem 0.5rem;
+      cursor: pointer;
+      transition: background-color $time-fs $trans-1;
+      &:hover {
+        background-color: var(--col-grey-300);
+      }
+    }
+    button[disabled='disabled'],
+    button:disabled {
+      background-color: var(--col-grey-600);
+      cursor: not-allowed;
+    }
   }
 }
