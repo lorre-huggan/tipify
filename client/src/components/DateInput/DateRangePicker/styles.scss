@@ -1,6 +1,15 @@
 @use '../../../styles/' as *;
 
 .date-range-picker {
-  @include flex(column, center, center);
+  @include flex(row, center, center);
   margin: $sp-4 0;
+  &-reset {
+    @include text-4xl;
+    margin-left: 1rem;
+    cursor: pointer;
+    transition: color $time-fs $trans-1;
+    &:hover {
+      color: var(--col-secondary-400);
+    }
+  }
 }

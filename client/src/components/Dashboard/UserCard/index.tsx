@@ -31,7 +31,7 @@ const UserCard: React.FC<Props> = ({ user, data }) => {
         </div>
         {settings ? (
           <>
-            <Account id={data![0]._id} />
+            <Account id={data![0]._id} job={data![0]} />
           </>
         ) : (
           <>

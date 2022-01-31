@@ -10,14 +10,14 @@ import { JobProvider } from './context/job/JobProvider';
 import { jobInitialState, jobReducer } from './context/job/JobReducer.';
 
 ReactDOM.render(
-  <ApolloProvider client={apolloClient}>
-    <UserProvider initialState={userInitialState} reducer={userReducer}>
-      <JobProvider initialState={jobInitialState} reducer={jobReducer}>
-        <React.StrictMode>
+  <React.StrictMode>
+    <ApolloProvider client={apolloClient}>
+      <UserProvider initialState={userInitialState} reducer={userReducer}>
+        <JobProvider initialState={jobInitialState} reducer={jobReducer}>
           <App />
-        </React.StrictMode>
-      </JobProvider>
-    </UserProvider>
-  </ApolloProvider>,
+        </JobProvider>
+      </UserProvider>
+    </ApolloProvider>
+  </React.StrictMode>,
   document.getElementById('root')
 );

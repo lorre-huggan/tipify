@@ -5,23 +5,23 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import Box from '@mui/material/Box';
 import './styles.scss';
-import { getUnixTime } from 'date-fns';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { AiOutlineCloseCircle } from 'react-icons/ai';
 
 const theme = createTheme({
-  // components: {
-  //   // Name of the component
-  //   MuiTextField: {
-  //     styleOverrides: {
-  //       // Name of the slot
-  //       root: {
-  //         // Some CSS
-  //         backgroundColor: '#ffffff70',
-  //         borderRadius: '8px',
-  //       },
-  //     },
-  //   },
-  // },
+  components: {
+    // Name of the component
+    MuiTextField: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          backgroundColor: '#ffffff70',
+          borderRadius: '8px',
+        },
+      },
+    },
+  },
 });
 
 interface Props {
@@ -31,6 +31,10 @@ interface Props {
 
 const BasicDateRangePicker: React.FC<Props> = ({ dateRange, setDateRange }) => {
   const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
+
+  const handleReset = () => {
+    setDateRange([null, null]);
+  };
 
   return (
     <div className="date-range-picker">
@@ -55,6 +59,9 @@ const BasicDateRangePicker: React.FC<Props> = ({ dateRange, setDateRange }) => {
           />
         </ThemeProvider>
       </LocalizationProvider>
+      <button onClick={handleReset} className="date-range-picker-reset">
+        <AiOutlineCloseCircle />
+      </button>
     </div>
   );
 };

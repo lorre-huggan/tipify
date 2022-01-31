@@ -1,38 +1,23 @@
 import React from 'react';
 import {
   Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
+  RadialLinearScale,
   PointElement,
   LineElement,
-  Title,
+  Filler,
   Tooltip,
   Legend,
 } from 'chart.js';
-import { Line } from 'react-chartjs-2';
-
+import { Radar } from 'react-chartjs-2';
+import '../../styles.scss';
 ChartJS.register(
-  CategoryScale,
-  LinearScale,
+  RadialLinearScale,
   PointElement,
   LineElement,
-  Title,
+  Filler,
   Tooltip,
   Legend
 );
-
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'top' as const,
-    },
-    title: {
-      display: true,
-      text: 'Chart.js Line Chart',
-    },
-  },
-};
 
 interface Props {
   tipData: Array<number>;
@@ -40,7 +25,7 @@ interface Props {
   hourData: Array<number>;
 }
 
-const LineChart: React.FC<Props> = ({ tipData, labelData, hourData }) => {
+const RadarChart: React.FC<Props> = ({ tipData, labelData, hourData }) => {
   const data = {
     labels: labelData,
     datasets: [
@@ -62,10 +47,10 @@ const LineChart: React.FC<Props> = ({ tipData, labelData, hourData }) => {
   };
 
   return (
-    <div className="pie-chart">
-      <Line options={options} data={data} />
+    <div className="chart">
+      <Radar data={data} />
     </div>
   );
 };
 
-export default LineChart;
+export default RadarChart;

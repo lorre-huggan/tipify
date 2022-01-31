@@ -1,15 +1,19 @@
 import { useMutation } from '@apollo/client';
 import React from 'react';
+import { AiOutlineDelete } from 'react-icons/ai';
 import { DELETE_JOB, GET_USER_JOBS } from '../../../../gql/request/job/request';
 import { UseAuth } from '../../../../hooks/useAuth';
-import { UserJobs } from '../../../../types/job-types';
+import { UserJob, UserJobs } from '../../../../types/job-types';
 import { AuthUser } from '../../../../types/user-types';
+import DeleteJobModal from '../Modal';
+import './styles.scss';
 
 type Props = {
   id: string;
+  job: UserJob | undefined;
 };
 
-const Account: React.FC<Props> = ({ id }) => {
+const Account: React.FC<Props> = ({ id, job }) => {
   const { authUser }: { authUser: AuthUser } = UseAuth();
 
   const [DeleteJob, { loading }] = useMutation(DELETE_JOB, {
@@ -28,7 +32,7 @@ const Account: React.FC<Props> = ({ id }) => {
     },
   });
 
-  const handleClick = () => {
+  const handleDeleteJob = () => {
     DeleteJob({
       variables: { deleteJobId: id },
       refetchQueries: [
@@ -38,9 +42,15 @@ const Account: React.FC<Props> = ({ id }) => {
   };
 
   return (
-    <div>
-      <h1 className="account-heading">My Account</h1>
-      <button onClick={handleClick}>Remove Job</button>
+    <div className="account">
+      <h1 className="account-title">My Account</h1>
+      <div className="account-job-remove">
+        <p>{`Delete ${job?.company_name}`}</p>
+        <DeleteJobModal
+          handleDeleteJob={handleDeleteJob}
+          job={job?.company_name}
+        />
+      </div>
     </div>
   );
 };

@@ -8,13 +8,13 @@ interface DateObject {
 }
 
 export function getDateString(date: number): DateObject {
-  const stringified = fromUnixTime(date).toString().split(' ');
+  const string = fromUnixTime(date).toString().split(' ');
 
   return {
-    day: stringified[0],
-    month: stringified[1],
-    date: stringified[2],
-    time: stringified[3],
+    day: string[0],
+    month: string[1],
+    date: string[2],
+    time: string[3],
   };
 }
 

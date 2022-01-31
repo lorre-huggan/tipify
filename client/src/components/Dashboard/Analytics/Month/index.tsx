@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import './styles.scss';
 import { UserJob, Wage } from '../../../../types/job-types';
-import PieChart from '../../PieChart/Month';
+import PieChart from '../../Charts/PieChart/Month';
 import Card from '../../../Card';
 import { getDateString, numberReducer } from '../../../../utils/helpers';
-import LineChart from '../../LineChart';
-import PolarChart from '../../PolarChart/Monthly';
+import PolarChart from '../../Charts/PolarChart/Monthly';
 interface Props {
   data: UserJob[] | undefined;
 }
@@ -19,8 +18,8 @@ const MonthAnalytics: React.FC<Props> = ({ data }) => {
     wages.push(wage.wages);
   });
 
-  wages[0].forEach((x: Wage) => {
-    shifts.push(x);
+  wages[0].forEach((shift: Wage) => {
+    shifts.push(shift);
   });
 
   const monthsArray = [
@@ -32,7 +31,7 @@ const MonthAnalytics: React.FC<Props> = ({ data }) => {
     'Jun',
     'Jul',
     'Aug',
-    'Sept',
+    'Sep',
     'Oct',
     'Nov',
     'Dec',
@@ -50,6 +49,7 @@ const MonthAnalytics: React.FC<Props> = ({ data }) => {
   let Oct: number[] = [];
   let Nov: number[] = [];
   let Dec: number[] = [];
+
   let JanHours: number[] = [];
   let FebHours: number[] = [];
   let MarHours: number[] = [];
@@ -64,7 +64,7 @@ const MonthAnalytics: React.FC<Props> = ({ data }) => {
   let DecHours: number[] = [];
 
   shifts.forEach((shift) => {
-    const { month, day } = getDateString(shift.date);
+    const { month } = getDateString(shift.date);
     switch (month) {
       case 'Jan':
         Jan.push(shift.tips);
@@ -159,6 +159,7 @@ const MonthAnalytics: React.FC<Props> = ({ data }) => {
     Number(NovTips.toFixed(2)),
     Number(DecTips.toFixed(2)),
   ];
+
   const monthlyHours = [
     Number(_JanHours),
     Number(_FebHours),

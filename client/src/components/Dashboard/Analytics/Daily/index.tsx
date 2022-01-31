@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './styles.scss';
 import { UserJob, Wage } from '../../../../types/job-types';
-import PieChart from '../../PieChart/Daily';
+import PieChart from '../../Charts/PieChart/Daily';
 import Card from '../../../Card';
 import { getDateString, numberReducer } from '../../../../utils/helpers';
-import RadarChart from '../../RadarChart/Daily';
+import RadarChart from '../../Charts/RadarChart/Daily';
 
 interface Props {
   data: UserJob[] | undefined;
@@ -23,6 +23,8 @@ const DayAnalytics: React.FC<Props> = ({ data }) => {
     shifts.push(wage);
   });
 
+  const dayArray = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
   let _MonTips: number[] = [];
   let _TueTips: number[] = [];
   let _WedTips: number[] = [];
@@ -38,8 +40,6 @@ const DayAnalytics: React.FC<Props> = ({ data }) => {
   let _FriHours: number[] = [];
   let _SatHours: number[] = [];
   let _SunHours: number[] = [];
-
-  const dayArray = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
   shifts.forEach((shift) => {
     const { day } = getDateString(shift.date);

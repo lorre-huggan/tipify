@@ -1,0 +1,25 @@
+@use '../../../../styles/' as *;
+
+.account {
+  &-title {
+    @include text-4xl;
+    margin-bottom: 1rem;
+  }
+  &-job-remove {
+    @include flex(row, center, space-between);
+    p {
+      color: $white;
+      @include text-base;
+      font-weight: 900;
+    }
+    button {
+      color: var(--col-grey-300);
+      @include text-2xl;
+      cursor: pointer;
+      transition: color $time-fs $trans-1;
+      &:hover {
+        color: var(--col-red-300);
+      }
+    }
+  }
+}

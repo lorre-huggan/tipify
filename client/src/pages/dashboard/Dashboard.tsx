@@ -15,7 +15,7 @@ import AddJob from '../../components/Dashboard/AddJob';
 
 interface Props {}
 
-const Dashboard = (props: Props) => {
+const Dashboard: React.FC = (props: Props) => {
   const { authUser }: { authUser: AuthUser } = UseAuth();
   const { loading, data, error } = useQuery<UserJobs>(GET_USER_JOBS, {
     variables: { user: authUser?.username },
