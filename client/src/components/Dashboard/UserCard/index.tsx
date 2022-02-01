@@ -5,10 +5,13 @@ import './styles.scss';
 import { formatDistanceToNow } from 'date-fns';
 import { RiUserFill, RiSettings5Line } from 'react-icons/ri';
 import Card from '../../Card';
-import { numberReducer } from '../../../utils/helpers';
 import { AiOutlineClose } from 'react-icons/ai';
-import AllTips from './AllTips';
 import Account from './Account';
+import TipsThisWeek from './TipsThisWeek';
+import TipsAllTips from './TipsAllTime';
+import TipsThisMonth from './TipsThisMonth';
+import TipsThisYear from './HourlyRateAllTime';
+import Analytics from './Analytics';
 interface Props {
   user: AuthUser;
   data: UserJob[] | undefined;
@@ -40,7 +43,7 @@ const UserCard: React.FC<Props> = ({ user, data }) => {
             <div className="user-card-work-grid">
               <p>{`${data![0].job_title} at ${data![0].company_name}`}</p>
             </div>
-            <AllTips user={user} data={data} />
+            <Analytics user={user} data={data} />
           </>
         )}
         <div className="user-card-settings-icon" onClick={handleSettings}>

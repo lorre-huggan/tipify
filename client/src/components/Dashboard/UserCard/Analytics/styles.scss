@@ -1,0 +1,27 @@
+@use '../../../../styles/' as *;
+
+.user-card-tip-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $sp-min;
+
+  .user-card-analytics {
+    @include flex(column, left, left);
+    padding: $sp-1;
+    border-radius: 4px;
+    border: 0.25px solid #ffffff20;
+    p {
+      @include text-xs;
+      width: 100%;
+      font-weight: 900;
+      text-align: center;
+      opacity: 0.4;
+      color: white;
+    }
+    h1 {
+      @include text-base;
+      text-align: center;
+      color: var(--col-secondary-300);
+    }
+  }
+}

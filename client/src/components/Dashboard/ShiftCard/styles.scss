@@ -44,7 +44,7 @@
     position: absolute;
     bottom: $sp-4;
     right: $sp-4;
-    color: $green;
+    color: var(--col-green-200);
     font-weight: 900;
     @include text-xl;
   }

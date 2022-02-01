@@ -1,30 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { UserJob } from '../../../../types/job-types';
 import { AuthUser } from '../../../../types/user-types';
 import { handleCurrency, numberReducer } from '../../../../utils/helpers';
-import './styles.scss';
+import { isThisYear, fromUnixTime } from 'date-fns';
 
 type Props = {
   user: AuthUser;
   data: UserJob[] | undefined;
 };
 
-const AllTips: React.FC<Props> = ({ user, data }) => {
-  let tips: number[] = [];
+const HoursWorkedAllTime: React.FC<Props> = ({ user, data }) => {
+  let hours: number[] = [];
 
   data?.forEach((_data) => {
     _data.wages.forEach((wage) => {
-      tips.push(wage.tips);
+      hours.push(wage.hours_worked);
     });
   });
 
-  const totalTips = numberReducer(tips);
+  const hoursWorked = numberReducer(hours);
 
   return (
     <div className="user-card-analytics">
-      <h1>{`${handleCurrency(user.currency)}${totalTips.toFixed(2)}`}</h1>
+      <p>Hours Worked</p>
+      <h1>{hoursWorked ? `${hoursWorked}hrs` : `0hrs`}</h1>
     </div>
   );
 };
 
-export default AllTips;
+export default HoursWorkedAllTime;
