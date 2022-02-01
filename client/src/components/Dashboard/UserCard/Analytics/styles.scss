@@ -3,7 +3,7 @@
 .user-card-tip-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: $sp-min;
+  gap: $sp-2 $sp-min;
 
   .user-card-analytics {
     @include flex(column, left, left);

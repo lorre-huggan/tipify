@@ -134,7 +134,7 @@ const ShiftCard: React.FC<Props> = ({ user, data, job }) => {
   };
 
   return (
-    <div className="shift-card-container" style={{ borderColor: monthTheme }}>
+    <div className="shift-card" style={{ borderColor: monthTheme }}>
       {loading && <p>Loading</p>}
       <div className="shift-card-time">
         <AiOutlineClockCircle style={{ color: dayTheme }} />

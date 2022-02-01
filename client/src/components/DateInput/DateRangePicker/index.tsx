@@ -38,30 +38,33 @@ const BasicDateRangePicker: React.FC<Props> = ({ dateRange, setDateRange }) => {
 
   return (
     <div className="date-range-picker">
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <ThemeProvider theme={theme}>
-          <DateRangePicker
-            className="range-picker"
-            startText="Start Date"
-            endText="End Date"
-            value={value}
-            onChange={(newValue) => {
-              setValue(newValue);
-              setDateRange(newValue);
-            }}
-            renderInput={(startProps, endProps) => (
-              <React.Fragment>
-                <TextField {...startProps} />
-                <Box sx={{ mx: 2 }}> to </Box>
-                <TextField {...endProps} />
-              </React.Fragment>
-            )}
-          />
-        </ThemeProvider>
-      </LocalizationProvider>
-      <button onClick={handleReset} className="date-range-picker-reset">
-        <AiOutlineCloseCircle />
-      </button>
+      <p className="date-range-picker-title">Filter By Date</p>
+      <div className="date-range-picker-input">
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <ThemeProvider theme={theme}>
+            <DateRangePicker
+              className="range-picker"
+              startText="Start Date"
+              endText="End Date"
+              value={value}
+              onChange={(newValue) => {
+                setValue(newValue);
+                setDateRange(newValue);
+              }}
+              renderInput={(startProps, endProps) => (
+                <React.Fragment>
+                  <TextField {...startProps} />
+                  <Box sx={{ mx: 2 }}> to </Box>
+                  <TextField {...endProps} />
+                </React.Fragment>
+              )}
+            />
+          </ThemeProvider>
+        </LocalizationProvider>
+        <button onClick={handleReset} className="date-range-picker-input-reset">
+          <AiOutlineCloseCircle />
+        </button>
+      </div>
     </div>
   );
 };

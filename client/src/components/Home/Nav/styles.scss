@@ -12,6 +12,7 @@
       @include logo-font;
       @include text-2xl;
       color: $teal;
+      font-weight: 900;
     }
     .nav-links {
       ul {

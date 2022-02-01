@@ -1,15 +1,24 @@
 @use '../../../styles/' as *;
 
 .date-range-picker {
-  @include flex(row, center, center);
+  @include flex(column, left, center);
   margin: $sp-4 0;
-  &-reset {
-    @include text-4xl;
-    margin-left: 1rem;
-    cursor: pointer;
-    transition: color $time-fs $trans-1;
-    &:hover {
-      color: var(--col-secondary-400);
+  &-title {
+    margin-bottom: $sp-1;
+    @include text-sm;
+    font-weight: 900;
+  }
+  &-input {
+    @include flex(row, left, left);
+    &-reset {
+      @include text-2xl;
+      margin-left: $sp-1;
+      color: var(--col-grey-100);
+      cursor: pointer;
+      transition: color $time-fs $trans-1;
+      &:hover {
+        color: var(--col-secondary-400);
+      }
     }
   }
 }

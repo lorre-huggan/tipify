@@ -1,11 +1,6 @@
 @use '../../../styles/' as *;
 
-.shift-card-deleted {
-  transform: translateY(-100px);
-  opacity: 0;
-}
-
-.shift-card-container {
+.shift-card {
   width: 100%;
   min-height: 10rem;
   border-radius: 8px;
@@ -18,42 +13,41 @@
     opacity $time-fs $trans-1, transform $time-fs $trans-1;
   &:hover {
     background-color: $black;
-    border: 2px solid $teal;
   }
-  .shift-card-time {
+  &-time {
     @include flex(row, center, left);
     text-transform: uppercase;
     @include text-xs;
     margin-bottom: $sp-1;
-    small {
-    }
     svg {
       margin-right: $sp-1;
     }
   }
-  .shift-card-company-name {
-    @include text-xl;
-  }
-  .shift-card-job-title {
+  &-company-name {
+    @include text-2xl;
     font-weight: 900;
-    color: $grey-light;
+  }
+  &-job-title {
+    color: var(--col-grey-100);
     @include text-xs;
   }
-  .shift-card-earned {
+  &-earned {
     @include flex(row, center, center);
     position: absolute;
     bottom: $sp-4;
     right: $sp-4;
     color: var(--col-green-200);
     font-weight: 900;
-    @include text-xl;
+    @include text-base;
   }
-  .shift-card-hours {
+  &-hours {
     position: absolute;
     bottom: $sp-4;
     left: $sp-4;
+    @include text-sm;
+    text-transform: uppercase;
   }
-  .shift-card-mods {
+  &-mods {
     position: absolute;
     top: $sp-4;
     right: $sp-4;

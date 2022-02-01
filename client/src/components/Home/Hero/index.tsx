@@ -14,9 +14,7 @@ const Hero = (props: Props) => {
           lets you create custom metrics to track the tips you earn
         </p>
       </div>
-      <div className="hero-right">
-        <img src="../../../img/tips.jpg" alt="waiter-img" />
-      </div>
+      <div className="hero-right">Hello World</div>
     </section>
   );
 };

@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs';
 const emailRegEx =
   /(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
 
-const usernameRegEx = /^[a-z0-9_-]{3,15}$/;
+const usernameRegEx = /^[a-zA-Z0-9]+([_ -]?[a-zA-Z0-9])*$/;
 
 export const loginValidate = (username, password) => {
   if (!username || typeof username !== 'string') {
