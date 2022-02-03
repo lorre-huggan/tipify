@@ -1,5 +1,5 @@
 import React from 'react';
-import selfie from '../../../../img/selfie.png';
+import selfie from '../../../../img/selfie.svg';
 import './styles.scss';
 
 type Props = {};

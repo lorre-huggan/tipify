@@ -13,7 +13,7 @@ const Home = (props: Props) => {
       <Nav />
       <Hero />
       <Body />
-      <Footer />
+      {/* <Footer /> */}
     </main>
   );
 };

@@ -9,6 +9,7 @@
   bottom: 0;
   border-top: 0.5px solid var(--col-grey-600);
   z-index: 99;
+
   .icons {
     @include flex(row, center, center);
     ul {
@@ -46,6 +47,11 @@
     top: 0;
     border-top: none;
     border-right: 0.5px solid var(--col-grey-600);
+    transition: width $time-fs $trans-1;
+    &:hover {
+      width: 10rem;
+      @include shadow-sm;
+    }
     .icons {
       @include flex(column, center, center);
       margin-top: $sp-2;

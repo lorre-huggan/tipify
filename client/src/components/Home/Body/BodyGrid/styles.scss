@@ -1,0 +1,43 @@
+@use '../../../../styles/' as *;
+
+.home-body-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+  margin-bottom: $sp-4;
+  &-one {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 0.75fr 1fr;
+    width: 100%;
+    &-left {
+      @include flex(row, center, center);
+      svg {
+        font-size: 5rem;
+        color: var(--col-red-200);
+      }
+    }
+    &-right {
+      h1 {
+        @include text-2xl;
+        font-weight: 900;
+        color: var(--col-grey-700);
+      }
+      p {
+        @include text-sm;
+        color: var(--col-grey-600);
+      }
+    }
+  }
+}
+
+@include lg-screen {
+  .home-body-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: $sp-4;
+    padding: $sp-4 10rem;
+    &-one {
+      grid-template-columns: 0.5fr 1.75fr;
+    }
+  }
+}

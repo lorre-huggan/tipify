@@ -1,1 +1,14 @@
 @use '../../../styles/' as *;
+
+.home-body {
+  padding: $sp-4;
+
+  &-header {
+    h1 {
+      @include text-5xl;
+      font-weight: 900;
+      text-align: center;
+      margin-top: $sp-2;
+    }
+  }
+}
