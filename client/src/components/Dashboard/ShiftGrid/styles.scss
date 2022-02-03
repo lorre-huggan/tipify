@@ -9,6 +9,7 @@
 
 .dashboard-shift-no-shifts {
   @include flex(column, center, center);
+  margin-top: $sp-2;
   width: 100%;
   h1 {
     @include text-7xl;

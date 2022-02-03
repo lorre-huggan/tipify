@@ -28,18 +28,18 @@ const ShiftCard: React.FC<Props> = ({ user, data, job }) => {
 
   useEffect(() => {
     const monthColors = [
-      '#e86435',
-      '#37e0d0',
-      '#ff78b9',
-      '#18acff',
-      '#7547a3',
-      '#ffe75c',
-      '#e18868',
-      '#aee2dd',
-      '#ffbddd',
-      '#a5ddfd',
-      '#8d7c9e',
-      '#fcf2b7',
+      '#e8643550',
+      '#37e0d050',
+      '#ff78b950',
+      '#18acff50',
+      '#7547a350',
+      '#ffe75c50',
+      '#e1886850',
+      '#aee2dd50',
+      '#ffbddd50',
+      '#a5ddfd50',
+      '#8d7c9e50',
+      '#fcf2b750',
     ];
     const dayColors = [
       '#ff78b9',
@@ -134,7 +134,13 @@ const ShiftCard: React.FC<Props> = ({ user, data, job }) => {
   };
 
   return (
-    <div className="shift-card" style={{ borderColor: monthTheme }}>
+    <div
+      className="shift-card"
+      style={{
+        borderColor: monthTheme,
+        boxShadow: `0px 0px 3px ${monthTheme}`,
+      }}
+    >
       {loading && <p>Loading</p>}
       <div className="shift-card-time">
         <AiOutlineClockCircle style={{ color: dayTheme }} />

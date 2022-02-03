@@ -6,7 +6,7 @@
   color: $white;
   .nav-inner-container {
     height: 4rem;
-    padding: $sp-4;
+    padding: $sp-6;
     @include flex(row, center, space-between);
     .nav-logo {
       @include logo-font;
@@ -27,6 +27,25 @@
           }
         }
       }
+    }
+  }
+}
+
+@include md-screen {
+}
+
+@include lg-screen {
+  .home-nav {
+    .nav-inner-container {
+      padding: $sp-6;
+    }
+  }
+}
+
+@include xxl-screen {
+  .home-nav {
+    .nav-inner-container {
+      padding: $sp-4 16rem;
     }
   }
 }

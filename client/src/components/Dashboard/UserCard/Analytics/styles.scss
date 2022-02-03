@@ -16,12 +16,12 @@
       font-weight: 900;
       text-align: center;
       opacity: 0.4;
-      color: white;
+      color: $white;
     }
     h1 {
       @include text-base;
       text-align: center;
-      color: var(--col-secondary-300);
+      color: var(--col-accent-100);
     }
   }
 }

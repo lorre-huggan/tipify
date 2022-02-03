@@ -13,7 +13,7 @@
   .user-card-user-since {
     @include text-xs;
     text-transform: uppercase;
-    color: $grey-light;
+    color: var(--col-grey-300);
     margin-bottom: $sp-4;
     opacity: 0.2;
   }
@@ -22,7 +22,7 @@
     top: $sp-4;
     right: $sp-4;
     font-size: $sp-4;
-    color: $primary;
+    color: var(--col-accent-200);
   }
   .user-card-work-grid {
     margin-bottom: $sp-4;
@@ -38,11 +38,11 @@
     bottom: $sp-4;
     left: $sp-4;
     font-size: $sp-4;
-    color: $grey-light;
+    color: var(--col-grey-300);
     cursor: pointer;
     transition: color $time-fs $trans-1;
     &:hover {
-      color: $primary;
+      color: var(--col-secondary-200);
     }
   }
   h4 {

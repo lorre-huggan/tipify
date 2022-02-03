@@ -4,12 +4,11 @@
   width: 100vw;
   min-height: 5rem;
   position: fixed;
-  background-color: $grey-dark;
+  background-color: var(--col-grey-700);
   left: 0;
   bottom: 0;
-  border-top: 1px solid #11111170;
+  border-top: 0.5px solid var(--col-grey-600);
   z-index: 99;
-
   .icons {
     @include flex(row, center, center);
     ul {
@@ -19,7 +18,7 @@
         @include flex(column, center, center);
         svg {
           font-size: $sp-6;
-          color: $grey-light;
+          color: var(--col-secondary-100);
           transition: color $time-fs $trans-1;
           cursor: pointer;
           &:hover {
@@ -45,6 +44,8 @@
     width: 5rem;
     min-height: 100vh;
     top: 0;
+    border-top: none;
+    border-right: 0.5px solid var(--col-grey-600);
     .icons {
       @include flex(column, center, center);
       margin-top: $sp-2;

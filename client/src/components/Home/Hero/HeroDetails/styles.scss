@@ -1,0 +1,74 @@
+@use '../../../../styles/' as *;
+
+.hero-details {
+  padding: $sp-4;
+  width: 100%;
+  @include flex(column, center, center);
+  &-container {
+    h1 {
+      @include text-5xl;
+      font-weight: 900;
+      color: var(--col-grey-800);
+      margin-bottom: $sp-2;
+      text-align: center;
+    }
+    @include button(primary);
+    button {
+      width: 100%;
+    }
+    p {
+      margin-top: $sp-2;
+      @include text-base;
+      width: 100%;
+      color: $white;
+      font-weight: 600;
+    }
+  }
+}
+
+@include sm-screen {
+  .hero-details {
+    &-container {
+      h1 {
+        @include text-2xl;
+        text-align: left;
+      }
+    }
+  }
+}
+
+@include md-screen {
+  .hero-details {
+    &-container {
+      h1 {
+        @include text-4xl;
+      }
+      p {
+        @include text-base;
+      }
+    }
+  }
+}
+
+@include lg-screen {
+  .hero-details {
+    &-container {
+      h1 {
+        @include text-6xl;
+      }
+    }
+  }
+}
+
+@include xxl-screen {
+  .hero-details {
+    &-container {
+      h1 {
+        @include text-7xl;
+      }
+      p {
+        width: 100%;
+      }
+    }
+  }
+}

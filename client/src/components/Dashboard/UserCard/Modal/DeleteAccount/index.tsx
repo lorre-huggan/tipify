@@ -3,6 +3,11 @@ import { styled, Box } from '@mui/system';
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 import { AiOutlineDelete } from 'react-icons/ai';
 import './styles.scss';
+import { AuthUser, User } from '../../../../../types/user-types';
+import { UseAuth } from '../../../../../hooks/useAuth';
+import { UserJob } from '../../../../../types/job-types';
+import { useMutation } from '@apollo/client';
+import { DELETE_USER, GET_USER } from '../../../../../gql/request/user/request';
 
 const StyledModal = styled(ModalUnstyled)`
   position: fixed;
@@ -36,14 +41,33 @@ const style = {
   pb: 3,
 };
 interface Props {
-  handleDeleteJob: () => void;
-  job: string | undefined;
+  id: string;
+  job: UserJob | undefined;
 }
 
-const DeleteJobModal: React.FC<Props> = ({ handleDeleteJob, job }) => {
+const DeleteAccountModal: React.FC<Props> = ({ job, id }) => {
+  const { authUser: user }: { authUser: AuthUser } = UseAuth();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const [deleteUser, { loading }] = useMutation(DELETE_USER, {
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  const handleDelete = () => {
+    deleteUser({
+      variables: { deleteUserId: user.id },
+      refetchQueries: [
+        {
+          query: GET_USER,
+          variables: { deleteUserId: user.id },
+        },
+      ],
+    });
+  };
 
   return (
     <div>
@@ -59,9 +83,9 @@ const DeleteJobModal: React.FC<Props> = ({ handleDeleteJob, job }) => {
       >
         <Box sx={style}>
           <h2 id="unstyled-modal-title" style={{ marginBottom: '1rem' }}>
-            Are you sure you want to delete {job}?
+            Are you sure you want to delete {user.username} account?
           </h2>
-          <span className="modal-button" onClick={handleDeleteJob}>
+          <span className="modal-button" onClick={handleDelete}>
             Yes
           </span>
           <span className="modal-button" onClick={handleClose}>
@@ -73,4 +97,4 @@ const DeleteJobModal: React.FC<Props> = ({ handleDeleteJob, job }) => {
   );
 };
 
-export default DeleteJobModal;
+export default DeleteAccountModal;

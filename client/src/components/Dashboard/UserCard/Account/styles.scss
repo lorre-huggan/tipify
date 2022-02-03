@@ -6,6 +6,7 @@
     margin-bottom: 1rem;
   }
   &-job-remove {
+    margin-bottom: 1rem;
     @include flex(row, center, space-between);
     p {
       color: $white;

@@ -1,0 +1,12 @@
+@use '../../../../../styles/' as *;
+
+.modal-button {
+  border: 1px solid white;
+  padding: 0 0.25rem;
+  border-radius: 4px;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  &:hover {
+    color: var(--col-red-200);
+  }
+}

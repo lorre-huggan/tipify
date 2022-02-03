@@ -1,0 +1,22 @@
+@use '../../../../styles/' as *;
+
+.hero-image {
+  @include flex(row, center, center);
+  img {
+    min-height: 300px;
+    object-fit: cover;
+    display: none;
+  }
+}
+
+@include sm-screen {
+  .hero-image {
+    img {
+      min-height: 400px;
+      display: block;
+    }
+  }
+}
+
+@include lg-screen {
+}

@@ -4,24 +4,17 @@
   @include flex(row, center, space-between);
   @include background;
   width: 100%;
-  padding: $sp-6;
-  &-left {
-    @include shadow-sm;
-    padding: $sp-6;
-    background-color: var(--col-grey-800);
-    border-radius: 8px;
-    opacity: 0.9;
-    width: 50%;
-    h1 {
-      @include text-7xl;
-      text-transform: uppercase;
-      font-weight: 900;
-      color: $white;
-      margin-bottom: $sp-3;
-    }
-    p {
-      color: $white;
-      @include text-base;
-    }
+  padding: $sp-4;
+}
+
+@include lg-screen {
+  .hero {
+    padding: 0 $sp-6;
+  }
+}
+
+@include xxl-screen {
+  .hero {
+    padding: $sp-2 15rem;
   }
 }

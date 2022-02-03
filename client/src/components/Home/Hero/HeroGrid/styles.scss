@@ -1,0 +1,13 @@
+@use '../../../../styles/' as *;
+
+.hero-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@include sm-screen {
+  .hero-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

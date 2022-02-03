@@ -90,13 +90,15 @@ export const LoginUser = async (_, { username, password }) => {
   };
 };
 
-export const DeleteUser = async (_, { input }, context) => {
+export const DeleteUser = async (_, { id }, context) => {
   const user = checkAuth(context);
-  if (user.id !== input) {
+  console.log(user.id);
+  if (user.id !== id) {
     throw new UserInputError('not authorized');
   }
   try {
-    const remove = UserModel.findByIdAndDelete(input);
+    const remove = UserModel.findByIdAndDelete(id);
+    console.log('ping');
     return remove;
   } catch (error) {
     console.log(error.message);

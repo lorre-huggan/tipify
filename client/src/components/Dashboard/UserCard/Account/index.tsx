@@ -5,7 +5,8 @@ import { DELETE_JOB, GET_USER_JOBS } from '../../../../gql/request/job/request';
 import { UseAuth } from '../../../../hooks/useAuth';
 import { UserJob, UserJobs } from '../../../../types/job-types';
 import { AuthUser } from '../../../../types/user-types';
-import DeleteJobModal from '../Modal';
+import DeleteAccountModal from '../Modal/DeleteAccount';
+import DeleteJobModal from '../Modal/DeleteJob';
 import './styles.scss';
 
 type Props = {
@@ -16,40 +17,16 @@ type Props = {
 const Account: React.FC<Props> = ({ id, job }) => {
   const { authUser }: { authUser: AuthUser } = UseAuth();
 
-  const [DeleteJob, { loading }] = useMutation(DELETE_JOB, {
-    update: (cache, { data: { CreateShift } }) => {
-      //read data from cache
-      const data: UserJobs | null = cache.readQuery({
-        query: GET_USER_JOBS,
-        variables: { user: authUser?.username },
-      });
-
-      //write data back to cache
-      cache.writeQuery({ query: GET_USER_JOBS, data });
-    },
-    onError: (error) => {
-      console.log(error);
-    },
-  });
-
-  const handleDeleteJob = () => {
-    DeleteJob({
-      variables: { deleteJobId: id },
-      refetchQueries: [
-        { query: GET_USER_JOBS, variables: { user: authUser.username } },
-      ],
-    });
-  };
-
   return (
     <div className="account">
       <h1 className="account-title">My Account</h1>
       <div className="account-job-remove">
         <p>{`Delete ${job?.company_name}`}</p>
-        <DeleteJobModal
-          handleDeleteJob={handleDeleteJob}
-          job={job?.company_name}
-        />
+        <DeleteJobModal id={id} job={job?.company_name} />
+      </div>
+      <div className="account-job-remove">
+        <p>{`Delete ${authUser.username} account`}</p>
+        <DeleteAccountModal id={id} job={job} />
       </div>
     </div>
   );
