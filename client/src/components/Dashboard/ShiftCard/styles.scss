@@ -44,8 +44,11 @@
     position: absolute;
     bottom: $sp-4;
     left: $sp-4;
-    @include text-sm;
+    @include text-xs;
     text-transform: uppercase;
+    span {
+      @include text-xl;
+    }
   }
   &-mods {
     position: absolute;

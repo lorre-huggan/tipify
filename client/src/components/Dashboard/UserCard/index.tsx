@@ -28,7 +28,7 @@ const UserCard: React.FC<Props> = ({ user, data }) => {
 
   return (
     <Card area="user">
-      <div className="user-card-container">
+      <div className="user-card">
         <div className="user-card-user-avatar">
           {settings ? <RiSettings5Line /> : <RiUserFill />}
         </div>

@@ -1,6 +1,6 @@
 @use '../../../styles/' as *;
 
-.user-card-container {
+.user-card {
   grid-area: user;
   min-height: 16rem;
   border-radius: $sp-min;
@@ -9,15 +9,17 @@
   height: 100%;
   //border: 1px solid $blue;
   //background-color: $grey-dark;
-
   .user-card-user-since {
     @include text-xs;
     text-transform: uppercase;
     color: var(--col-grey-300);
     margin-bottom: $sp-4;
     opacity: 0.2;
+    position: absolute;
+    bottom: 0;
+    right: $sp-4;
   }
-  .user-card-user-avatar {
+  &-user-avatar {
     position: absolute;
     top: $sp-4;
     right: $sp-4;
@@ -32,7 +34,7 @@
     }
   }
 
-  .user-card-settings-icon {
+  &-settings-icon {
     @include flex(row, center, center);
     position: absolute;
     bottom: $sp-4;

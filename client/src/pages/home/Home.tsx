@@ -11,8 +11,10 @@ const Home = (props: Props) => {
   return (
     <main className="home-container">
       <Nav />
-      <Hero />
-      <Body />
+      <section className="home-container-main">
+        <Hero />
+        <Body />
+      </section>
       {/* <Footer /> */}
     </main>
   );

@@ -34,10 +34,17 @@
 @include lg-screen {
   .home-body-grid {
     grid-template-columns: 1fr 1fr;
+    width: 1250px;
     gap: $sp-4;
-    padding: $sp-4 10rem;
+    padding: $sp-4 2rem;
     &-one {
       grid-template-columns: 0.5fr 1.75fr;
+      gap: $sp-2;
+      &-left {
+        svg {
+          font-size: 7rem;
+        }
+      }
     }
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import BodyGrid from './BodyGrid';
+import BodyFeatures from './BodyFeatures';
 import './styles.scss';
 
 type Props = {};
@@ -10,7 +10,7 @@ const Body = (props: Props) => {
       <div className="home-body-header">
         <h1>Tipify Features</h1>
       </div>
-      <BodyGrid />
+      <BodyFeatures />
     </section>
   );
 };

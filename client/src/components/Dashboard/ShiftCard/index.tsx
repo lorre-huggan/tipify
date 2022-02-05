@@ -149,7 +149,10 @@ const ShiftCard: React.FC<Props> = ({ user, data, job }) => {
 
       <h3 className="shift-card-company-name">{`${job.company_name}`}</h3>
       <p className="shift-card-job-title">{`${job.job_title}`}</p>
-      <h3 className="shift-card-hours">{`${data?.hours_worked} Hour Shift`}</h3>
+      <h3 className="shift-card-hours">
+        <span>{`${data?.hours_worked}`}</span>
+        hrs
+      </h3>
       <p className="shift-card-earned">{`${handleCurrency(authUser.currency)}${
         data?.tips
       }`}</p>

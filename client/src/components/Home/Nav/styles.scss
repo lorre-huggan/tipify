@@ -4,6 +4,13 @@
   width: 100%;
   background-color: $black;
   color: $white;
+  position: fixed;
+  top: 0;
+  transition: opacity $time-fs $trans-1, box-shadow $time-fs $trans-1;
+  &-scrolled {
+    opacity: 0.95;
+    @include shadow-sm;
+  }
   .nav-inner-container {
     height: 4rem;
     padding: $sp-6;
@@ -19,7 +26,8 @@
         @include flex(row, center, center);
         li {
           margin-left: $sp-1;
-          @include text-sm;
+          @include text-base;
+          text-transform: uppercase;
           cursor: pointer;
           transition: color $time-fs $trans-1;
           &:hover {

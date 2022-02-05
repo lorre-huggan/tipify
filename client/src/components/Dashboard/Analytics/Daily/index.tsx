@@ -115,7 +115,6 @@ const DayAnalytics: React.FC<Props> = ({ data }) => {
   return (
     <Card area="daily">
       <div className="daily-analytics">
-        <h2>Daily tip earnings</h2>
         <div className="daily-analytics-charts">
           {chart.one ? (
             <PieChart tipData={weeklyTips} labelData={dayArray} />

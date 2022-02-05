@@ -12,35 +12,35 @@ type BodyGridProps = {
   icon: ReactElement;
 };
 
-const BodyGrid = (props: Props) => {
+const BodyFeatures = (props: Props) => {
   return (
     <div className="home-body-grid">
       <BodyGridItem
         title="Easy to Use"
         description=" Our user experience provides easy tip entry and data viewing. Your
             information has never looked so good."
-        icon={<BsEmojiHeartEyes />}
+        icon={<BsEmojiHeartEyes style={{ color: '#7547a3' }} />}
       />
       <BodyGridItem
         title="More Features"
         description="Tipify provides more features than many other tip tracking/earnings app in the marketplace. We always listen to our customers add new features."
-        icon={<GiMagicHat />}
+        icon={<GiMagicHat style={{ color: '#e03f4f' }} />}
       />
       <BodyGridItem
         title="Track your earnings"
         description="Keep a record of each shift you work and the money you made. Then we calculate the total and see how much you made for each month or day."
-        icon={<AiOutlineAreaChart />}
+        icon={<AiOutlineAreaChart style={{ color: '#29cc7a' }} />}
       />
       <BodyGridItem
         title="Access from Any Device"
         description="Since Tipify is cloud based you can access your information from any internet connected device."
-        icon={<GiWorld />}
+        icon={<GiWorld style={{ color: '#18acff' }} />}
       />
     </div>
   );
 };
 
-export default BodyGrid;
+export default BodyFeatures;
 
 export const BodyGridItem: React.FC<BodyGridProps> = ({
   title,

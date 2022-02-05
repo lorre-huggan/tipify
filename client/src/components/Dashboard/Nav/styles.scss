@@ -18,7 +18,7 @@
       li {
         @include flex(column, center, center);
         svg {
-          font-size: $sp-6;
+          font-size: $sp-4;
           color: var(--col-secondary-100);
           transition: color $time-fs $trans-1;
           cursor: pointer;
@@ -64,7 +64,7 @@
             @include text-xs;
           }
           svg {
-            font-size: $sp-4;
+            font-size: $sp-6;
           }
         }
       }

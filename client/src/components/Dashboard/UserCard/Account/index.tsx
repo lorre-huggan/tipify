@@ -24,10 +24,11 @@ const Account: React.FC<Props> = ({ id, job }) => {
         <p>{`Delete ${job?.company_name}`}</p>
         <DeleteJobModal id={id} job={job?.company_name} />
       </div>
-      <div className="account-job-remove">
+      {/* TODO Handle Delete Account */}
+      {/* <div className="account-job-remove">
         <p>{`Delete ${authUser.username} account`}</p>
         <DeleteAccountModal id={id} job={job} />
-      </div>
+      </div> */}
     </div>
   );
 };

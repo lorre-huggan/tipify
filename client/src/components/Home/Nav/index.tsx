@@ -1,12 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './styles.scss';
 type Props = {};
 
 const Nav = (props: Props) => {
+  const [winPos, setWinPos] = useState<number>(0);
+  const [isScroll, setIsScroll] = useState(false);
+
+  window.addEventListener('scroll', () => {
+    setWinPos(window.scrollY);
+  });
+  useEffect(() => {
+    if (winPos > 80) {
+      setIsScroll(true);
+    }
+    if (winPos < 80) {
+      setIsScroll(false);
+    }
+  }, [winPos]);
+
   return (
     <>
-      <nav className='home-nav'>
+      <nav className={winPos ? 'home-nav home-nav-scrolled' : 'home-nav'}>
         <div className="nav-inner-container">
           <div className="nav-logo">
             <h2>TIPiFY</h2>
