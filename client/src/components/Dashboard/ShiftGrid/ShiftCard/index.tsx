@@ -1,13 +1,16 @@
 import { fromUnixTime } from 'date-fns';
 import React, { useEffect, useState } from 'react';
-import { UserJob, Wage } from '../../../types/job-types';
-import { AuthUser } from '../../../types/user-types';
+import { UserJob, Wage } from '../../../../types/job-types';
+import { AuthUser } from '../../../../types/user-types';
 import './styles.scss';
 import { AiOutlineClockCircle, AiOutlineDelete } from 'react-icons/ai';
 import { useMutation } from '@apollo/client';
-import { DELETE_WAGE, GET_USER_JOBS } from '../../../gql/request/job/request';
-import { UseAuth } from '../../../hooks/useAuth';
-import { handleCurrency } from '../../../utils/helpers';
+import {
+  DELETE_WAGE,
+  GET_USER_JOBS,
+} from '../../../../gql/request/job/request';
+import { UseAuth } from '../../../../hooks/useAuth';
+import { handleCurrency } from '../../../../utils/helpers';
 interface Props {
   user: AuthUser;
   data: Wage | undefined;
@@ -134,13 +137,7 @@ const ShiftCard: React.FC<Props> = ({ user, data, job }) => {
   };
 
   return (
-    <div
-      className="shift-card"
-      style={{
-        borderColor: monthTheme,
-        boxShadow: `0px 0px 3px ${monthTheme}`,
-      }}
-    >
+    <div className="shift-card">
       {loading && <p>Loading</p>}
       <div className="shift-card-time">
         <AiOutlineClockCircle style={{ color: dayTheme }} />

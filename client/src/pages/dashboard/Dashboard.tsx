@@ -12,6 +12,7 @@ import { DateRange } from '@mui/lab/DateRangePicker';
 import DashboardGrid from '../../components/Dashboard/DashboardGrid';
 import ShiftGrid from '../../components/Dashboard/ShiftGrid';
 import AddJob from '../../components/Dashboard/AddJob';
+import DataGrid from '../../components/Dashboard/DataGrid';
 
 interface Props {}
 
@@ -55,6 +56,7 @@ const Dashboard: React.FC = (props: Props) => {
     <main className="dashboard">
       <Nav />
       <DashboardGrid data={data} />
+      <DataGrid data={data?.UserJobs} user={authUser} />
       {userWages()?.length !== 0 && (
         <DateRangePicker dateRange={dateRange} setDateRange={setDateRange} />
       )}

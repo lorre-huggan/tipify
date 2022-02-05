@@ -2,24 +2,21 @@ import React from 'react';
 import { UserJob } from '../../../../types/job-types';
 import { AuthUser } from '../../../../types/user-types';
 import { handleCurrency, numberReducer } from '../../../../utils/helpers';
-import { isThisWeek, fromUnixTime } from 'date-fns';
+import { isThisYear, fromUnixTime } from 'date-fns';
 
 type Props = {
   user: AuthUser;
   data: UserJob[] | undefined;
 };
 
-const HourlyRateThisWeek: React.FC<Props> = ({ user, data }) => {
+const HourlyRateAllTime: React.FC<Props> = ({ user, data }) => {
   let tips: number[] = [];
   let hours: number[] = [];
 
   data?.forEach((_data) => {
     _data.wages.forEach((wage) => {
-      const fromUnix = fromUnixTime(wage.date);
-      if (isThisWeek(fromUnix)) {
-        tips.push(wage.tips);
-        hours.push(wage.hours_worked);
-      }
+      tips.push(wage.tips);
+      hours.push(wage.hours_worked);
     });
   });
 
@@ -29,15 +26,17 @@ const HourlyRateThisWeek: React.FC<Props> = ({ user, data }) => {
   const hourlyRate = totalTips / hoursWorked;
 
   return (
-    <div className="user-card-analytics">
-      <p>This Week</p>
-      <h1>
-        {hourlyRate
-          ? `${handleCurrency(user.currency)}${hourlyRate.toFixed(2)}/hr`
-          : `${handleCurrency(user.currency)}0.00/hr`}
-      </h1>
-    </div>
+    <section className="data-card">
+      <h2>Hourly Rate</h2>
+      <div className="data-card-data">
+        <h1>
+          {hourlyRate
+            ? `${handleCurrency(user.currency)}${hourlyRate.toFixed(2)}/hr`
+            : `${handleCurrency(user.currency)}0.00/hr`}
+        </h1>
+      </div>
+    </section>
   );
 };
 
-export default HourlyRateThisWeek;
+export default HourlyRateAllTime;

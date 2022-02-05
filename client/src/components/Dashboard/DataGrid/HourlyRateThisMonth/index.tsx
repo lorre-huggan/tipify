@@ -29,14 +29,16 @@ const HourlyRateThisMonth: React.FC<Props> = ({ user, data }) => {
   const hourlyRate = totalTips / hoursWorked;
 
   return (
-    <div className="user-card-analytics">
-      <p>This Month</p>
-      <h1>
-        {hourlyRate
-          ? `${handleCurrency(user.currency)}${hourlyRate.toFixed(2)}/hr`
-          : `${handleCurrency(user.currency)}0.00/hr`}
-      </h1>
-    </div>
+    <section className="data-card">
+      <h2>Hourly Rate</h2>
+      <div className="data-card-data">
+        <h1>
+          {hourlyRate
+            ? `${handleCurrency(user.currency)}${hourlyRate.toFixed(2)}/hr`
+            : `${handleCurrency(user.currency)}0.00/hr`}
+        </h1>
+      </div>
+    </section>
   );
 };
 

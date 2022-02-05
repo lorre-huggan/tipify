@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { UseAuth } from '../../../hooks/useAuth';
 import { UserJobs, Wage } from '../../../types/job-types';
 import { AuthUser } from '../../../types/user-types';
-import ShiftCard from '../ShiftCard';
+import ShiftCard from './ShiftCard';
 import { DateRange } from '@mui/lab/DateRangePicker';
 import './styles.scss';
 import { useJobState } from '../../../context/job/JobProvider';
