@@ -25,18 +25,22 @@ const HourlyRateThisWeek: React.FC<Props> = ({ user, data }) => {
 
   const totalTips = numberReducer(tips);
   const hoursWorked = numberReducer(hours);
-
   const hourlyRate = totalTips / hoursWorked;
+
+  const headerColor = {
+    color: 'hsl(331, 100%, 64%)',
+  };
 
   return (
     <section className="data-card">
       <h2>This Week</h2>
       <div className="data-card-data">
-        <h1>
+        <h1 style={headerColor}>
           {hourlyRate
-            ? `${handleCurrency(user.currency)}${hourlyRate.toFixed(2)}/hr`
-            : `${handleCurrency(user.currency)}0.00/hr`}
+            ? `${handleCurrency(user.currency)}${hourlyRate.toFixed(2)}`
+            : `${handleCurrency(user.currency)}0.00`}
         </h1>
+        <span>/hr</span>
       </div>
     </section>
   );

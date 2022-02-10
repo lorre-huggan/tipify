@@ -1,11 +1,17 @@
 @use '../../../../styles/index' as *;
 
 .daily-analytics {
-  background-color: $grey-dark;
+  background-color: var(--col-grey-800);
   padding: $sp-4;
   border-radius: 8px;
   @include flex(column, center, center);
   overflow: hidden;
+  h1 {
+    @include text-xl;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
   h2 {
     @include text-xl;
     font-weight: 900;
@@ -13,7 +19,7 @@
     margin-bottom: $sp-2;
   }
   &-charts {
-    @include flex(row, center, left);
+    @include flex(column, center, left);
   }
   &-selector {
     width: 100%;

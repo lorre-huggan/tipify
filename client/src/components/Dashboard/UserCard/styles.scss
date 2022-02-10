@@ -2,13 +2,11 @@
 
 .user-card {
   grid-area: user;
-  min-height: 16rem;
+  min-height: 30rem;
   border-radius: $sp-min;
   padding: $sp-4;
   position: relative;
   height: 100%;
-  //border: 1px solid $blue;
-  //background-color: $grey-dark;
   .user-card-user-since {
     @include text-xs;
     text-transform: uppercase;

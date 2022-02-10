@@ -1,11 +1,11 @@
 @use '../../../styles/' as *;
 
 .date-range-picker {
-  @include flex(column, left, center);
+  @include flex(column, center, center);
   margin: $sp-4 0;
   &-title {
-    margin-bottom: $sp-1;
-    @include text-sm;
+    margin-bottom: $sp-4;
+    @include text-xl;
     font-weight: 900;
   }
   &-input {

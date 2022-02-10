@@ -19,7 +19,7 @@
         @include flex(column, center, center);
         svg {
           font-size: $sp-6;
-          color: var(--col-secondary-100);
+          color: var(--col-grey-100);
           transition: color $time-fs $trans-1;
           cursor: pointer;
           &:hover {

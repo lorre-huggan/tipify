@@ -1,9 +1,16 @@
 @use '../../../../styles/index' as *;
 
 .month-analytics-container {
-  background-color: $grey-dark;
+  background-color: var(--col-grey-800);
   border-radius: 8px;
   @include flex(column, center, center);
+  h1 {
+    @include text-xl;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
   h2 {
     @include text-sm;
     font-weight: 900;

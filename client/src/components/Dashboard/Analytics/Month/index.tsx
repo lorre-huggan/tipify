@@ -178,6 +178,7 @@ const MonthAnalytics: React.FC<Props> = ({ data }) => {
   return (
     <Card area="month">
       <div className="month-analytics-container">
+        <h1>Month</h1>
         {data && (
           <div>
             {chart.one ? (

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { UserJob } from '../../../../types/job-types';
 import { AuthUser } from '../../../../types/user-types';
 import { handleCurrency, numberReducer } from '../../../../utils/helpers';
-import './styles.scss'
+import './styles.scss';
 
 type Props = {
   user: AuthUser;
@@ -23,7 +23,9 @@ const TipsAllTips: React.FC<Props> = ({ user, data }) => {
   return (
     <div className="user-card-analytics all-tips">
       <p>Tips Earned</p>
-      <h1>{`${handleCurrency(user.currency)}${totalTips.toFixed(2)}`}</h1>
+      <h1 style={{ color: 'hsl(174, 72%, 56%' }}>{`${handleCurrency(
+        user.currency
+      )}${totalTips.toFixed(2)}`}</h1>
     </div>
   );
 };

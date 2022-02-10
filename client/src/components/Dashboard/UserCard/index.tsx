@@ -7,10 +7,7 @@ import { RiUserFill, RiSettings5Line } from 'react-icons/ri';
 import Card from '../../Card';
 import { AiOutlineClose } from 'react-icons/ai';
 import Account from './Account';
-import TipsThisWeek from './TipsThisWeek';
-import TipsAllTips from './TipsAllTime';
-import TipsThisMonth from './TipsThisMonth';
-import TipsThisYear from './HourlyRateAllTime';
+
 import Analytics from './Analytics';
 interface Props {
   user: AuthUser;

@@ -2,7 +2,7 @@
 
 .add-shift {
   grid-area: add-shift;
-  background-color: $grey-dark;
+  background-color: var(--col-grey-800);
   padding: $sp-4;
   border-radius: 8px;
   &-heading {
@@ -10,11 +10,14 @@
       @include text-xl;
       font-weight: 900;
       text-transform: uppercase;
-      margin-bottom: $sp-2;
+      margin-bottom: $sp-4;
     }
   }
   &-form {
     @include form(primary);
+    input {
+      background-color: var(--col-grey-700);
+    }
     div {
       width: 100%;
     }

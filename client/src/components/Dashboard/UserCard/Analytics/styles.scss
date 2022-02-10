@@ -1,13 +1,10 @@
 @use '../../../../styles/' as *;
 
 .user-card-tip-grid {
-  height: 13rem;
+  height: 7rem;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 2fr;
-  grid-template-areas:
-    'all all'
-    'week month';
+  grid-template-columns: 1fr;
+  grid-template-areas: 'all' 'week' 'month';
   gap: $sp-2;
 
   .user-card-analytics {
@@ -27,15 +24,16 @@
       @include text-3xl;
       text-align: center;
       color: var(--col-grey-100);
+      font-family: 'Abril Fatface', cursive;
     }
   }
 }
 
 @include xs-screen {
   .user-card-tip-grid {
-    height: 16rem;
-    grid-template-areas:
-      'all all'
-      'week month';
+    height: 17rem;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 2fr;
+    grid-template-areas: 'all all' 'week month';
   }
 }

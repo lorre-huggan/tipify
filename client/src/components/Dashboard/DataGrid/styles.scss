@@ -27,6 +27,7 @@
 }
 
 .data-card {
+  border: 2px solid var(--col-grey-600);
   width: 100%;
   height: 300px;
   background-color: var(--col-grey-800);
@@ -36,7 +37,7 @@
   @include flex(column, center, center);
   @include shadow-sm;
   h2 {
-    @include text-base;
+    @include text-sm;
     text-transform: uppercase;
     position: absolute;
     top: $sp-2;
@@ -44,9 +45,14 @@
     transform: translate(-50%, 0%);
   }
   &-data {
+    @include flex(row, center, center);
     h1 {
       @include text-5xl;
       font-weight: 900;
+      font-family: 'Abril Fatface', cursive;
+    }
+    span {
+      margin-left: 0.25rem;
     }
   }
 }

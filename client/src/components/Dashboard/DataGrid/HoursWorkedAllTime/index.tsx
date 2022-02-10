@@ -20,11 +20,17 @@ const HoursWorkedAllTime: React.FC<Props> = ({ user, data }) => {
 
   const hoursWorked = numberReducer(hours);
 
+  const headerColor = {
+    color: 'hsl(202, 100%, 55%)',
+  };
+
   return (
     <section className="data-card">
       <h2>Hours Worked</h2>
       <div className="data-card-data">
-        <h1>{hoursWorked ? `${hoursWorked}hrs` : `0hrs`}</h1>
+        <h1 style={headerColor}>
+          {hoursWorked ? `${hoursWorked}hrs` : `0hrs`}
+        </h1>
       </div>
     </section>
   );

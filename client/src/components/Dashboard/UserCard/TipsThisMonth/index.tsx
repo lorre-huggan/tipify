@@ -27,7 +27,9 @@ const TipsThisMonth: React.FC<Props> = ({ user, data }) => {
   return (
     <div className="user-card-analytics month-tips">
       <p>This Month</p>
-      <h1>{`${handleCurrency(user.currency)}${totalTips.toFixed(2)}`}</h1>
+      <h1 style={{ color: 'hsl(174, 72%, 66%' }}>{`${handleCurrency(
+        user.currency
+      )}${totalTips.toFixed(2)}`}</h1>
     </div>
   );
 };
