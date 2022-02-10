@@ -30,7 +30,7 @@ const HourlyRateThisWeek: React.FC<Props> = ({ user, data }) => {
 
   return (
     <section className="data-card">
-      <h2>Hourly Rate</h2>
+      <h2>This Week</h2>
       <div className="data-card-data">
         <h1>
           {hourlyRate

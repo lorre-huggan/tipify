@@ -40,7 +40,8 @@
     text-transform: uppercase;
     position: absolute;
     top: $sp-2;
-    left: $sp-2;
+    left: 50%;
+    transform: translate(-50%, 0%);
   }
   &-data {
     h1 {

@@ -25,7 +25,7 @@ const HoursWorkedThisMonth: React.FC<Props> = ({ user, data }) => {
 
   return (
     <section className="data-card">
-      <h2>Hourly Rate</h2>
+      <h2>This Month</h2>
       <div className="data-card-data">
         <h1>{hoursWorked ? `${hoursWorked}hrs` : `0hrs`}</h1>
       </div>

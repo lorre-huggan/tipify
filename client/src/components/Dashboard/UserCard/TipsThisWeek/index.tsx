@@ -3,6 +3,7 @@ import { UserJob } from '../../../../types/job-types';
 import { AuthUser } from '../../../../types/user-types';
 import { handleCurrency, numberReducer } from '../../../../utils/helpers';
 import { isThisWeek, fromUnixTime } from 'date-fns';
+import './styles.scss';
 
 type Props = {
   user: AuthUser;
@@ -24,7 +25,7 @@ const TipsThisWeek: React.FC<Props> = ({ user, data }) => {
   const totalTips = numberReducer(tips);
 
   return (
-    <div className="user-card-analytics">
+    <div className="user-card-analytics week-tips">
       <p>This Week</p>
       <h1>{`${handleCurrency(user.currency)}${totalTips.toFixed(2)}`}</h1>
     </div>

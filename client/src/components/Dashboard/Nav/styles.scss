@@ -18,22 +18,18 @@
       li {
         @include flex(column, center, center);
         svg {
-          font-size: $sp-4;
+          font-size: $sp-6;
           color: var(--col-secondary-100);
           transition: color $time-fs $trans-1;
           cursor: pointer;
           &:hover {
             color: $primary;
           }
-          &:hover + p {
-            opacity: 1;
-          }
         }
         p {
           color: $white;
-          opacity: 0;
+          opacity: 1;
           transition: opacity $time-md $trans-1;
-          display: none;
         }
       }
     }
@@ -65,6 +61,12 @@
           }
           svg {
             font-size: $sp-6;
+            &:hover + p {
+              opacity: 1;
+            }
+          }
+          p {
+            opacity: 0;
           }
         }
       }
